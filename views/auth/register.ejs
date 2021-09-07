@@ -1,1 +1,47 @@
-register view
+<%- include('../partials/_head') %>
+
+<%- include('../partials/_navbar') %>
+
+REGISTER
+
+<form action="/register" method="POST" id="form__box">
+    <% if (typeof error !=='undefined' ) { %>
+        <article class="message is-danger">
+            <div class="message-header">
+                <p>Danger</p>
+            </div>
+            <div class="message-body">
+                <%= error.message %>
+            </div>
+        </article>
+        <% } %>
+            <div class="form__input">
+                <label for="username">Username</label><br />
+                <input type="text" class="input" placeholder="Curator" name="username" maxlength="15"
+                    id="username" required>
+            </div>
+            <div class="form__input">
+                <label for="email">Email Address</label><br />
+                <input type="email" class="input" placeholder="Curator@gmail.com" name="email"
+                    id="email" required>
+            </div>
+            <div class="form__input">
+                <label for="password">Password</label><br />
+                <input type="password" class="input" placeholder="******" name="password" id="password"
+                    required>
+            </div>
+            <div class="form__input">
+                <label for="biography">Biography</label><br />
+                <input type="text" class="input" placeholder="Welcome to The Exhibit" name="biography"
+                    maxlength="300" id="biography">
+            </div>
+            <div class="avatar_input">
+                <label for="avatar_input">Biography</label><br />
+                <input type="text" class="input" value="https://i.imgur.com/eYlOXmc.png" name="avatar_input"
+                    maxlength="300" id="avatar_input">
+            </div>
+
+            <div>
+                <button class="form__button">Sign Up</button>
+            </div>
+</form>
