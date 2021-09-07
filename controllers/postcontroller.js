@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
+const Comment = require("../models/Comment")
 
 
 //gallery view
@@ -42,6 +43,23 @@ router.post("/", async (req, res, next) => {
             error,
         };
         return res.render("posts/new", context);
+    }
+});
+
+//show single post
+router.get("/:id", async (req, res, next) => {
+    try {
+        const foundPost = await Post.findById(req.params.id).populate("user");
+        const allComments = await Comment.find({ post: req.params.id }).populate("post user");
+        const context = {
+            post: foundPost,
+            comments: allComments,
+        }
+        return res.render("posts/show", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
     }
 });
 
