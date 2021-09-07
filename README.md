@@ -1,6 +1,10 @@
 # TheExhibit </br>
 The Exhibit is a hybrid social media/ecommerce website where users can share their artwork and photography with other people. Users are also invited to explore the collection of art, view artist profiles, leave comments on the art pieces (and even have the opportunity to purchase artwork). If you find an artist whose work really captivates your attention, you can follow them to keep up to date on their portfolio. Additionally, if you’d like to get in touch with another user, you also have the ability to message them to talk more about their work or to negotiate a price over a product.
 
+**=====Technologies Used======** </br>
+NEM Stack | Node.js | Express.js | MongoDB | Mongoose | Embedded Javascript | Bootstrap
+
+
 
 **=====User Stories/Sprints======** </br>
 Sprint 1: User Auth/Profile View </br>
