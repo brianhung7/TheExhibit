@@ -88,3 +88,6 @@ Sales/Purchase History Page </br>
 
 Shopping Cart Page </br>
 <img src='https://i.imgur.com/J4FLZYf.jpg' />
+
+**====Color Palette====** </br>
+https://coolors.co/0081a7-00afb9-fdfcdc-fed9b7-f07167
