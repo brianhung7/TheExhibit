@@ -17,10 +17,10 @@ router.post("/", async (req, res, next) => {
         let foundPost = await Post.findById(req.body.post);
         let addPostCount = ++foundPost.numComments;
         foundPost = await Post.findByIdAndUpdate(req.body.post,
-            { numComments:addPostCount },
+            { numComments: addPostCount },
             { new: true },
         );
-        
+
         await Comment.create(req.body, (error, createdComment) => {
             if (error) {
                 console.log(error);
@@ -35,6 +35,25 @@ router.post("/", async (req, res, next) => {
         return next();
     }
 });
+
+//DELETE comment
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const foundComment = await Comment.findById(req.params.id);
+        postId = foundComment.post;
+        if (foundComment.user == req.session.currentUser.id) {
+            await foundComment.delete();
+            return res.redirect(`/gallery/${postId}`);
+        } else {
+            return res.send("You are not allowed");
+        }
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 
 module.exports = router;
