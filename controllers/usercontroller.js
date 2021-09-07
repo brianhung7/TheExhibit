@@ -9,7 +9,7 @@ router.get("/:id", async (req, res, next) => {
     try {
         const userPosts = await Post.find({ user: req.params.id }).populate("user");
         const foundUser = await User.findById(req.params.id);
-        
+
         const context = {
             posts: userPosts,
             userProfile: foundUser,
@@ -22,6 +22,56 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+
+//Cart PUT route
+router.put("/cart/:id", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+        foundUser.cart.push(req.params.id);
+        await User.findByIdAndUpdate(
+            req.session.currentUser.id,
+            { 
+             cart: foundUser.cart,
+            },
+            { new: true },
+        )
+
+        console.log(`PUSHED ${req.params.id} into ${foundUser}`);
+        res.render("shopping/cart");
+    }
+    catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+
+})
+
+
+//Cart GET view route
+router.get("/cart", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+
+        let cartContents = [];
+        for(let i =0;i<foundUser.cart.length;i++){
+            let foundPost = await Post.findById(foundUser.cart[i])
+            cartContents.push(foundPost);
+        }
+        console.log(`USER: ${foundUser}`);
+        const context = {
+            cart: cartContents
+        }
+        console.log(`context: ${context.cart}`);
+        res.render("shopping/cart", context);
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+
+})
 
 
 module.exports = router;

@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema(
         },
         cart: [{
             type: mongoose.Types.ObjectId,
-            ref: "User"
+            ref: "Post"
         }],
         purchases: [{
             type: mongoose.Types.ObjectId,

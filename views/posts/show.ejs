@@ -18,6 +18,13 @@
                         <%= post.user.username %>
                             <%= post.description %>
                                 <img src="<%=post.image%> " width="250px">
+                                
+                                <% if ( typeof user !=='undefined' ) { %>
+                                    <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
+                                        <input class="button" type="submit" value="Add to Cart" />
+                                    </form>
+                                    <% } %>
+
                                 <% if ( typeof user !=='undefined' ) { %>
                                     <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
                                         <input class="button" type="submit" value="Like" />

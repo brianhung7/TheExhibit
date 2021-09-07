@@ -1,0 +1,13 @@
+CART VIEW
+
+<%= user.username %>
+
+    <% for(let i=0;i<cart.length;i++) { %>
+        <div>
+            <%= cart[i].title %>
+        </div>
+        <div>
+            <img src="<%=cart[i].image%>" width="250px">
+            
+        </div>
+        <% } %>
