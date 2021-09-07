@@ -63,6 +63,28 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+//update GET route
+router.get("/:id/update", async (req, res, next) => {
+    try {
+        const foundPost = await Post.findById(req.params.id);
+        const context = {
+            post: foundPost,
+        }
+        //checking if user is not logged in or you are not the user who originally made the post
+        if (!req.session.currentUser || foundPost.user != req.session.currentUser.id) {
+            const context = {
+                error: { message: "You don't belong here" },
+            };
+            return res.render("404", context);
+        }
+        return res.render("posts/update", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 
 
 
