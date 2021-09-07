@@ -10,6 +10,7 @@
         <%- include('../partials/_navbar') %>
 
             YOU HIT THE SHOW POST VIEW
+            
 
             <%= post.title %>
                 <%= post.tags %>
@@ -17,6 +18,11 @@
                         <%= post.user.username %>
                             <%= post.description %>
                                 <img src="<%=post.image%> " width="250px">
+                                <% if ( typeof user !=='undefined' ) { %>
+                                    <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
+                                        <input class="button" type="submit" value="Like" />
+                                    </form>
+                                    <% } %>
                                 <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
                                 <a href="/gallery/<%=post.id%>/update ">UPDATE</a>
                                 <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">
@@ -50,6 +56,7 @@
                                                 </div>
                                             </form>
                                         </div>
+                                        NUMBER OF LIKES: <%= likes.numLikes %> 
 
 
     </body>

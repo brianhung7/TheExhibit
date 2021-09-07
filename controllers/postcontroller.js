@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
 const Comment = require("../models/Comment")
+const Like = require("../models/Like");
 
 
 //gallery view
@@ -37,6 +38,7 @@ router.post("/", async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;
         const newPost = await Post.create(req.body);
+        await Like.create({ post: newPost._id });
         return res.redirect(`/gallery/${newPost.id}`);
     } catch (error) {
         const context = {
@@ -51,9 +53,11 @@ router.get("/:id", async (req, res, next) => {
     try {
         const foundPost = await Post.findById(req.params.id).populate("user");
         const allComments = await Comment.find({ post: req.params.id }).populate("post user");
+        const foundLikes = await Like.findOne({ post: req.params.id });
         const context = {
             post: foundPost,
             comments: allComments,
+            likes: foundLikes,
         }
         return res.render("posts/show", context);
     } catch (error) {
@@ -111,6 +115,7 @@ router.delete("/:id", async (req, res, next) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
         await Comment.deleteMany({ post: req.params.id });
+        await Like.deleteMany({post:req.params.id});
         return res.redirect("/gallery");
     } catch (error) {
         console.log(error);
