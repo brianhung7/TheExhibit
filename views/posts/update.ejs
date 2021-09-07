@@ -1,1 +1,57 @@
-UPDATE POST ROUTE
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/_head') %>
+    <title>
+        Update <%= post.title %>
+    </title>
+    <link rel="shortcut icon" href="/styles/logo.svg">
+    <link rel="stylesheet" href="/styles/form.css">
+
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="form__container">
+                <h1 class="form__name">Update Post</h1>
+                <form action="/gallery/<%= post.id %>?_method=PUT" method="POST" id="form__box">
+                    <% if (typeof error !=='undefined' ) { %>
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Danger</p>
+                            </div>
+                            <div class="message-body">
+                                <%= error.message %>
+                            </div>
+                        </article>
+                        <% } %>
+                            <div class="form__input">
+                                <label for="title">Title</label><br />
+                                <input type="text" class="input" placeholder="Title" name="title" id="title"
+                                    maxlength="30" value="<%= post.title %>">
+                            </div>
+                            <div class="form__input">
+                                <label for="image">Image Link</label><br />
+                                <input type="text" class="input" placeholder="URL" name="image" id="image"
+                                    value="<%= post.image %>" required>
+                            </div>
+                            <div class="form__input">
+                                <label for="description">Description</label><br />
+                                <input type="text" class="input" placeholder="Description" name="description"
+                                    id="description" maxlength="300" value="<%= post.description%> ">
+                            </div>
+                            <div class="form__input">
+                                <label for="price">Price ($)</label><br />
+                                <input maxlength="300" type="number" class="input" placeholder="$199.99" step="0.01"
+                                    name="price" id="price" value=<%= post.price %> >
+                            </div>
+                            <div class="form__input">
+                                <label for="tags">Tags separated by commas</label><br />
+                                <input type="text" class="input" placeholder="Tags" name="tags" id="tags"
+                                    value="<%= post.tags%> ">
+                            </div>
+                            <div>
+                                <button class="form__button">Update Post</button>
+                            </div>
+                </form>
+            </div>
+    </body>
+
+</html>

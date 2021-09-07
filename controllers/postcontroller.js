@@ -85,6 +85,28 @@ router.get("/:id/update", async (req, res, next) => {
     }
 })
 
+//update PUT route
+router.put("/:id", (req, res, next) => {
+    Post.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set: req.body,
+        },
+        {
+            new: true,
+        },
+        (error, updatedPost) => {
+            if (error) {
+                console.log(error);
+                req.error = error;
+                return next();
+            }
+            return res.redirect(`/gallery/${updatedPost.id}`);
+        }
+    );
+})
+
+
 
 
 
