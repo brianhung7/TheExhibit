@@ -15,10 +15,10 @@ const PORT = process.env.PORT || 4000;
 
 
 /* SECTION Internal Modules */
-//const controllers = require("./controllers");
+// const controllers = require("./controllers");
 // const postCtrl = require("./controllers/postcontrollers.js");
 // const commentCtrl = require("./controllers/commentcontrollers.js");
-// const authCtrl = require("./controllers/auth_controller");
+const authCtrl = require("./controllers/authcontroller");
 // const usersCtrl = require("./controllers/usercontroller");
 // const likesCtrl = require("./controllers/likecontroller");
 
@@ -34,7 +34,7 @@ app.use(
     // store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     // secret key will sign the cookie for validation
     // secret: process.env.SECRET,
-     secret: "safe password",
+    secret: "safe password",
     resave: false,
     saveUninitialized: false,
     // cookie config
@@ -82,7 +82,7 @@ app.use(methodOverride("_method"));
 /* !SECTION */
 
 // /* SECTION Routes */
-// app.use("/", authCtrl);
+app.use("/", authCtrl);
 // app.use("/gallery", postCtrl);
 // app.use("/comments", commentCtrl);
 // app.use("/users", usersCtrl);
