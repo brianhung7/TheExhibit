@@ -22,6 +22,12 @@
         <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">
             <input class="button" type="submit" value="Delete Post" />
         </form>
+
+        <% for(let i=0;i<comments.length;i++) { %> 
+            <%= comments[i].content %> 
+
+
+            <% } %> 
         <div class="comment_form">
             <form action="../comments" method="POST">
                 <div class="align">
@@ -37,5 +43,5 @@
             </form>
         </div>
 
-        
+
     </body>
