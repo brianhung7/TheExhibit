@@ -8,7 +8,6 @@ router.get("/", async (req, res, next) => {
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,
-            likes: allLikes,
         }
         res.render("posts/gallery", context);
     } catch (error) {
