@@ -1,0 +1,23 @@
+{
+  "name": "theexhibit",
+  "version": "1.0.0",
+  "description": "The Exhibit is a hybrid social media/ecommerce website where users can share their artwork and photography with other people. Users are also invited to explore the collection of art, view artist profiles, leave comments on the art pieces (and even have the opportunity to purchase artwork). If you find an artist whose work really captivates your attention, you can follow them to keep up to date on their portfolio. Additionally, if you’d like to get in touch with another user, you also have the ability to message them to talk more about their work or to negotiate a price over a product.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianhung7/TheExhibit.git"
+  },
+  "author": "Brian Pham",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brianhung7/TheExhibit/issues"
+  },
+  "homepage": "https://github.com/brianhung7/TheExhibit#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
