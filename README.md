@@ -76,6 +76,9 @@ Post View Page </br>
 User Profile Page </br>
 <img src='https://i.imgur.com/TsGsXae.jpg' />
 
+Conversations View page </br>
+<img src='https://i.imgur.com/FygIHw5.jpg' />
+
 Sales/Purchase History Page </br>
 <img src='https://i.imgur.com/YiKw6jx.jpg' />
 
