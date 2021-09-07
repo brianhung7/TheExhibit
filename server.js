@@ -16,10 +16,10 @@ const PORT = process.env.PORT || 4000;
 
 /* SECTION Internal Modules */
 // const controllers = require("./controllers");
-// const postCtrl = require("./controllers/postcontrollers.js");
-// const commentCtrl = require("./controllers/commentcontrollers.js");
+const postCtrl = require("./controllers/postcontroller.js");
+// const commentCtrl = require("./controllers/commentcontroller.js");
 const authCtrl = require("./controllers/authcontroller");
-// const usersCtrl = require("./controllers/usercontroller");
+const usersCtrl = require("./controllers/usercontroller");
 // const likesCtrl = require("./controllers/likecontroller");
 
 /* SECTION App Config */
@@ -83,9 +83,9 @@ app.use(methodOverride("_method"));
 
 // /* SECTION Routes */
 app.use("/", authCtrl);
-// app.use("/gallery", postCtrl);
+app.use("/gallery", postCtrl);
 // app.use("/comments", commentCtrl);
-// app.use("/users", usersCtrl);
+app.use("/users", usersCtrl);
 // app.use("/likes", likesCtrl);
 
 

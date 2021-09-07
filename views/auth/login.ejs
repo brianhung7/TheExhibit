@@ -1,5 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <%- include('../partials/_head') %>
+    <title>
+        Login
+    </title>
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="form__container">
+                <h1 class="form__name">Login</h1>
+                <form action="/login" method="POST" id="form__box">
+                    <% if (typeof error !=='undefined' ) { %>
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Danger</p>
+                            </div>
+                            <div class="message-body">
+                                <%= error.message %>
+                            </div>
+                        </article>
+                        <% } %>
+                            <div class="form__input">
+                                <label for="email">Email Address</label><br />
+                                <input type="email" class="input" placeholder="Curator@gmail.com" name="email"
+                                    id="email" required>
+                            </div>
+                            <div class="form__input">
+                                <label for="password">Password</label><br />
+                                <input type="password" class="input" placeholder="******" name="password" id="password"
+                                    required>
+                            </div>
 
-<%- include('../partials/_navbar') %>
+                            <div>
+                                <button class="form__button">Log In</button>
+                            </div>
+                </form>
+            </div>
 
-LOGIN
+    </body>
