@@ -78,7 +78,7 @@ Post View Page </br>
 <img src='https://i.imgur.com/vEFmKaB.jpg' />
 
 User Profile Page </br>
-<img src='https://i.imgur.com/TsGsXae.jpg' />
+<img src='https://i.imgur.com/iEimf7Y.jpg' />
 
 Conversations View page </br>
 <img src='https://i.imgur.com/FygIHw5.jpg' />
