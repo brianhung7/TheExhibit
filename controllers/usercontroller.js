@@ -182,5 +182,48 @@ router.get("/:id/likedposts", async (req, res, next) => {
     }
 })
 
+//Update User GET route
+router.get("/:id/update", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.params.id);
+        if (!req.session.currentUser || foundUser._id != req.session.currentUser.id) {
+            const context = {
+                error: { message: "You don't belong here" },
+            };
+            return res.render("404", context);
+        }
+        const context = {
+            user: foundUser,
+        }
+        //console.log(context.user);
+        return res.render("users/profileupdate", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
+//Update User put route
+router.put("/:id/update", (req, res, next) => {
+    User.findByIdAndUpdate(
+        req.params.id,
+        {
+            $set: req.body,
+        },
+        {
+            new: true,
+        },
+        (error, updatedUser) => {
+            if (error) {
+                console.log(error);
+                req.error = error;
+                return next();
+            }
+            return res.redirect(`/users/${updatedUser.id}`);
+        }
+    );
+})
+
 
 module.exports = router;
