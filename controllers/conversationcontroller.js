@@ -8,9 +8,15 @@ const Message = require("../models/Message");
 //All Conversations GET
 router.get("/", async (req, res, next) => {
     try {
+        let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
 
 
-        res.render("conversation/all");
+        context = {
+            conversations: foundAllConversations,
+        }
+
+
+        res.render("conversation/all", context);
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -45,7 +51,7 @@ router.post("/message/new/:id", async (req, res, next) => {
         // console.log(`you are sending a message FROM ${req.session.currentUser.id}`);
         let foundConversation = [];
         let userArray = [req.session.currentUser.id, req.params.id];
-        foundConversation = await Conversation.find({ userArr: userArray });
+        foundConversation = await Conversation.find({ userArr: { $all: userArray } });
 
         if (foundConversation.length === 0) {
             foundConversation = await Conversation.create({ userArr: userArray });
@@ -53,10 +59,10 @@ router.post("/message/new/:id", async (req, res, next) => {
         }
         // console.log(req.body);
         let newMessage = await Message.create({
-            receiver:req.params.id,
+            receiver: req.params.id,
             sender: req.session.currentUser.id,
             conversation: foundConversation._id,
-            text:req.body.text, 
+            text: req.body.text,
         })
         // console.log(foundConversation);
         receiver = await User.findById(req.params.id);
