@@ -1,1 +1,25 @@
-SALES PAGE
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/_head') %>
+    <title>
+        Sales
+    </title>
+
+    <body>
+        <%- include('../partials/_navbar') %>
+        SALES
+
+            <% for(let i=0;i<sales.length;i++) { %>
+                <div>
+                    <%= sales[i].title %>
+
+                        <%= sales[i].price%>
+                </div>
+                <div>
+                    <img src="<%=sales[i].image%>" width="250px">
+
+                </div>
+                <% } %>
+
+    </body>

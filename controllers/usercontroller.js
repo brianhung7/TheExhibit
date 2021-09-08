@@ -104,6 +104,30 @@ router.get("/purchases", async (req, res, next) => {
 })
 
 
+//Sales GET view route
+router.get("/sales", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+
+        let saleContents = [];
+        for(let i =0;i<foundUser.sales.length;i++){
+            let foundPost = await Post.findById(foundUser.sales[i])
+            saleContents.push(foundPost);
+        }
+        // console.log(`USER: ${foundUser}`);
+        const context = {
+            sales: saleContents,
+        }
+        // console.log(`context: ${context.purchases}`);
+        res.render("shopping/sales", context);
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 //User profile route
 router.get("/:id", async (req, res, next) => {
     try {

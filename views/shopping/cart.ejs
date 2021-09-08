@@ -1,5 +1,14 @@
-CART VIEW
+<!DOCTYPE html>
+<html lang="en">
 
+<%- include('../partials/_head') %>
+    <title>
+       Cart
+    </title>
+
+    <body>
+        <%- include('../partials/_navbar') %>
+        SHOPPING CART
 <%= user.username %>
     <% if ( typeof user !=='undefined' ) { %>
         <form action="/users/purchases?_method=PUT" method="POST">
@@ -19,3 +28,5 @@ CART VIEW
 
                 </div>
                 <% } %>
+
+            </body>

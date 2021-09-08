@@ -1,14 +1,25 @@
-PURCHASES VIEW
+<!DOCTYPE html>
+<html lang="en">
 
+<%- include('../partials/_head') %>
+    <title>
+        Purchases
+    </title>
 
-<% for(let i=0;i<purchases.length;i++) { %>
-    <div>
-        <%= purchases[i].title %>
+    <body>
+        <%- include('../partials/_navbar') %>
+        PURCHASES
 
-            <%= purchases[i].price%>
-    </div>
-    <div>
-        <img src="<%=purchases[i].image%>" width="250px">
+            <% for(let i=0;i<purchases.length;i++) { %>
+                <div>
+                    <%= purchases[i].title %>
 
-    </div>
-    <% } %>
+                        <%= purchases[i].price%>
+                </div>
+                <div>
+                    <img src="<%=purchases[i].image%>" width="250px">
+
+                </div>
+                <% } %>
+
+    </body>
