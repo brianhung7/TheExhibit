@@ -1,5 +1,21 @@
-
-
-<% for(let i =0;i<messages.length;i++) { %> 
-    <%= messages[i].text %> 
+ALL MESSAGES
+<div>
+<% for(let i =0;i<allMessages.length;i++) { %> 
+    <%= allMessages[i].text %> 
     <% } %> 
+</div>
+
+YOUR MESSAGES
+<div>
+    <% for(let i =0;i<currentUserMessages.length;i++) { %> 
+        <%= currentUserMessages[i].text %> 
+        <% } %> 
+    </div>
+
+
+    OTHER USER MESSAGES
+<div>
+    <% for(let i =0;i<otherUserMessages.length;i++) { %> 
+        <%= otherUserMessages[i].text %> 
+        <% } %> 
+    </div>

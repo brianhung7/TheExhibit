@@ -68,11 +68,11 @@ router.post("/message/new/:id", async (req, res, next) => {
         
         let userArray = [req.session.currentUser.id, req.params.id];
         let foundConversation = await Conversation.findOne({ userArr: { $all: userArray } });
-        console.log(foundConversation);
+        // console.log(foundConversation);
 
         if (!foundConversation) {
             foundConversation = await Conversation.create({ userArr: userArray });
-            console.log(`made new conversation ${foundConversation}`);
+            // console.log(`made new conversation ${foundConversation}`);
         }
         // console.log(req.body);
         let newMessage = await Message.create({
@@ -83,12 +83,12 @@ router.post("/message/new/:id", async (req, res, next) => {
         })
         // console.log(foundConversation);
         receiver = await User.findById(req.params.id);
-        context = {
-            receiver: receiver,
-        }
+        // context = {
+        //     receiver: receiver,
+        // }
 
 
-        res.render("conversation/createmessage", context);
+        res.redirect(`/conversation/${foundConversation._id}`);
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -97,14 +97,25 @@ router.post("/message/new/:id", async (req, res, next) => {
 })
 
 
-//All Conversations GET
+//Single Conversation GET
 router.get("/:id", async (req, res, next) => {
     try {
         let foundConversations = await Conversation.findById(req.params.id);
         let foundMessages = await Message.find({conversation:req.params.id});
+        let currentUserMessages = [];
+        let otherUserMessages = [];
+        for(let i = 0;i<foundMessages.length;i++){
+            if(foundMessages[i].sender == req.session.currentUser.id){
+                currentUserMessages.push(foundMessages[i]);
+            } else {
+                otherUserMessages.push(foundMessages[i]);
+            }
+        }
 
         context = {
-            messages: foundMessages,
+            allMessages: foundMessages,
+            currentUserMessages: currentUserMessages,
+            otherUserMessages: otherUserMessages,
         }
 
 
