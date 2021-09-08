@@ -3,13 +3,13 @@
 
 <%- include('../partials/_head') %>
     <title>
-        Profile
+        Profile LIKED POSTS
     </title>
 
     <body>
         <%- include('../partials/_navbar') %>
 
-            YOU HIT THE Profile VIEW
+            YOU HIT THE Profile LIKED POSTS 
 
             <%= userProfile.username %>
             <img src="<%=userProfile.avatar%>" alt="" srcset="" width="150px">
@@ -29,6 +29,4 @@
                 <div>
                     <a href="/conversation/message/new/<%=userProfile.id%> ">Send a message</a>
                 </div>
-
-                <a href="/users/<%=userProfile.id%>/likedposts">Liked posts</a>
     </body>

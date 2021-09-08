@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
-const Likes = require("../models/Like")
+const Like = require("../models/Like")
 
 //Cart PUT route (add new item)
 router.put("/cart/:id", async (req, res, next) => {
@@ -159,6 +159,28 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
+//User liked posts route
+router.get("/:id/likedposts", async (req, res, next) => {
+    try {
+        const likedPosts = await Like.find({ userArr: req.params.id });
+        const foundUser = await User.findById(req.params.id);
+        const postArr = [];
+        let allLikes = [];
+        for (i = 0; i < likedPosts.length; i++) {
+            postArr.push(await Post.findById(likedPosts[i].post));
+        }
+        context = {
+            posts:postArr,
+            userProfile:foundUser,
+            likes: likedPosts,
+        }
+        res.render("users/profilelikes",context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 
 module.exports = router;
