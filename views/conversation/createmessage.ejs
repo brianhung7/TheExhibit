@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/_head') %>
+    <title>
+        New Post
+    </title>
+    <link rel="shortcut icon" href="/styles/logo.svg">
+    <link rel="stylesheet" href="/styles/form.css">
+
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="form__container">
+                <h1 class="form__name">Send a Message to <%= receiver.username %> </h1>
+                <form action="/conversation/message/new/<%=receiver.id%>" method="POST" id="form__box">
+                    <% if (typeof error !=='undefined' ) { %>
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Danger</p>
+                            </div>
+                            <div class="message-body">
+                                <%= error.message %>
+                            </div>
+                        </article>
+                        <% } %>
+                            <div class="form__input">
+                                <label for="text">Text</label><br />
+                                <input maxlength="300" type="text" class="input" placeholder="Message text"
+                                    name="text" id="text">
+                            </div>
+
+                            <div>
+                                <button class="form__button">Send Message</button>
+                            </div>
+
+                </form>
+            </div>
+
+
+    </body>
+
+</html>

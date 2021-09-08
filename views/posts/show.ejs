@@ -15,7 +15,7 @@
             <%= post.title %>
                 <%= post.tags %>
                     <%= post.price %>
-                        <%= post.user.username %>
+                        <a href="/users/<%=post.user.id%> "><%= post.user.username %></a>
                             <%= post.description %>
                                 <img src="<%=post.image%> " width="250px">
                                 

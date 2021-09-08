@@ -21,6 +21,7 @@ const commentCtrl = require("./controllers/commentcontroller.js");
 const authCtrl = require("./controllers/authcontroller");
 const usersCtrl = require("./controllers/usercontroller");
 const likesCtrl = require("./controllers/likecontroller");
+const conversationCtrl = require("./controllers/conversationcontroller");
 
 /* SECTION App Config */
 
@@ -87,6 +88,7 @@ app.use("/gallery", postCtrl);
 app.use("/comments", commentCtrl);
 app.use("/users", usersCtrl);
 app.use("/likes", likesCtrl);
+app.use("/conversation", conversationCtrl);
 
 
 
