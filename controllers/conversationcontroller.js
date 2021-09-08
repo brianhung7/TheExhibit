@@ -123,8 +123,8 @@ router.get("/:id", async (req, res, next) => {
 
         context = {
             allMessages: foundMessages,
-            currentUserMessages: currentUserMessages,
-            otherUserMessages: otherUserMessages,
+            // currentUserMessages: currentUserMessages,
+            // otherUserMessages: otherUserMessages,
             currentUser: currentUser,
             otherUser: otherUser,
         }
