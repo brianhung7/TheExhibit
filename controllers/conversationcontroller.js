@@ -46,14 +46,19 @@ router.post("/message/new/:id", async (req, res, next) => {
         let foundConversation = [];
         let userArray = [req.session.currentUser.id, req.params.id];
         foundConversation = await Conversation.find({ userArr: userArray });
-        console.log(userArray);
 
         if (foundConversation.length === 0) {
             foundConversation = await Conversation.create({ userArr: userArray });
-            console.log(`made new conversation ${foundConversation}`);
+            // console.log(`made new conversation ${foundConversation}`);
         }
-
-        console.log(foundConversation);
+        // console.log(req.body);
+        let newMessage = await Message.create({
+            receiver:req.params.id,
+            sender: req.session.currentUser.id,
+            conversation: foundConversation._id,
+            text:req.body.text, 
+        })
+        // console.log(foundConversation);
         receiver = await User.findById(req.params.id);
         context = {
             receiver: receiver,
