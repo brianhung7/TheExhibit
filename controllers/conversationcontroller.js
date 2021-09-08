@@ -10,10 +10,26 @@ router.get("/", async (req, res, next) => {
     try {
         let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
 
+        //Removing current user from userArr in Conversation
+        for(let i = 0;i<foundAllConversations.length;i++){
+            let currentUserIndex = foundAllConversations[i].userArr.indexOf(req.session.currentUser.id);
+            foundAllConversations[i].userArr.splice(currentUserIndex, 1);
+
+        }
+
+        //grabbing user info from Conversation userArr
+        let userConversations = [];
+        for(let i = 0;i<foundAllConversations.length;i++){
+            let foundUser = await User.findById(foundAllConversations[i].userArr[0]);
+            userConversations.push(foundUser);
+        }
 
         context = {
+            userConversations:userConversations,
             conversations: foundAllConversations,
         }
+        // console.log(`ALL CONVOS: ${context.conversations}`);
+        // console.log(`ALL USERS: ${context.userConversations}`);
 
 
         res.render("conversation/all", context);
@@ -49,13 +65,14 @@ router.post("/message/new/:id", async (req, res, next) => {
     try {
         // console.log(`you are sending a message to ${req.params.id}`);
         // console.log(`you are sending a message FROM ${req.session.currentUser.id}`);
-        let foundConversation = [];
+        
         let userArray = [req.session.currentUser.id, req.params.id];
-        foundConversation = await Conversation.find({ userArr: { $all: userArray } });
+        let foundConversation = await Conversation.findOne({ userArr: { $all: userArray } });
+        console.log(foundConversation);
 
-        if (foundConversation.length === 0) {
+        if (!foundConversation) {
             foundConversation = await Conversation.create({ userArr: userArray });
-            // console.log(`made new conversation ${foundConversation}`);
+            console.log(`made new conversation ${foundConversation}`);
         }
         // console.log(req.body);
         let newMessage = await Message.create({
@@ -79,5 +96,24 @@ router.post("/message/new/:id", async (req, res, next) => {
     }
 })
 
+
+//All Conversations GET
+router.get("/:id", async (req, res, next) => {
+    try {
+        let foundConversations = await Conversation.findById(req.params.id);
+        let foundMessages = await Message.find({conversation:req.params.id});
+
+        context = {
+            messages: foundMessages,
+        }
+
+
+        res.render("conversation/showconversation", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 module.exports = router;

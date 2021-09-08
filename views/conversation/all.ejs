@@ -1,3 +1,24 @@
-ALL CONVERSATIONS
+<!DOCTYPE html>
+<html lang="en">
 
-<%= conversations %> 
+<%- include('../partials/_head') %>
+    <title>
+        ALL CONVOS
+    </title>
+    <link rel="shortcut icon" href="/styles/logo.svg">
+    <link rel="stylesheet" href="/styles/form.css">
+
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div>
+                <% for(let i=0;i<conversations.length;i++) { %>
+                    <div>
+                        <a href="/conversation/<%=conversations[i]._id%>">
+                            <%= userConversations[i].username %>
+                        </a>
+                    </div>
+
+                    <% } %>
+            </div>
+
+    </body>
