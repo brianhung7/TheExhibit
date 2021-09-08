@@ -11,13 +11,13 @@ router.put("/cart/:id", async (req, res, next) => {
         foundUser.cart.push(req.params.id);
         await User.findByIdAndUpdate(
             req.session.currentUser.id,
-            { 
-             cart: foundUser.cart,
+            {
+                cart: foundUser.cart,
             },
             { new: true },
         )
         // console.log(`PUSHED ${req.params.id} into ${foundUser}`);
-        res.render("shopping/cart");
+        res.redirect("/users/cart");
     }
     catch (error) {
         console.log(error);
@@ -33,7 +33,7 @@ router.get("/cart", async (req, res, next) => {
         const foundUser = await User.findById(req.session.currentUser.id);
 
         let cartContents = [];
-        for(let i =0;i<foundUser.cart.length;i++){
+        for (let i = 0; i < foundUser.cart.length; i++) {
             let foundPost = await Post.findById(foundUser.cart[i])
             cartContents.push(foundPost);
         }
@@ -55,21 +55,34 @@ router.get("/cart", async (req, res, next) => {
 router.put("/purchases", async (req, res, next) => {
     try {
         const foundUser = await User.findById(req.session.currentUser.id);
-        //pushing all user cart array items into purchases array
-        for(let i = 0;i<foundUser.cart.length;i++){
+        //pushing all user cart array items into purchases array and finding seller associated with each post
+        for (let i = 0; i < foundUser.cart.length; i++) {
             foundUser.purchases.push(foundUser.cart[i]);
+            let soldPost = await Post.findById(foundUser.cart[i]);
+            let foundSeller = await User.findById(soldPost.user);
+            foundSeller.sales.push(foundUser.cart[i]);
+            //Updating seller's sales array
+            await User.findByIdAndUpdate(
+                soldPost.user,
+                {
+                    sales: foundSeller.sales,
+                },
+                { new: true },
+            )
         }
         //empty the cart array
         foundUser.cart = [];
+        //updating buyer purchase array and emptying cart array
         await User.findByIdAndUpdate(
             req.session.currentUser.id,
-            { 
-             purchases: foundUser.purchases,
-             cart: foundUser.cart,
+            {
+                purchases: foundUser.purchases,
+                cart: foundUser.cart,
             },
             { new: true },
         )
-        console.log(`PUSHED ${foundUser.cart} into ${foundUser}`);
+
+        // console.log(`PUSHED ${foundUser.cart} into ${foundUser}`);
         res.redirect("/users/purchases");
     }
     catch (error) {
@@ -85,7 +98,7 @@ router.get("/purchases", async (req, res, next) => {
         const foundUser = await User.findById(req.session.currentUser.id);
 
         let purchaseContents = [];
-        for(let i =0;i<foundUser.purchases.length;i++){
+        for (let i = 0; i < foundUser.purchases.length; i++) {
             let foundPost = await Post.findById(foundUser.purchases[i])
             purchaseContents.push(foundPost);
         }
@@ -110,7 +123,7 @@ router.get("/sales", async (req, res, next) => {
         const foundUser = await User.findById(req.session.currentUser.id);
 
         let saleContents = [];
-        for(let i =0;i<foundUser.sales.length;i++){
+        for (let i = 0; i < foundUser.sales.length; i++) {
             let foundPost = await Post.findById(foundUser.sales[i])
             saleContents.push(foundPost);
         }
