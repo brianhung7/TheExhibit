@@ -1,21 +1,63 @@
+
 ALL MESSAGES
+<%- include('../partials/_navbar') %>
 <div>
-<% for(let i =0;i<allMessages.length;i++) { %> 
-    <%= allMessages[i].text %> 
-    <% } %> 
+    <% for(let i=0;i<allMessages.length;i++) { %>
+        <%= allMessages[i].text %>
+            <% } %>
 </div>
 
 YOUR MESSAGES
 <div>
-    <% for(let i =0;i<currentUserMessages.length;i++) { %> 
-        <%= currentUserMessages[i].text %> 
-        <% } %> 
-    </div>
+    <% for(let i=0;i<currentUserMessages.length;i++) { %>
+        <div>
+        <%= currentUserMessages[i].text %>
+        <%= new Intl.DateTimeFormat('en-US').format(currentUserMessages[i].createdAt) %>
+            <% } %>
+        </div>
+</div>
 
 
-    OTHER USER MESSAGES
+OTHER USER MESSAGES
 <div>
-    <% for(let i =0;i<otherUserMessages.length;i++) { %> 
-        <%= otherUserMessages[i].text %> 
-        <% } %> 
-    </div>
+    <% for(let i=0;i<otherUserMessages.length;i++) { %>
+        <%= otherUserMessages[i].text %>
+            <% } %>
+</div>
+
+<div>
+    <%= currentUser.username %>
+        <img src="<%= currentUser.avatar %> " alt="" srcset="" width="150px">
+</div>
+
+<div>
+    <%= otherUser.username %>
+        <img src="<%= otherUser.avatar %> " alt="" srcset="" width="150px">
+</div>
+
+
+<div class="form__container">
+    <h1 class="form__name">Send a Message to <%= otherUser.username %> </h1>
+    <form action="/conversation/message/new/<%=otherUser.id%>" method="POST" id="form__box">
+        <% if (typeof error !=='undefined' ) { %>
+            <article class="message is-danger">
+                <div class="message-header">
+                    <p>Danger</p>
+                </div>
+                <div class="message-body">
+                    <%= error.message %>
+                </div>
+            </article>
+            <% } %>
+                <div class="form__input">
+                    <label for="text">Text</label><br />
+                    <input maxlength="300" type="text" class="input" placeholder="Message text"
+                        name="text" id="text">
+                </div>
+
+                <div>
+                    <button class="form__button">Send Message</button>
+                </div>
+
+    </form>
+</div>

@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
         let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
 
         //Removing current user from userArr in Conversation
-        for(let i = 0;i<foundAllConversations.length;i++){
+        for (let i = 0; i < foundAllConversations.length; i++) {
             let currentUserIndex = foundAllConversations[i].userArr.indexOf(req.session.currentUser.id);
             foundAllConversations[i].userArr.splice(currentUserIndex, 1);
 
@@ -19,13 +19,13 @@ router.get("/", async (req, res, next) => {
 
         //grabbing user info from Conversation userArr
         let userConversations = [];
-        for(let i = 0;i<foundAllConversations.length;i++){
+        for (let i = 0; i < foundAllConversations.length; i++) {
             let foundUser = await User.findById(foundAllConversations[i].userArr[0]);
             userConversations.push(foundUser);
         }
 
         context = {
-            userConversations:userConversations,
+            userConversations: userConversations,
             conversations: foundAllConversations,
         }
         // console.log(`ALL CONVOS: ${context.conversations}`);
@@ -65,7 +65,7 @@ router.post("/message/new/:id", async (req, res, next) => {
     try {
         // console.log(`you are sending a message to ${req.params.id}`);
         // console.log(`you are sending a message FROM ${req.session.currentUser.id}`);
-        
+
         let userArray = [req.session.currentUser.id, req.params.id];
         let foundConversation = await Conversation.findOne({ userArr: { $all: userArray } });
         // console.log(foundConversation);
@@ -100,22 +100,33 @@ router.post("/message/new/:id", async (req, res, next) => {
 //Single Conversation GET
 router.get("/:id", async (req, res, next) => {
     try {
-        let foundConversations = await Conversation.findById(req.params.id);
-        let foundMessages = await Message.find({conversation:req.params.id});
+        let foundConversation = await Conversation.findById(req.params.id);
+        let foundMessages = await Message.find({ conversation: req.params.id });
         let currentUserMessages = [];
         let otherUserMessages = [];
-        for(let i = 0;i<foundMessages.length;i++){
-            if(foundMessages[i].sender == req.session.currentUser.id){
+        for (let i = 0; i < foundMessages.length; i++) {
+            if (foundMessages[i].sender == req.session.currentUser.id) {
                 currentUserMessages.push(foundMessages[i]);
             } else {
                 otherUserMessages.push(foundMessages[i]);
             }
         }
 
+        const currentUser = await User.findById(req.session.currentUser.id);
+        //CHECK IF THIS IS CORRECT INITIALIZATION
+        let otherUser = {};
+        if (foundConversation.userArr[0] != req.session.currentUser.id) {
+            otherUser = await User.findById(foundConversation.userArr[0]);
+        } else {
+            otherUser = await User.findById(foundConversation.userArr[1]);
+        }
+
         context = {
             allMessages: foundMessages,
             currentUserMessages: currentUserMessages,
             otherUserMessages: otherUserMessages,
+            currentUser: currentUser,
+            otherUser: otherUser,
         }
 
 
@@ -126,5 +137,33 @@ router.get("/:id", async (req, res, next) => {
         return next();
     }
 })
+
+//Single Conversation POST
+// router.post("/:id", async (req, res, next) => {
+//     try {
+//         let foundConversation = await Conversation.findById(req.params.id);
+
+//         let otherUser = {};
+//         if (foundConversation.userArr[0] != req.session.currentUser.id) {
+//             otherUser = await User.findById(foundConversation.userArr[0]);
+//         } else {
+//             otherUser = await User.findById(foundConversation.userArr[1]);
+//         }
+
+//         let newMessage = await Message.create({
+//             receiver: otherUser._id,
+//             sender: req.session.currentUser.id,
+//             conversation: req.params.id,
+//             text: req.body.text,
+//         })
+//         res.redirect(`/conversation/${req.params.id}`);
+//     } catch (error) {
+//         console.log(error);
+//         req.error = error;
+//         return next();
+//     }
+
+// })
+
 
 module.exports = router;

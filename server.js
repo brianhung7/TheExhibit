@@ -64,19 +64,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(methodOverride("_method"));
 
-// // auth required 
-// if user is authenticated 
-// do nothing 
-// if not authenticated 
-// redirect to login 
-
-// const authRequired = (req,res,next) => {
-//   if(!req.session.currentUser){
-//     return res.redirect("/login");
-//   }
-
-//   next();
-// }
 
 
 
