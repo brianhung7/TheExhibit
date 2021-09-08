@@ -23,7 +23,7 @@ router.get("/:id", async (req, res, next) => {
 });
 
 
-//Cart PUT route
+//Cart PUT route (add new item)
 router.put("/cart/:id", async (req, res, next) => {
     try {
         const foundUser = await User.findById(req.session.currentUser.id);
@@ -35,8 +35,7 @@ router.put("/cart/:id", async (req, res, next) => {
             },
             { new: true },
         )
-
-        console.log(`PUSHED ${req.params.id} into ${foundUser}`);
+        // console.log(`PUSHED ${req.params.id} into ${foundUser}`);
         res.render("shopping/cart");
     }
     catch (error) {
@@ -44,7 +43,6 @@ router.put("/cart/:id", async (req, res, next) => {
         req.error = error;
         return next();
     }
-
 })
 
 
@@ -58,11 +56,11 @@ router.get("/cart", async (req, res, next) => {
             let foundPost = await Post.findById(foundUser.cart[i])
             cartContents.push(foundPost);
         }
-        console.log(`USER: ${foundUser}`);
+        // console.log(`USER: ${foundUser}`);
         const context = {
             cart: cartContents
         }
-        console.log(`context: ${context.cart}`);
+        // console.log(`context: ${context.cart}`);
         res.render("shopping/cart", context);
 
     } catch (error) {
@@ -70,8 +68,60 @@ router.get("/cart", async (req, res, next) => {
         req.error = error;
         return next();
     }
-
 })
+
+//Purchases PUT route (move cart items into purchases array||ALSO have to move cart items into other SELLERS SALES array)
+router.put("/purchases", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+        //pushing all user cart array items into purchases array
+        for(let i = 0;i<foundUser.cart.length;i++){
+            foundUser.purchases.push(foundUser.cart[i]);
+        }
+        //empty the cart array
+        foundUser.cart = [];
+        await User.findByIdAndUpdate(
+            req.session.currentUser.id,
+            { 
+             purchases: foundUser.purchases,
+             cart: foundUser.cart,
+            },
+            { new: true },
+        )
+        console.log(`PUSHED ${foundUser.cart} into ${foundUser}`);
+        res.redirect("/users/purchases");
+    }
+    catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
+//Purchases GET view route
+router.get("/purchases", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+
+        let purchaseContents = [];
+        for(let i =0;i<foundUser.purchases.length;i++){
+            let foundPost = await Post.findById(foundUser.purchases[i])
+            purchaseContents.push(foundPost);
+        }
+        // console.log(`USER: ${foundUser}`);
+        const context = {
+            purchases: purchaseContents
+        }
+        // console.log(`context: ${context.purchases}`);
+        res.render("shopping/purchases", context);
+
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 
 
 module.exports = router;

@@ -1,13 +1,21 @@
 CART VIEW
 
 <%= user.username %>
-
-    <% for(let i=0;i<cart.length;i++) { %>
-        <div>
-            <%= cart[i].title %>
-        </div>
-        <div>
-            <img src="<%=cart[i].image%>" width="250px">
-            
-        </div>
+    <% if ( typeof user !=='undefined' ) { %>
+        <form action="/users/purchases?_method=PUT" method="POST">
+            <input class="button" type="submit" value="Purchase" />
+        </form>
         <% } %>
+
+
+            <% for(let i=0;i<cart.length;i++) { %>
+                <div>
+                    <%= cart[i].title %>
+
+                        <%= cart[i].price%>
+                </div>
+                <div>
+                    <img src="<%=cart[i].image%>" width="250px">
+
+                </div>
+                <% } %>
