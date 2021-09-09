@@ -21,7 +21,7 @@
                 <div>
                     <%= cart[i].title %>
 
-                        <%= cart[i].price%>
+                        $<%= cart[i].price%>
                         <a href="/users/cart/<%=i%>/remove">Remove Item</a>
                 </div>
                 <div>
@@ -29,5 +29,18 @@
 
                 </div>
                 <% } %>
+
+                <form action="payment" method="POST"> 
+                    <script
+                        src="//checkout.stripe.com/v2/checkout.js"
+                        class="stripe-button"
+                        data-key="<%= key %>" 
+                        data-amount="<%= totalCartPrice %> " 
+                        data-currency="usd" 
+                        data-name="<%= user.username %>" 
+                        data-description="Buy CART" 
+                        data-locale="auto" > 
+                        </script> 
+                    </form> 
 
             </body>

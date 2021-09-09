@@ -11,7 +11,7 @@ const Message = require("../models/Message")
 //https://imgur.com/gallery/xMM2W
 //https://imgur.com/gallery/5yeBVeM
 
-let postImageArr = ["https://i.imgur.com/HEujk59.jpeg","https://i.imgur.com/mvoNmjm.jpeg","https://i.imgur.com/5yeBVeM.jpeg","https://i.imgur.com/fjXFX93.jpeg","https://i.imgur.com/k6WuSSw.jpeg","https://i.imgur.com/6f6ppuP.jpeg","https://i.imgur.com/coIwWnF.jpeg","https://i.imgur.com/oC6yZJc.jpeg","https://i.imgur.com/NNT4asY.jpeg","https://i.imgur.com/k2yiwkB.jpeg","https://i.imgur.com/q7IouSd.jpeg","https://i.imgur.com/66hCBxb.jpeg","https://i.imgur.com/5c8J2kJ.jpeg","https://i.imgur.com/kIT7Oky.jpeg","https://i.imgur.com/hK4ucjG.jpeg","https://i.imgur.com/3yoCPY3.jpeg"]
+let postImageArr = ["https://i.imgur.com/HEujk59.jpeg", "https://i.imgur.com/mvoNmjm.jpeg", "https://i.imgur.com/5yeBVeM.jpeg", "https://i.imgur.com/fjXFX93.jpeg", "https://i.imgur.com/k6WuSSw.jpeg", "https://i.imgur.com/6f6ppuP.jpeg", "https://i.imgur.com/coIwWnF.jpeg", "https://i.imgur.com/oC6yZJc.jpeg", "https://i.imgur.com/NNT4asY.jpeg", "https://i.imgur.com/k2yiwkB.jpeg", "https://i.imgur.com/q7IouSd.jpeg", "https://i.imgur.com/66hCBxb.jpeg", "https://i.imgur.com/5c8J2kJ.jpeg", "https://i.imgur.com/kIT7Oky.jpeg", "https://i.imgur.com/hK4ucjG.jpeg", "https://i.imgur.com/3yoCPY3.jpeg"]
 let usernameArr = ["BrianPham2k", "MuseumGuy", "ExhibitionMan", "ArtLover", "PhotographerKing"];
 let userIdArr = ['11393e18f5782064a676cb85', '21393e18f5782064a676cb85', '31393e18f5782064a676cb85', '41393e18f5782064a676cb85', '51393e18f5782064a676cb85',];
 let bioArr = ["Come check out all of my gorgeous artwork! Be sure to follow me for updates!",
@@ -28,7 +28,7 @@ const seedUsers = async () => {
                 email: `${usernameArr[i]}@gmail.com`,
                 password: 'admin',
                 avatar: avatarArr[i],
-                biography: bioArr[Math.floor(Math.random() * bioArr.length )],
+                biography: bioArr[Math.floor(Math.random() * bioArr.length)],
                 _id: ObjectId(userIdArr[i]),
 
             },
@@ -37,14 +37,14 @@ const seedUsers = async () => {
                 if (error) return console.log(error);
             }
         )
-        
+
     }
 }
 
 
 let postTitleArr = ["My Artwork", "My Photo", "My Completed Project", "A Photo I Took", "My Most Recent Work", "A Gorgeous Shot", "Artistry"];
 let postDescriptionArr = ["Please enjoy this piece I have been working on for awhile.", "I hope you all enjoy this project I've been working on.", "This work has been the result of innumerable hours of sweat and tears.", "I made this after a recent vacation trip and I was so inspired by my journey.", "This piece has been a labor of love for me and I hope to share it with all of you."];
-let postTagsArr = ["art","beauty","photo","photography","landscape","nature","people","life","artistry","animals","calm","vacation","trip","awesome","inspire","inspiration"];
+let postTagsArr = ["art", "beauty", "photo", "photography", "landscape", "nature", "people", "life", "artistry", "animals", "calm", "vacation", "trip", "awesome", "inspire", "inspiration"];
 let numSeedTags = 4;
 let numSeedComments = 4;
 const seedPosts = async () => {
@@ -53,7 +53,7 @@ const seedPosts = async () => {
         for (let i = 0; i < postImageArr.length; i++) {
             let tagList = [];
             for (let j = 0; j < numSeedTags; j++) {
-                randTag = postTagsArr[Math.floor(Math.random() * postTagsArr.length )];
+                randTag = postTagsArr[Math.floor(Math.random() * postTagsArr.length)];
                 if (!tagList.includes(randTag)) {
                     tagList.push(randTag);
                 }
@@ -63,7 +63,7 @@ const seedPosts = async () => {
                     {
                         title: postTitleArr[Math.floor(Math.random() * (postTitleArr.length - 1))],
                         image: postImageArr[i],
-                        description: postDescriptionArr[Math.floor(Math.random() * postDescriptionArr.length )],
+                        description: postDescriptionArr[Math.floor(Math.random() * postDescriptionArr.length)],
                         user: userIdArr[Math.floor(Math.random() * (userIdArr.length - 1))],
                         tags: tagList,
                         numComments: numSeedComments,
@@ -85,7 +85,7 @@ const seedPosts = async () => {
 
 
 
-let commentArr = ["Wow! This is some amazing work!","Hey I'm looking to make a purchase, please message me.","Wow, that's incredible, I'm going to follow you now.", "This is incredible, I look forward to your future work. Followed you my friend!", "I've bought so many works from this artist and I've never been disappointed.","This is awesome, I just liked it and followed you!", "Keep up the amazing work, just bought one for myself.", "This would look great in my living room, going to make a purchase very soon!", "I bought this and received it last week, it looks amazing in my dining room. Thank you!", "This brings back memories of some of the best times in my life, absolutely amazing how art can make you feel emotions like this.", "An absolutely awe-inspiring piece, I can't wait to see what you come up with next." ];
+let commentArr = ["Wow! This is some amazing work!", "Hey I'm looking to make a purchase, please message me.", "Wow, that's incredible, I'm going to follow you now.", "This is incredible, I look forward to your future work. Followed you my friend!", "I've bought so many works from this artist and I've never been disappointed.", "This is awesome, I just liked it and followed you!", "Keep up the amazing work, just bought one for myself.", "This would look great in my living room, going to make a purchase very soon!", "I bought this and received it last week, it looks amazing in my dining room. Thank you!", "This brings back memories of some of the best times in my life, absolutely amazing how art can make you feel emotions like this.", "An absolutely awe-inspiring piece, I can't wait to see what you come up with next.", "This is some of your finest work yet!", "This shows an incredible mastery of your work, thank you for sharing it with us.", "This is truly breathtaking, I'm going to buy it right now!", "This is a mesmerizing piece, truly gorgeous.", "I can't wait to see what you come up with next!", "I'm jealous of your innate ability for art.", "This is so absolutely cool!", "Wonderful work!", "Tremendous, awe-inspiring, beautiful, gorgeous."];
 const seedComments = async () => {
     try {
         await Comment.deleteMany();
@@ -96,9 +96,9 @@ const seedComments = async () => {
                 await Comment.insertMany(
                     [
                         {
-                            content: commentArr[Math.floor(Math.random() * commentArr.length )],
+                            content: commentArr[Math.floor(Math.random() * commentArr.length)],
                             post: postIdArr[i],
-                            user: userIdArr[Math.floor(Math.random() * userIdArr.length )],
+                            user: userIdArr[Math.floor(Math.random() * userIdArr.length)],
                         },
                     ]
                 )

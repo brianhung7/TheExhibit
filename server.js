@@ -14,6 +14,14 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 
+/* STRIPE SETUP */
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+
+
+
 /* SECTION Internal Modules */
 // const controllers = require("./controllers");
 const postCtrl = require("./controllers/postcontroller.js");

@@ -2,7 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Post = require("../models/Post");
 const User = require("../models/User");
-const Like = require("../models/Like")
+const Like = require("../models/Like");
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 //Cart PUT route (add new item)
 router.put("/cart/:id", async (req, res, next) => {
@@ -37,9 +38,15 @@ router.get("/cart", async (req, res, next) => {
             let foundPost = await Post.findById(foundUser.cart[i])
             cartContents.push(foundPost);
         }
+        let totalCartPrice = 0;
+        for (let i = 0; i < cartContents.length; i++) {
+            totalCartPrice += cartContents[i].price;
+        }
         // console.log(`USER: ${foundUser}`);
         const context = {
-            cart: cartContents
+            cart: cartContents,
+            key: process.env.STRIPE_PUBLISHABLE_KEY,
+            totalCartPrice: totalCartPrice * 100,
         }
         // console.log(`context: ${context.cart}`);
         res.render("shopping/cart", context);
@@ -73,6 +80,74 @@ router.get("/cart/:index/remove", async (req, res, next) => {
     }
 })
 
+//STRIPE CHECKOUT
+router.post('/payment', async (req, res) => {
+    const foundUser = await User.findById(req.session.currentUser.id);
+    let cartContents = [];
+    for (let i = 0; i < foundUser.cart.length; i++) {
+        let foundPost = await Post.findById(foundUser.cart[i])
+        cartContents.push(foundPost);
+    }
+    let totalCartPrice = 0;
+    for (let i = 0; i < cartContents.length; i++) {
+        totalCartPrice += cartContents[i].price;
+    }
+    await stripe.customers.create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken,
+        name: req.session.currentUser.username,
+        address: {
+            line1: "123 Fake Street",
+            postal_code: "90012",
+            city: "Los Angeles",
+            state: "California",
+            country: "United States"
+        }
+    })
+        .then((customer) => {
+            return stripe.charges.create({
+                amount: totalCartPrice * 100,
+                description: 'The Exhibit Purchase',
+                currency: 'USD',
+                customer: customer.id
+            });
+        })
+        .then(async (charge) => {
+            //pushing all user cart array items into purchases array and finding seller associated with each post
+            for (let i = 0; i < foundUser.cart.length; i++) {
+                foundUser.purchases.push(foundUser.cart[i]);
+                let soldPost = await Post.findById(foundUser.cart[i]);
+                let foundSeller = await User.findById(soldPost.user);
+                foundSeller.sales.push(foundUser.cart[i]);
+                //Updating seller's sales array
+                await User.findByIdAndUpdate(
+                    soldPost.user,
+                    {
+                        sales: foundSeller.sales,
+                    },
+                    { new: true },
+                )
+            }
+            //empty the cart array
+            foundUser.cart = [];
+            //updating buyer purchase array and emptying cart array
+            await User.findByIdAndUpdate(
+                req.session.currentUser.id,
+                {
+                    purchases: foundUser.purchases,
+                    cart: foundUser.cart,
+                },
+                { new: true },
+            )
+            res.send(`Success! Just charged: $${totalCartPrice}`) // If no error occurs 
+        })
+        .catch((err) => {
+            res.send(err)    // If some error occurs 
+        });
+})
+
+
+//DEPRECATED AFTER STRIPE SETUP, KEEPING HERE JUST IN CASE
 //Purchases PUT route (move cart items into purchases array||ALSO have to move cart items into other SELLERS SALES array)
 router.put("/purchases", async (req, res, next) => {
     try {
@@ -124,13 +199,10 @@ router.get("/purchases", async (req, res, next) => {
             let foundPost = await Post.findById(foundUser.purchases[i])
             purchaseContents.push(foundPost);
         }
-        // console.log(`USER: ${foundUser}`);
         const context = {
             purchases: purchaseContents
         }
-        // console.log(`context: ${context.purchases}`);
         res.render("shopping/purchases", context);
-
     } catch (error) {
         console.log(error);
         req.error = error;
@@ -169,8 +241,8 @@ router.get("/:id", async (req, res, next) => {
         const userPosts = await Post.find({ user: req.params.id }).populate("user");
         const foundUser = await User.findById(req.params.id);
         let isFollowing = false;
-        for(let i = 0;i<foundUser.followers.length;i++){
-            if(foundUser.followers[i] == req.session.currentUser.id){
+        for (let i = 0; i < foundUser.followers.length; i++) {
+            if (foundUser.followers[i] == req.session.currentUser.id) {
                 isFollowing = true;
             }
         }
@@ -179,6 +251,7 @@ router.get("/:id", async (req, res, next) => {
             userProfile: foundUser,
             isFollowing: isFollowing,
         };
+        console.log(process.env.STRIPE_SECRET_KEY);
         res.render("users/profile", context);
     } catch (error) {
         console.log(error);
