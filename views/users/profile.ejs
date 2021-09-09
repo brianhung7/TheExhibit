@@ -12,17 +12,17 @@
             YOU HIT THE Profile VIEW
 
             <%= userProfile.username %>
-            <img src="<%=userProfile.avatar%>" alt="" srcset="" width="150px">
+                <img src="<%=userProfile.avatar%>" alt="" srcset="" width="150px">
 
                 <div>
                     <% for (let i=0;i<posts.length;i++){ %>
-                        <a href="/gallery/<%= posts[i].id %> ">                            
+                        <a href="/gallery/<%= posts[i].id %> ">
                             <div>
                                 <img src="<%= posts[i].image %> " width="250px">
                             </div>
                         </a>
 
-                    <% }%>
+                        <% }%>
                 </div>
 
 
@@ -32,4 +32,13 @@
 
                 <a href="/users/<%=userProfile.id%>/likedposts">Liked posts</a>
                 <a href="/users/<%=userProfile.id%>/update">Update User</a>
+                <% if (!isFollowing) { %> 
+                <form action="/users/<%= userProfile.id %>/follow?_method=PUT" method="POST" id="form__box">
+                    <button class="form__button">Follow User</button>
+                </form>
+                <% }  else { %> 
+                <form action="/users/<%= userProfile.id %>/unfollow?_method=PUT" method="POST" id="form__box">
+                    <button class="form__button">UnFollow User</button>
+                </form>
+                <% } %> 
     </body>

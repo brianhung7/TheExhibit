@@ -168,10 +168,16 @@ router.get("/:id", async (req, res, next) => {
     try {
         const userPosts = await Post.find({ user: req.params.id }).populate("user");
         const foundUser = await User.findById(req.params.id);
-
+        let isFollowing = false;
+        for(let i = 0;i<foundUser.followers.length;i++){
+            if(foundUser.followers[i] == req.session.currentUser.id){
+                isFollowing = true;
+            }
+        }
         const context = {
             posts: userPosts,
             userProfile: foundUser,
+            isFollowing: isFollowing,
         };
         res.render("users/profile", context);
     } catch (error) {
@@ -181,7 +187,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-//User liked posts route
+//User liked posts profile route
 router.get("/:id/likedposts", async (req, res, next) => {
     try {
         const likedPosts = await Like.find({ userArr: req.params.id });
@@ -228,18 +234,19 @@ router.get("/:id/update", async (req, res, next) => {
 
 //Update User Info put route
 router.put("/:id/update", async (req, res, next) => {
-    try{
-    let foundUser = await User.findByIdAndUpdate(
-        req.params.id,
-        {
-            $set: req.body,
-        },
-        {
-            new: true,
-        });
+    try {
+        let foundUser = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                $set: req.body,
+            },
+            {
+                new: true,
+            });
         req.session.currentUser = {
             id: foundUser._id,
             username: foundUser.username,
+            avatar: foundUser.avatar,
         };
         return res.redirect(`/users/${req.params.id}`);
     } catch (error) {
@@ -249,8 +256,81 @@ router.put("/:id/update", async (req, res, next) => {
     }
 })
 
-router.put("/:id/follow", (req, res, next) => {
+//Follow PUT
+router.put("/:id/follow", async (req, res, next) => {
+    try {
+        //Update current user's following array
+        let updatedFollowingsArr = req.session.currentUser.followings;
+        updatedFollowingsArr.push(req.params.id);
+        await User.findByIdAndUpdate(
+            req.session.currentUser.id,
+            {
+                followings: updatedFollowingsArr,
+            },
+            {
+                new: true,
+            }
+        )
+        //Update followed user's follower array
+        let foundUser = await User.findById(req.params.id);
+        foundUser.followers.push(req.session.currentUser.id);
+        await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                followers: foundUser.followers,
+            },
+            {
+                new: true,
+            }
+        )
+        // console.log(req.params.id);
+        // console.log(req.session.currentUser.id);
+        res.redirect(`/users/${req.params.id}`);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
+//Unfollow PUT
+router.put("/:id/unfollow", async (req, res, next) => {
+    try {
+        //Update current user's following array
+        let updatedFollowingsArr = req.session.currentUser.followings;
+        let indexFoundUser = updatedFollowingsArr.indexOf(req.params.id);
+        updatedFollowingsArr.splice(indexFoundUser, 1);
+        await User.findByIdAndUpdate(
+            req.session.currentUser.id,
+            {
+                followings: updatedFollowingsArr,
+            },
+            {
+                new: true,
+            }
+        )
+        //Update followed user's follower array
+        let foundUser = await User.findById(req.params.id);
+        // foundUser.followers.push(req.session.currentUser.id);
+        let indexFoundOtherUser = foundUser.followers.indexOf(req.session.currentUser.id)
+        foundUser.followers.splice(indexFoundOtherUser, 1);
+        await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                followers: foundUser.followers,
+            },
+            {
+                new: true,
+            }
+        )
+        // console.log(req.params.id);
+        // console.log(req.session.currentUser.id);
+        res.redirect(`/users/${req.params.id}`);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 })
 
 

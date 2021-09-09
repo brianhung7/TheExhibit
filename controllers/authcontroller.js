@@ -61,6 +61,10 @@ router.post("/login", async (req, res) => {
         req.session.currentUser = {
             id: foundUser._id,
             username: foundUser.username,
+            avatar: foundUser.avatar,
+            followings: foundUser.followings,
+            followers: foundUser.followers,
+
         };
         return res.redirect("/gallery");
     } catch (error) {
