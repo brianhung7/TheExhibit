@@ -51,6 +51,28 @@ router.get("/cart", async (req, res, next) => {
     }
 })
 
+//Cart delete item 
+router.get("/cart/:index/remove", async (req, res, next) => {
+    try {
+        const foundUser = await User.findById(req.session.currentUser.id);
+        foundUser.cart.splice(req.params.index,1);
+        await User.findByIdAndUpdate(
+            req.session.currentUser.id,
+            {
+                cart: foundUser.cart,
+            },
+            { new: true },
+        )
+
+
+        res.redirect("/users/cart");
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 //Purchases PUT route (move cart items into purchases array||ALSO have to move cart items into other SELLERS SALES array)
 router.put("/purchases", async (req, res, next) => {
     try {
@@ -170,11 +192,11 @@ router.get("/:id/likedposts", async (req, res, next) => {
             postArr.push(await Post.findById(likedPosts[i].post));
         }
         context = {
-            posts:postArr,
-            userProfile:foundUser,
+            posts: postArr,
+            userProfile: foundUser,
             likes: likedPosts,
         }
-        res.render("users/profilelikes",context);
+        res.render("users/profilelikes", context);
     } catch (error) {
         console.log(error);
         req.error = error;
