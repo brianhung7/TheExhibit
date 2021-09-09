@@ -55,7 +55,7 @@ router.get("/cart", async (req, res, next) => {
 router.get("/cart/:index/remove", async (req, res, next) => {
     try {
         const foundUser = await User.findById(req.session.currentUser.id);
-        foundUser.cart.splice(req.params.index,1);
+        foundUser.cart.splice(req.params.index, 1);
         await User.findByIdAndUpdate(
             req.session.currentUser.id,
             {
@@ -204,7 +204,7 @@ router.get("/:id/likedposts", async (req, res, next) => {
     }
 })
 
-//Update User GET route
+//Update User Info GET route
 router.get("/:id/update", async (req, res, next) => {
     try {
         const foundUser = await User.findById(req.params.id);
@@ -226,25 +226,31 @@ router.get("/:id/update", async (req, res, next) => {
     }
 })
 
-//Update User put route
-router.put("/:id/update", (req, res, next) => {
-    User.findByIdAndUpdate(
+//Update User Info put route
+router.put("/:id/update", async (req, res, next) => {
+    try{
+    let foundUser = await User.findByIdAndUpdate(
         req.params.id,
         {
             $set: req.body,
         },
         {
             new: true,
-        },
-        (error, updatedUser) => {
-            if (error) {
-                console.log(error);
-                req.error = error;
-                return next();
-            }
-            return res.redirect(`/users/${updatedUser.id}`);
-        }
-    );
+        });
+        req.session.currentUser = {
+            id: foundUser._id,
+            username: foundUser.username,
+        };
+        return res.redirect(`/users/${req.params.id}`);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
+router.put("/:id/follow", (req, res, next) => {
+
 })
 
 
