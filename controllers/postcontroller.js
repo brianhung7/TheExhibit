@@ -60,10 +60,18 @@ router.get("/:id", async (req, res, next) => {
         const foundPost = await Post.findById(req.params.id).populate("user");
         const allComments = await Comment.find({ post: req.params.id }).populate("post user");
         const foundLikes = await Like.findOne({ post: req.params.id });
+        //checking if current user has liked the post
+        let isLiked = false;
+        for (let i = 0; i < foundLikes.userArr.length; i++) {
+            if (req.session.currentUser.id == foundLikes.userArr[i]) {
+                isLiked = true;
+            }
+        }
         const context = {
             post: foundPost,
             comments: allComments,
             likes: foundLikes,
+            isLiked: isLiked,
         }
         return res.render("posts/show", context);
     } catch (error) {
@@ -121,7 +129,7 @@ router.delete("/:id", async (req, res, next) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
         await Comment.deleteMany({ post: req.params.id });
-        await Like.deleteMany({post:req.params.id});
+        await Like.deleteMany({ post: req.params.id });
         return res.redirect("/gallery");
     } catch (error) {
         console.log(error);

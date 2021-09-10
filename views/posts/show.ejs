@@ -10,67 +10,77 @@
         <%- include('../partials/_navbar') %>
 
             YOU HIT THE SHOW POST VIEW
-            
+
 
             <%= post.title %>
                 <%= post.tags %>
                     <%= post.price %>
-                        <a href="/users/<%=post.user.id%> "><%= post.user.username %></a>
-                            <%= post.description %>
-                                <img src="<%=post.image%> " width="250px">
-                                
-                                <% if ( typeof user !=='undefined' ) { %>
-                                    <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
-                                        <input class="button" type="submit" value="Add to Cart" />
-                                    </form>
-                                    <% } %>
+                        <a href="/users/<%=post.user.id%> ">
+                            <%= post.user.username %>
+                        </a>
+                        <%= post.description %>
+                            <img src="<%=post.image%> " width="250px">
 
-                                <% if ( typeof user !=='undefined' ) { %>
-                                    <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
-                                        <input class="button" type="submit" value="Like" />
-                                    </form>
-                                    <% } %>
-
-                                    <% if ( typeof user !=='undefined' ) { %>
-                                        <form action="/likes/<%= post.id %>/unlike?_method=PUT" method="POST">
-                                            <input class="button" type="submit" value="UnLike" />
-                                        </form>
-                                        <% } %>
-
-                                <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
-                                <a href="/gallery/<%=post.id%>/update ">UPDATE</a>
-                                <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">
-                                    <input class="button" type="submit" value="Delete Post" />
+                            <% if ( typeof user !=='undefined' ) { %>
+                                <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
+                                    <input class="button" type="submit" value="Add to Cart" />
                                 </form>
-                                <% } %> 
+                                <% } %>
 
-                                <% for(let i=0;i<comments.length;i++) { %>
-                                    <div>
-                                        <%= comments[i].content %>
-                                        <% if ( typeof user !=='undefined' && (comments[i].user._id==user.id)) { %>
-                                            <form action="../comments/<%=comments[i].id%>?_method=DELETE" method="POST">
-                                                <div>
-                                                    <button class="button ">Delete Comment</button>
-                                                </div>
+
+                                    <% if ( typeof user !=='undefined') { %>
+                                       <% if(!isLiked){ %>
+                                        <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
+                                            <input class="button" type="submit" value="Like" />
+                                        </form>
+                                        <% } else { %>
+
+                                            <form action="/likes/<%= post.id %>/unlike?_method=PUT" method="POST">
+                                                <input class="button" type="submit" value="UnLike" />
                                             </form>
-                                        <% } %> 
-                                    </div>
-                                    <% } %>
-                                        <div class="comment_form">
-                                            <form action="../comments" method="POST">
-                                                <div class="align">
+                                            <% }} %>
 
-                                                    <input class="input" type="text" name="content"
-                                                        placeholder="Leave a comment!" required />
-                                                    <input type="hidden" name="post" value="<%= post._id %>" />
+                                                <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
+                                                    <a href="/gallery/<%=post.id%>/update ">UPDATE</a>
+                                                    <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">
+                                                        <input class="button" type="submit" value="Delete Post" />
+                                                    </form>
+                                                    <% } %>
 
-                                                    <div>
-                                                        <button class="button ">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        NUMBER OF LIKES: <%= likes.numLikes %> 
+                                                        <% for(let i=0;i<comments.length;i++) { %>
+                                                            <div>
+                                                                <%= comments[i].content %>
+                                                                    <% if ( typeof user !=='undefined' &&
+                                                                        (comments[i].user._id==user.id)) { %>
+                                                                        <form
+                                                                            action="../comments/<%=comments[i].id%>?_method=DELETE"
+                                                                            method="POST">
+                                                                            <div>
+                                                                                <button class="button ">Delete
+                                                                                    Comment</button>
+                                                                            </div>
+                                                                        </form>
+                                                                        <% } %>
+                                                            </div>
+                                                            <% } %>
+                                                                <div class="comment_form">
+                                                                    <form action="../comments" method="POST">
+                                                                        <div class="align">
+
+                                                                            <input class="input" type="text"
+                                                                                name="content"
+                                                                                placeholder="Leave a comment!"
+                                                                                required />
+                                                                            <input type="hidden" name="post"
+                                                                                value="<%= post._id %>" />
+
+                                                                            <div>
+                                                                                <button class="button ">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                                NUMBER OF LIKES: <%= likes.numLikes %>
 
 
     </body>
