@@ -1,4 +1,4 @@
-<nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+<nav class="navbar sticky-top" role="navigation" aria-label="main navigation">
 
     <div class="navbar-brand">
         <a href="/" id="landing__link">
@@ -16,7 +16,6 @@
 
     <!-- this will add a link to the new route -->
     <div class="navbar-menu navbar-end">
-        <a class="navbar navbar-item" href="/gallery">Gallery</a>
         <% if (typeof user !=='undefined' ) { %>
             <a href="/users/<%= user.id %>">
                 <%= user.username %>

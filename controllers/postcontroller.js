@@ -8,6 +8,7 @@ const Like = require("../models/Like");
 //gallery view
 router.get("/", async (req, res, next) => {
     try {
+        //Finding posts by all or by query
         let foundPosts = [];
         if (req.query.q) {
             const query = { $text: { $search: `${req.query.q}` } };
@@ -15,6 +16,9 @@ router.get("/", async (req, res, next) => {
         } else {
             foundPosts = await Post.find().populate("user");
         }
+        //Finding followings
+        let followings = [];
+        
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,

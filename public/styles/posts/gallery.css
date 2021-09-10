@@ -1,0 +1,29 @@
+html,body{
+    background:radial-gradient(#FED9B7,pink);
+    /* background-color: #FED9B7; */
+    height:100%;
+    width:100%;
+    /* position:relative; */
+  }
+
+.gallery_container{
+
+}
+.user_info_container{
+    background-color: blue;
+    text-align: center;
+
+}
+
+  .main_posts_container{
+    background-color: #FED9B7;
+    text-align: center;
+  }
+
+
+  .followings_container{
+      background-color: red;
+      text-align: center;
+
+  }
+
