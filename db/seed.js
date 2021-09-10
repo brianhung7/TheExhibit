@@ -42,8 +42,8 @@ const seedUsers = async () => {
 }
 
 
-let postTitleArr = ["My Artwork", "My Photo", "My Completed Project", "A Photo I Took", "My Most Recent Work", "A Gorgeous Shot", "Artistry"];
-let postDescriptionArr = ["Please enjoy this piece I have been working on for awhile.", "I hope you all enjoy this project I've been working on.", "This work has been the result of innumerable hours of sweat and tears.", "I made this after a recent vacation trip and I was so inspired by my journey.", "This piece has been a labor of love for me and I hope to share it with all of you."];
+let postTitleArr = ["My Artwork", "My Photo", "My Completed Project", "A Photo I Took", "My Most Recent Work", "A Gorgeous Shot", "Artistry", "My Artpiece"];
+let postDescriptionArr = ["Please enjoy this piece I have been working on for awhile.", "I hope you all enjoy this project I've been working on.", "This work has been the result of innumerable hours of sweat and tears.", "I made this after a recent vacation trip and I was so inspired by my journey.", "This piece has been a labor of love for me and I hope to share it with all of you.", "This has been a long time in the making, I hope you all find serenity like I have while working on this."];
 let postTagsArr = ["art", "beauty", "photo", "photography", "landscape", "nature", "people", "life", "artistry", "animals", "calm", "vacation", "trip", "awesome", "inspire", "inspiration"];
 let numSeedTags = 4;
 let numSeedComments = 4;
