@@ -30,6 +30,13 @@
                                         <input class="button" type="submit" value="Like" />
                                     </form>
                                     <% } %>
+
+                                    <% if ( typeof user !=='undefined' ) { %>
+                                        <form action="/likes/<%= post.id %>/unlike?_method=PUT" method="POST">
+                                            <input class="button" type="submit" value="UnLike" />
+                                        </form>
+                                        <% } %>
+
                                 <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
                                 <a href="/gallery/<%=post.id%>/update ">UPDATE</a>
                                 <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">

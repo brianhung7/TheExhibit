@@ -251,7 +251,6 @@ router.get("/:id", async (req, res, next) => {
             userProfile: foundUser,
             isFollowing: isFollowing,
         };
-        console.log(process.env.STRIPE_SECRET_KEY);
         res.render("users/profile", context);
     } catch (error) {
         console.log(error);
