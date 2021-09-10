@@ -355,8 +355,6 @@ router.put("/:id/follow", async (req, res, next) => {
                 new: true,
             }
         )
-        // console.log(req.params.id);
-        // console.log(req.session.currentUser.id);
         res.redirect(`/users/${req.params.id}`);
     } catch (error) {
         console.log(error);
@@ -383,7 +381,6 @@ router.put("/:id/unfollow", async (req, res, next) => {
         )
         //Update followed user's follower array
         let foundUser = await User.findById(req.params.id);
-        // foundUser.followers.push(req.session.currentUser.id);
         let indexFoundOtherUser = foundUser.followers.indexOf(req.session.currentUser.id)
         foundUser.followers.splice(indexFoundOtherUser, 1);
         await User.findByIdAndUpdate(
@@ -395,8 +392,6 @@ router.put("/:id/unfollow", async (req, res, next) => {
                 new: true,
             }
         )
-        // console.log(req.params.id);
-        // console.log(req.session.currentUser.id);
         res.redirect(`/users/${req.params.id}`);
     } catch (error) {
         console.log(error);

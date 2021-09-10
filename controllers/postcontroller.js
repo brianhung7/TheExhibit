@@ -3,6 +3,7 @@ const router = express.Router();
 const Post = require("../models/Post");
 const Comment = require("../models/Comment")
 const Like = require("../models/Like");
+const User = require('../models/User');
 
 
 //gallery view
@@ -18,10 +19,19 @@ router.get("/", async (req, res, next) => {
         }
         //Finding followings
         let followings = [];
-        
+        let foundUser = await User.findById(req.session.currentUser.id);
+        let foundFollower = {};
+        console.log(foundUser);
+        for (let i = 0; i < foundUser.followings.length; i++) {
+            foundFollower = await User.findById(foundUser.followings[i]._id);
+            console.log(foundFollower);
+            followings.push(foundFollower);
+        }
+        console.log(followings);
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,
+            followings:followings
         }
         res.render("posts/gallery", context);
     } catch (error) {
