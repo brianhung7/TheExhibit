@@ -39,12 +39,12 @@
                     <% for (let i=0;i<followings.length;i++) { %>
                         <a href="/users/<%=followings[i].id%>">
                             <div class="follower_name py-3">
-                                <img class="following_avatar " src="<%=followings[i].avatar%>" alt="" srcset=""
-                                    width="75px">
+                                <img class="following_avatar " src="<%=followings[i].avatar%>" alt="" srcset="">
                                 <%= followings[i].username %>
                             </div>
                         </a>
                         <% } %>
+
                 </span>
             </div>
     </body>
