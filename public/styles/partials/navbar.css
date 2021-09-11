@@ -5,3 +5,10 @@
 
 }
 
+html,body{
+    background:radial-gradient(#FED9B7,pink);
+    /* background-color: #FED9B7; */
+    height:100%;
+    width:100%;
+    /* position:relative; */
+  }

@@ -9,33 +9,42 @@
 
     <body>
         <%- include('../partials/_navbar') %>
-            <div class="gallery_container row">
-                <div class="user_info_container col">
+            <div class="gallery_container">
+                <span class="user_info_container">
                     <img src="<%= user.avatar %> " alt="" srcset="" width="150px">
                     <div>
                         <%= user.username %>
                     </div>
-                </div>
-                <div class="main_posts_container col-8">
+                </span>
+                <span class="main_posts_container">
                     <% if (searchTerm) { %>
                         Now showing results for "<%= searchTerm %>"
                             <% } %>
                                 <% for(let i=0;i<posts.length;i++) {%>
-                                    <a href="/gallery/<%= posts[i].id %>">
+                                    <div>
                                         <div>
-                                            <img src="<%= posts[i].image %>" width="250px">
+                                            <a href="/users/<%=posts[i].user.id%>">
+                                                <%= posts[i].user.username %>
+                                            </a>
                                         </div>
-                                    </a>
+                                        <a href="/gallery/<%= posts[i].id %>">
+                                            <img src="<%= posts[i].image %>" width="550px">
+                                        </a>
+                                    </div>
 
                                     <% } %>
-                </div>
-                <div class="followings_container col">
+                </span>
+                <span class="followings_container">
                     You are Following:
                     <% for (let i=0;i<followings.length;i++) { %>
-                        <div>
-                            <%= followings[i].username %> 
-                        </div>
+                        <a href="/users/<%=followings[i].id%>">
+                            <div class="follower_name py-3">
+                                <img class="following_avatar " src="<%=followings[i].avatar%>" alt="" srcset=""
+                                    width="75px">
+                                <%= followings[i].username %>
+                            </div>
+                        </a>
                         <% } %>
-                </div>
+                </span>
             </div>
     </body>

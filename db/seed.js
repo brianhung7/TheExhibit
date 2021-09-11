@@ -11,14 +11,14 @@ const Message = require("../models/Message")
 //https://imgur.com/gallery/xMM2W
 //https://imgur.com/gallery/5yeBVeM
 
-let postImageArr = ["https://i.imgur.com/HEujk59.jpeg", "https://i.imgur.com/mvoNmjm.jpeg", "https://i.imgur.com/5yeBVeM.jpeg", "https://i.imgur.com/fjXFX93.jpeg", "https://i.imgur.com/k6WuSSw.jpeg", "https://i.imgur.com/6f6ppuP.jpeg", "https://i.imgur.com/coIwWnF.jpeg", "https://i.imgur.com/oC6yZJc.jpeg", "https://i.imgur.com/NNT4asY.jpeg", "https://i.imgur.com/k2yiwkB.jpeg", "https://i.imgur.com/q7IouSd.jpeg", "https://i.imgur.com/66hCBxb.jpeg", "https://i.imgur.com/5c8J2kJ.jpeg", "https://i.imgur.com/kIT7Oky.jpeg", "https://i.imgur.com/hK4ucjG.jpeg", "https://i.imgur.com/3yoCPY3.jpeg"]
+let postImageArr = ["https://i.imgur.com/DfjlogK.jpeg", "https://i.imgur.com/HEujk59.jpeg", "https://i.imgur.com/or4cVlW.jpeg", "https://i.imgur.com/cmikV5d.jpeg","https://i.imgur.com/mvoNmjm.jpeg", "https://i.imgur.com/5yeBVeM.jpeg", "https://i.imgur.com/fjXFX93.jpeg", "https://i.imgur.com/k6WuSSw.jpeg", "https://i.imgur.com/1Wl9p9o.jpeg", "https://i.imgur.com/6f6ppuP.jpeg", "https://i.imgur.com/coIwWnF.jpeg", "https://i.imgur.com/PSX4oDf.jpeg", "https://i.imgur.com/oC6yZJc.jpeg", "https://i.imgur.com/NNT4asY.jpeg", "https://i.imgur.com/k2yiwkB.jpeg", "https://i.imgur.com/q7IouSd.jpeg", "https://i.imgur.com/66hCBxb.jpeg", "https://i.imgur.com/5c8J2kJ.jpeg", "https://i.imgur.com/kIT7Oky.jpeg", "https://i.imgur.com/hK4ucjG.jpeg", "https://i.imgur.com/3yoCPY3.jpeg"]
 let usernameArr = ["BrianPham2k", "MuseumGuy", "ExhibitionMan", "ArtLover", "PhotographerKing"];
 let userIdArr = ['11393e18f5782064a676cb85', '21393e18f5782064a676cb85', '31393e18f5782064a676cb85', '41393e18f5782064a676cb85', '51393e18f5782064a676cb85',];
 let bioArr = ["Come check out all of my gorgeous artwork! Be sure to follow me for updates!",
     "I love making art, it is a dream of mine to make gorgeous art ever since I was a child.",
     "Welcome to my profile! Please have a look around and leave a like on any piece you enjoy!",
     "I'm a photographer who has over 10 years of experience in the field, my first job was photographing my brother's wedding."];
-let avatarArr = ["/resources/avatars/1.png", "/resources/avatars/2.png", "/resources/avatars/3.jpeg", "/resources/avatars/4.jpeg", "/resources/avatars/5.jpeg"];
+let avatarArr = ["/resources/avatars/8.jpg", "/resources/avatars/7.png", "/resources/avatars/3.jpeg", "/resources/avatars/4.jpeg", "/resources/avatars/5.jpeg"];
 const seedUsers = async () => {
     await User.deleteMany();
     for (let i = 0; i < usernameArr.length; i++) {

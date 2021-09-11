@@ -5,6 +5,7 @@
     <title>
         SHOW
     </title>
+    <link rel="stylesheet" href="/styles/posts/show.css">
 
     <body>
         <%- include('../partials/_navbar') %>
@@ -49,6 +50,8 @@
 
                                                         <% for(let i=0;i<comments.length;i++) { %>
                                                             <div>
+                                                                <img class="comment_avatar" src="<%= comments[i].user.avatar %>" alt="" srcset="" width="100px">
+                                                                <%= comments[i].user.username %> 
                                                                 <%= comments[i].content %>
                                                                     <% if ( typeof user !=='undefined' &&
                                                                         (comments[i].user._id==user.id)) { %>
