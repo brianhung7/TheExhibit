@@ -1,44 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <%- include('../partials/_head') %>
     <title>
-        Profile
+        <%= userProfile.username %>
     </title>
+    <link rel="shortcut icon" href="/styles/logo.svg">
+    <link rel="stylesheet" href="/styles/users/profile.css">
 
     <body>
-        <%- include('../partials/_navbar') %>
+        <%- include('../partials/_navbar',{routes}) %>
+            <div class="main_container">
+                <div class="user__info__container">
+                    <div class="bio__name__avatar"></div>
+                    <div> <img class="avatar__image" src="<%= userProfile.avatar %>" alt="" srcset=""></div>
 
-            YOU HIT THE Profile VIEW
-
-            <%= userProfile.username %>
-                <img src="<%=userProfile.avatar%>" alt="" srcset="" width="150px">
-
-                <div>
-                    <% for (let i=0;i<posts.length;i++){ %>
-                        <a href="/gallery/<%= posts[i].id %> ">
-                            <div>
-                                <img src="<%= posts[i].image %> " width="250px">
-                            </div>
-                        </a>
-
-                        <% }%>
+                    <div class="name__bio">
+                        <div>
+                            <%= userProfile.username %>
+                        </div>
+                        <div> "<%= userProfile.biography %>"
+                        </div>
+                    </div>
+                </div>
+                <div class="profile__links">
+                    <% if (!isFollowing) { %>
+                        <form action="/users/<%= userProfile.id %>/follow?_method=PUT" method="POST" id="form__box">
+                            <button class="profile__link">Follow User</button>
+                        </form>
+                        <% } else { %>
+                            <form action="/users/<%= userProfile.id %>/unfollow?_method=PUT" method="POST"
+                                id="form__box">
+                                <button class="profile__link">UnFollow User</button>
+                            </form>
+                            <% } %>
+                                <a href="/conversation/message/new/<%=userProfile.id%> ">
+                                    <div class="profile__link">
+                                        Send a message
+                                    </div>
+                                </a>
+                                <a href="/users/<%=userProfile.id%>/update">
+                                    <div class="profile__link">
+                                        Update User
+                                    </div>
+                                </a>
+                                <a href="/users/<%= userProfile._id %>">
+                                    <div class="profile__link">
+                                        Posts
+                                    </div>
+                                </a>
+                                <a href="/users/<%= userProfile._id %>/likedposts">
+                                    <div class="profile__link">
+                                        Liked Posts
+                                    </div>
+                                </a>
                 </div>
 
+                <main class="container__gallery">
+                    <div class="columns">
+                        <% for(let idx=0; idx < posts.length; idx++){ %>
+                            <% const post=posts[idx] %>
+                                <div class="column">
+                                    <!-- <article class=> -->
+                                    <a href="/gallery/<%= post.id %>">
+                                        <div class="card">
+                                            <div class="wrapper" style="background-image: url('<%= post.image %>');">
+                                                <div class="header">
+                                                    <ul class="menu-content">
+                                                        <li><span class="icon">
+                                                                <i class="fas fa-heart"></i>
+                                                                <%=likes[idx].numLikes%>
+                                                            </span>
+                                                        </li>
+                                                        <li><span class="icon num__comments">
+                                                                <i class="fas fa-comment"></i>
+                                                                <%=post.numComments%>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="data">
+                                                    <div class="content">
+                                                        <span class="author">
+                                                            <%= post.user.username %>
+                                                        </span>
+                                                        <h1 class="title">
+                                                            <%= post.title %>
+                                                        </h1>
+                                                        <p class="text">
+                                                            <%= post.description %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
 
-                <div>
-                    <a href="/conversation/message/new/<%=userProfile.id%> ">Send a message</a>
-                </div>
+                                <% } %>
 
-                <a href="/users/<%=userProfile.id%>/likedposts">Liked posts</a>
-                <a href="/users/<%=userProfile.id%>/update">Update User</a>
-                <% if (!isFollowing) { %> 
-                <form action="/users/<%= userProfile.id %>/follow?_method=PUT" method="POST" id="form__box">
-                    <button class="form__button">Follow User</button>
-                </form>
-                <% }  else { %> 
-                <form action="/users/<%= userProfile.id %>/unfollow?_method=PUT" method="POST" id="form__box">
-                    <button class="form__button">UnFollow User</button>
-                </form>
-                <% } %> 
+                </main>
+            </div>
     </body>
+
+
+</html>

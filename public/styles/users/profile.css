@@ -1,0 +1,224 @@
+.main_container{
+    margin:0px 55px 0px 55px;
+}
+
+.columns {
+    display: grid;
+    grid-gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  .content {
+    background-color: white;
+  }
+
+  
+  .profile__links {
+      display:flex;
+      justify-content: center;
+      
+  }
+  
+  .profile__link{
+    font-family: 'Inconsolata', monospace;
+    outline:none;
+    text-align: center;
+    padding: 13px 20px 13px 20px;
+    font-weight: bold;
+    border-radius:40px;
+    background: #F07167;
+    border: 2px solid #00AFB9;
+    color:#00AFB9;
+    letter-spacing:1px;
+    text-shadow:0;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+  
+  .profile__link:hover{
+          transform: scale(1.1);
+          background: #00AFB9;
+          color:#00AFB9;
+          transition:150ms ease-in-out;
+        
+  }
+  .image_style{
+    margin-top: 30px;
+  }
+  .avatar__image{
+      background-color: beige;
+      border-radius: 50%;
+      border: black 5px solid;
+  }
+  
+  .user__info__container{
+      display: flex;
+      justify-content: center;
+  }
+  
+  .name__bio{
+      padding: 25px;
+      font-size: 25px;
+      color: white;
+  }
+
+  a {
+    text-decoration: none;
+  }
+  
+  h1 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+  }
+  
+  .avatar__image{
+      width: 125px;
+      height: 125px;
+  }
+  .row {
+    max-width: 900px;
+    margin: 50px auto 0;
+  }
+  
+  .card {
+    float: left;
+    padding: 0;
+    width: 100%;
+  }
+  .card .menu-content {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  .card .menu-content::before, .card .menu-content::after {
+    content: "";
+    display: table;
+  }
+  .card .menu-content::after {
+    clear: both;
+  }
+  .card .menu-content li {
+    display: inline-block;
+  }
+  .card .menu-content a {
+    color: #00AFB9;
+  }
+  .card .menu-content span {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: "Open Sans";
+    transform: translate(-50%, 0);
+  }
+  .card .wrapper {
+    /* background-color: #ff5757; */
+    border: solid 1px;
+    border-radius: 3%;
+    min-height: 540px;
+    position: relative;
+    overflow: hidden; 
+    background-position: center;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.2);
+  }
+  .card .wrapper:hover .data {
+    transform: translateY(0);
+  }
+  .card .wrapper:hover .content {
+    background-color: #000;
+    filter: blur(0px);
+  }
+  .card .data {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    transform: translateY(calc(70px + 1em));
+    transition: transform 0.3s;
+  }
+  .card .data .content {
+    padding: 1em;
+    position: relative;
+    z-index: 1;
+  }
+  .card .author {
+    font-size: 12px;
+  }
+  .card .title {
+    margin-top: 10px;
+  }
+  .card .text {
+    height: 70px;
+    margin: 0;
+  }
+  .card input[type=checkbox] {
+    display: none;
+  }
+  .card input[type=checkbox]:checked + .menu-content {
+    transform: translateY(-60px);
+  }
+  
+
+  .card .wrapper:hover .menu-content span {
+    transform: translate(-50%, -10px);
+    opacity: 1;
+  }
+  .card .header {
+    color: #0081A7;
+    padding: 1em;
+  }
+  .card .header::before, .card .header::after {
+    content: "";
+    display: table;
+  }
+  .card .header::after {
+    clear: both;
+  }
+  .card .menu-content {
+    float: right;
+  }
+  .card .menu-content li {
+    margin: 0 20px;
+    position: relative;
+  }
+  .card .menu-content span {
+    transition: all 0.3s;
+    opacity: 0;
+    font-size: 24px;
+    
+  }
+  
+  
+  .card .data {
+    color: white;
+    transform: translateY(calc(70px + 4em));
+  }
+  .card .title a {
+    color: #00AFB9;
+  }
+  .card .button {
+    display: block;
+    width: 100px;
+    margin: 2em auto 1em;
+    text-align: center;
+    font-size: 12px;
+    color: #00AFB9;
+    line-height: 1;
+    position: relative;
+    font-weight: 700;
+  }
+  .card .button::after {
+    content: "→";
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    transition: all 0.3s;
+  }
+  .card .button:hover::after {
+    transform: translate(5px, -50%);
+    opacity: 1;
+  }
+  

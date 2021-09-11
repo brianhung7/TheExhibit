@@ -9,6 +9,7 @@ const Message = require("../models/Message");
 router.get("/", async (req, res, next) => {
     try {
         let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
+        // console.log(foundAllConversations);
 
         //Removing current user from userArr in Conversation
         for (let i = 0; i < foundAllConversations.length; i++) {
@@ -23,6 +24,7 @@ router.get("/", async (req, res, next) => {
             let foundUser = await User.findById(foundAllConversations[i].userArr[0]);
             userConversations.push(foundUser);
         }
+        // console.log(userConversations);
 
         context = {
             userConversations: userConversations,

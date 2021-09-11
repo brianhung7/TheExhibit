@@ -5,7 +5,9 @@
 
 }
 .user_info_container{
-    background-color: powderblue;
+    background:radial-gradient( powderblue,#00AFB9);
+    
+    /* background-color: powderblue; */
     text-align: center;
     position:fixed;
     width:17%;
@@ -46,4 +48,8 @@ background-color: grey;
     height:70px;
     
     
+}
+
+a{
+    text-decoration: none;
 }

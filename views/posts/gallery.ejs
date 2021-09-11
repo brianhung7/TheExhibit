@@ -14,6 +14,7 @@
                     <img src="<%= user.avatar %> " alt="" srcset="" width="150px">
                     <div>
                         <%= user.username %>
+                        <p><%= user.biography %> </p>
                     </div>
                 </span>
                 <span class="main_posts_container">
@@ -28,7 +29,7 @@
                                             </a>
                                         </div>
                                         <a href="/gallery/<%= posts[i].id %>">
-                                            <img src="<%= posts[i].image %>" width="550px">
+                                            <img src="<%= posts[i].image %>" width="750px">
                                         </a>
                                     </div>
 
@@ -40,7 +41,7 @@
                         <a href="/users/<%=followings[i].id%>">
                             <div class="follower_name py-3">
                                 <img class="following_avatar " src="<%=followings[i].avatar%>" alt="" srcset="">
-                                <%= followings[i].username %>
+                                <%=followings[i].username %>
                             </div>
                         </a>
                         <% } %>

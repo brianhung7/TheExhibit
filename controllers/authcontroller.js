@@ -63,6 +63,7 @@ router.post("/login", async (req, res) => {
             followings: foundUser.followings,
             followers: foundUser.followers,
             cart: foundUser.cart,
+            biography: foundUser.biography,
 
         };
         return res.redirect("/gallery");

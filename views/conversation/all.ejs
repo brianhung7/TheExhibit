@@ -7,13 +7,16 @@
     </title>
     <link rel="shortcut icon" href="/styles/logo.svg">
     <link rel="stylesheet" href="/styles/form.css">
+    
+<link rel="stylesheet" href="/styles/conversation/all.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-            <div>
+            <div class="main_container">
                 <% for(let i=0;i<conversations.length;i++) { %>
                     <div>
                         <a href="/conversation/<%=conversations[i]._id%>">
+                            <img src="<%= userConversations[i].avatar %> " alt="" srcset="" class="avatar_img">
                             <%= userConversations[i].username %>
                         </a>
                     </div>

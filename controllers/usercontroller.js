@@ -240,6 +240,11 @@ router.get("/:id", async (req, res, next) => {
     try {
         const userPosts = await Post.find({ user: req.params.id }).populate("user");
         const foundUser = await User.findById(req.params.id);
+        let likes = [];
+        for (let i = 0; i < userPosts.length; i++) {
+            let foundLike = await Like.findOne({ post: `${userPosts[i]._id}` });
+            likes.push(foundLike);
+        }
         let isFollowing = false;
         for (let i = 0; i < foundUser.followers.length; i++) {
             if (foundUser.followers[i] == req.session.currentUser.id) {
@@ -250,6 +255,7 @@ router.get("/:id", async (req, res, next) => {
             posts: userPosts,
             userProfile: foundUser,
             isFollowing: isFollowing,
+            likes:likes,
         };
         res.render("users/profile", context);
     } catch (error) {
@@ -319,6 +325,7 @@ router.put("/:id/update", async (req, res, next) => {
             id: foundUser._id,
             username: foundUser.username,
             avatar: foundUser.avatar,
+            biography: foundUser.biography
         };
         return res.redirect(`/users/${req.params.id}`);
     } catch (error) {

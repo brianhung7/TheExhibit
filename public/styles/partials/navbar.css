@@ -15,3 +15,8 @@ html,body{
     width:100%;
     /* position:relative; */
   }
+
+  .main_container{
+      position:relative;
+      top:55px;
+  }

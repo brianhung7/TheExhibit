@@ -64,7 +64,7 @@ const seedPosts = async () => {
                         title: postTitleArr[Math.floor(Math.random() * (postTitleArr.length - 1))],
                         image: postImageArr[i],
                         description: postDescriptionArr[Math.floor(Math.random() * postDescriptionArr.length)],
-                        user: userIdArr[Math.floor(Math.random() * (userIdArr.length - 1))],
+                        user: userIdArr[Math.floor(Math.random() * (userIdArr.length))],
                         tags: tagList,
                         numComments: numSeedComments,
                         price: Math.floor(Math.random() * 500),

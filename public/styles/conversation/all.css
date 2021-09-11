@@ -1,4 +1,4 @@
-.comment_avatar{
+.avatar_img{
     border-radius: 50%;
     margin-right: 10px;
     margin-left: 10px;
@@ -6,4 +6,6 @@
     width: 70px;
     height:70px;
     
+    
 }
+
