@@ -9,13 +9,11 @@ const Message = require("../models/Message");
 router.get("/", async (req, res, next) => {
     try {
         let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
-        // console.log(foundAllConversations);
 
         //Removing current user from userArr in Conversation
         for (let i = 0; i < foundAllConversations.length; i++) {
             let currentUserIndex = foundAllConversations[i].userArr.indexOf(req.session.currentUser.id);
             foundAllConversations[i].userArr.splice(currentUserIndex, 1);
-
         }
 
         //grabbing user info from Conversation userArr
@@ -24,15 +22,11 @@ router.get("/", async (req, res, next) => {
             let foundUser = await User.findById(foundAllConversations[i].userArr[0]);
             userConversations.push(foundUser);
         }
-        // console.log(userConversations);
 
         context = {
             userConversations: userConversations,
             conversations: foundAllConversations,
         }
-        // console.log(`ALL CONVOS: ${context.conversations}`);
-        // console.log(`ALL USERS: ${context.userConversations}`);
-
 
         res.render("conversation/all", context);
     } catch (error) {
@@ -113,7 +107,6 @@ router.get("/:id", async (req, res, next) => {
                 otherUserMessages.push(foundMessages[i]);
             }
         }
-
         const currentUser = await User.findById(req.session.currentUser.id);
         //CHECK IF THIS IS CORRECT INITIALIZATION
         let otherUser = {};
@@ -123,12 +116,28 @@ router.get("/:id", async (req, res, next) => {
             otherUser = await User.findById(foundConversation.userArr[1]);
         }
 
+        //grabbing all user conversations
+        let foundAllConversations = await Conversation.find({ userArr: req.session.currentUser.id });
+        //Removing current user from userArr in Conversation
+        for (let i = 0; i < foundAllConversations.length; i++) {
+            let currentUserIndex = foundAllConversations[i].userArr.indexOf(req.session.currentUser.id);
+            foundAllConversations[i].userArr.splice(currentUserIndex, 1);
+        }
+        //grabbing user info from Conversation userArr
+        let userConversations = [];
+        for (let i = 0; i < foundAllConversations.length; i++) {
+            let foundUser = await User.findById(foundAllConversations[i].userArr[0]);
+            userConversations.push(foundUser);
+        }
         context = {
             allMessages: foundMessages,
             // currentUserMessages: currentUserMessages,
             // otherUserMessages: otherUserMessages,
             currentUser: currentUser,
             otherUser: otherUser,
+            userConversations:userConversations,
+            conversations:foundAllConversations,
+            currentConversationId: req.params.id,
         }
 
 

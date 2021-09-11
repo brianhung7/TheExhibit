@@ -9,3 +9,37 @@
     
 }
 
+.main_container{
+    display:grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.users_container{
+    margin-left: 5vw;
+}
+.messages_container{
+    margin-right: 15vw;
+}
+
+.receiver_message{
+}
+
+.sender_message{
+text-align: end;
+}
+
+.active_conversation{
+    background-color: yellow;
+}
+
+.conversation_name{
+    text-align: center;
+}
+
+.send_message{
+    text-align: center;
+}
+
+.send_message input{
+    padding:10px 25px 10px 25px;
+}
