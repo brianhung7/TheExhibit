@@ -114,6 +114,7 @@ router.post('/payment', async (req, res) => {
         })
         .then(async (charge) => {
             //pushing all user cart array items into purchases array and finding seller associated with each post
+            
             for (let i = 0; i < foundUser.cart.length; i++) {
                 foundUser.purchases.push(foundUser.cart[i]);
                 let soldPost = await Post.findById(foundUser.cart[i]);
@@ -128,6 +129,11 @@ router.post('/payment', async (req, res) => {
                     { new: true },
                 )
             }
+            //setting context for rendering before deleting cart contents
+            context = {
+                cart: cartContents,
+                totalCartPrice: totalCartPrice,
+            }
             //empty the cart array
             foundUser.cart = [];
             //updating buyer purchase array and emptying cart array
@@ -139,7 +145,10 @@ router.post('/payment', async (req, res) => {
                 },
                 { new: true },
             )
-            res.send(`Success! Just charged: $${totalCartPrice}`) // If no error occurs 
+
+            
+            // res.redirect("/users/purchases");
+            res.render("shopping/receipt", context); // If no error occurs 
         })
         .catch((err) => {
             res.send(err)    // If some error occurs 

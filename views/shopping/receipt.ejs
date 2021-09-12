@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/_head') %>
+<link rel="stylesheet" href="/styles/shopping/receipt.css">
+    <title>
+        Cart
+    </title>
+
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="main_container">
+            RECEIPT
+            <%= user.username %>
+                <% if ( typeof user !=='undefined' ) { %>
+                    <form action="/users/purchases?_method=PUT" method="POST">
+                        <input class="button" type="submit" value="Purchase" />
+                    </form>
+                    <% } %>
+
+
+                        <% for(let i=0;i<cart.length;i++) { %>
+                            <div>
+                                <%= cart[i].title %>
+
+                                    $<%= cart[i].price%>
+                                        <a href="/users/cart/<%=i%>/remove">Remove Item</a>
+                            </div>
+                            <div>
+                                <img src="<%=cart[i].image%>" width="250px">
+
+                            </div>
+                            <% } %>
+                        </div>
+
+
+    </body>

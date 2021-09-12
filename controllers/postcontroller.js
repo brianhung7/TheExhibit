@@ -22,14 +22,11 @@ router.get("/", async (req, res, next) => {
         let foundFollower = {};
         if (req.session.currentUser) {
             let foundUser = await User.findById(req.session.currentUser.id);
-            console.log(foundUser);
             for (let i = 0; i < foundUser.followings.length; i++) {
                 foundFollower = await User.findById(foundUser.followings[i]._id);
-                console.log(foundFollower);
                 followings.push(foundFollower);
             }
         }
-        console.log(followings);
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,

@@ -7,6 +7,8 @@
     grid-gap: 50px;
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+ 
   
   .content {
     background-color: white;
@@ -86,6 +88,7 @@
     float: left;
     padding: 0;
     width: 100%;
+    border-radius: 25px;
   }
   .card .menu-content {
     margin: 0;

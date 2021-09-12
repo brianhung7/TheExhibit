@@ -61,38 +61,38 @@
                             <% const post=posts[idx] %>
                                 <div class="column">
                                     <!-- <article class=> -->
-                                    <a href="/gallery/<%= post.id %>">
-                                        <div class="card">
-                                            <div class="wrapper" style="background-image: url('<%= post.image %>');">
-                                                <div class="header">
-                                                    <ul class="menu-content">
-                                                        <li><span class="icon">
-                                                                <i class="fas fa-heart"></i>
-                                                                <%=likes[idx].numLikes%>
-                                                            </span>
-                                                        </li>
-                                                        <li><span class="icon num__comments">
-                                                                <i class="fas fa-comment"></i>
-                                                                <%=post.numComments%>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="data">
-                                                    <div class="content">
-                                                        <span class="author">
-                                                            <%= post.user.username %>
+                                    <div class="card">
+                                        <a href="/gallery/<%= post.id %>">
+                                        <div class="wrapper" style="background-image: url('<%= post.image %>');">
+                                            <div class="header">
+                                                <ul class="menu-content">
+                                                    <li><span class="icon">
+                                                            <i class="fas fa-heart"></i>
+                                                            <%=likes[idx].numLikes%>
                                                         </span>
-                                                        <h1 class="title">
-                                                            <%= post.title %>
-                                                        </h1>
-                                                        <p class="text">
-                                                            <%= post.description %>
-                                                    </div>
+                                                    </li>
+                                                    <li><span class="icon num__comments">
+                                                            <i class="fas fa-comment"></i>
+                                                            <%=post.numComments%>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="data">
+                                                <div class="content">
+                                                    <span class="author">
+                                                        <%= post.user.username %>
+                                                    </span>
+                                                    <h1 class="title">
+                                                        <%= post.title %>
+                                                    </h1>
+                                                    <p class="text">
+                                                        <%= post.description %>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <% } %>
