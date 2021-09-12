@@ -11,11 +11,21 @@
         <%- include('../partials/_navbar') %>
             <div class="gallery_container">
                 <span class="user_info_container">
-                    <img src="<%= user.avatar %> " alt="" srcset="" width="150px">
-                    <div>
-                        <%= user.username %>
-                        <p><%= user.biography %> </p>
-                    </div>
+                    <% if (user) { %>
+                        <img src="<%= user.avatar %> " alt="" srcset="" width="150px">
+                        <div>
+                            <%= user.username %>
+                                <p>
+                                    <%= user.biography %>
+                                </p>
+                        </div>
+                        <% } else { %>
+                            <img src="https://i.imgur.com/defzsz2.png" alt="" srcset="" width="150px">
+                            <div>
+                                Anonymous
+                                <p>Boy I sure wish I had logged in to see and use all the cool features!</p>
+                            </div>
+                            <% } %>
                 </span>
                 <span class="main_posts_container">
                     <% if (searchTerm) { %>

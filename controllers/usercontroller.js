@@ -246,16 +246,18 @@ router.get("/:id", async (req, res, next) => {
             likes.push(foundLike);
         }
         let isFollowing = false;
-        for (let i = 0; i < foundUser.followers.length; i++) {
-            if (foundUser.followers[i] == req.session.currentUser.id) {
-                isFollowing = true;
+        if (req.session.currentUser) {
+            for (let i = 0; i < foundUser.followers.length; i++) {
+                if (foundUser.followers[i] == req.session.currentUser.id) {
+                    isFollowing = true;
+                }
             }
         }
         const context = {
             posts: userPosts,
             userProfile: foundUser,
             isFollowing: isFollowing,
-            likes:likes,
+            likes: likes,
         };
         res.render("users/profile", context);
     } catch (error) {

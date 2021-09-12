@@ -19,19 +19,21 @@ router.get("/", async (req, res, next) => {
         }
         //Finding followings
         let followings = [];
-        let foundUser = await User.findById(req.session.currentUser.id);
         let foundFollower = {};
-        console.log(foundUser);
-        for (let i = 0; i < foundUser.followings.length; i++) {
-            foundFollower = await User.findById(foundUser.followings[i]._id);
-            console.log(foundFollower);
-            followings.push(foundFollower);
+        if (req.session.currentUser) {
+            let foundUser = await User.findById(req.session.currentUser.id);
+            console.log(foundUser);
+            for (let i = 0; i < foundUser.followings.length; i++) {
+                foundFollower = await User.findById(foundUser.followings[i]._id);
+                console.log(foundFollower);
+                followings.push(foundFollower);
+            }
         }
         console.log(followings);
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,
-            followings:followings
+            followings: followings
         }
         res.render("posts/gallery", context);
     } catch (error) {
@@ -76,9 +78,11 @@ router.get("/:id", async (req, res, next) => {
         const foundLikes = await Like.findOne({ post: req.params.id });
         //checking if current user has liked the post
         let isLiked = false;
-        for (let i = 0; i < foundLikes.userArr.length; i++) {
-            if (req.session.currentUser.id == foundLikes.userArr[i]) {
-                isLiked = true;
+        if (req.session.currentUser) {
+            for (let i = 0; i < foundLikes.userArr.length; i++) {
+                if (req.session.currentUser.id == foundLikes.userArr[i]) {
+                    isLiked = true;
+                }
             }
         }
         const context = {
