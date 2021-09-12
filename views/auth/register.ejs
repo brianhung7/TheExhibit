@@ -1,47 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
 <%- include('../partials/_head') %>
+    <title>
+        Register
+    </title>
+    <link rel="stylesheet" href="/styles/splash/splash.css">
 
-<%- include('../partials/_navbar') %>
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="form">
+                <h1 class="mx-5 my-3 form_title">Register</h1>
+                <form action="/register" method="POST" id="form__box">
+                    <% if (typeof error !=='undefined' ) { %>
+                        <article class="message is-danger">
+                            <div class="message-header">
+                                <p>Danger</p>
+                            </div>
+                            <div class="message-body">
+                                <%= error.message %>
+                            </div>
+                        </article>
+                        <% } %>
+                            <div class="form__input">
+                                <label for="username">Username</label><br />
+                                <input type="text" class="input" placeholder="Curator" name="username" maxlength="15"
+                                    id="username" required>
+                            </div>
+                            <div class="form__input">
+                                <label for="email">Email Address</label><br />
+                                <input type="email" class="input" placeholder="Curator@gmail.com" name="email"
+                                    id="email" required>
+                            </div>
+                            <div class="form__input">
+                                <label for="password">Password</label><br />
+                                <input type="password" class="input" placeholder="******" name="password" id="password"
+                                    required>
+                            </div>
+                            <div class="form__input">
+                                <label for="biography">Biography</label><br />
+                                <input type="text" class="input" placeholder="Welcome to The Exhibit" name="biography"
+                                    maxlength="300" id="biography">
+                            </div>
+                            <div class="avatar__input">
+                                <label for="avatar">Avatar</label><br />
+                                <input type="text" class="input" value="https://i.imgur.com/eYlOXmc.png" name="avatar"
+                                    maxlength="300" id="avatar">
+                            </div>
+                
 
-REGISTER
-
-<form action="/register" method="POST" id="form__box">
-    <% if (typeof error !=='undefined' ) { %>
-        <article class="message is-danger">
-            <div class="message-header">
-                <p>Danger</p>
+                <div class="buttons_container">
+                    <button class="form_button">Register</button>
+                </div>
             </div>
-            <div class="message-body">
-                <%= error.message %>
+            <div class="gallery">
+                <div class="clipped-border">
+                    <img src="https://i.imgur.com/iYLKFWX.jpeg" id="clipped">
+                </div>
+                <div class="clipped-border">
+                    <img src="https://i.imgur.com/UZhe6Tx.jpeg" id="clipped">
+                </div>
+                <div class="clipped-border">
+                    <img src="https://i.imgur.com/3yoCPY3.jpeg" id="clipped">
+                </div>
+                <div class="clipped-border">
+                    <img src="https://i.imgur.com/cA0BERR.jpeg" id="clipped">
+                </div>
+                <div class="clipped-border">
+                    <img src="https://i.imgur.com/jJiool7.jpeg" id="clipped">
+                </div>
+                <div class="shadow"></div>
             </div>
-        </article>
-        <% } %>
-            <div class="form__input">
-                <label for="username">Username</label><br />
-                <input type="text" class="input" placeholder="Curator" name="username" maxlength="15"
-                    id="username" required>
-            </div>
-            <div class="form__input">
-                <label for="email">Email Address</label><br />
-                <input type="email" class="input" placeholder="Curator@gmail.com" name="email"
-                    id="email" required>
-            </div>
-            <div class="form__input">
-                <label for="password">Password</label><br />
-                <input type="password" class="input" placeholder="******" name="password" id="password"
-                    required>
-            </div>
-            <div class="form__input">
-                <label for="biography">Biography</label><br />
-                <input type="text" class="input" placeholder="Welcome to The Exhibit" name="biography"
-                    maxlength="300" id="biography">
-            </div>
-            <div class="avatar_input">
-                <label for="avatar">Avatar</label><br />
-                <input type="text" class="input" value="https://i.imgur.com/eYlOXmc.png" name="avatar"
-                    maxlength="300" id="avatar">
-            </div>
-
-            <div>
-                <button class="form__button">Sign Up</button>
-            </div>
-</form>
+    </body>

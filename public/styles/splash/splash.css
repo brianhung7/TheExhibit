@@ -16,6 +16,9 @@
     display:flex;
   }
 
+  a{
+    text-decoration: none;
+  }
   .form{
     position:relative;
     top:15%;
@@ -24,16 +27,59 @@
     height:70%;
     width:40vw;
     border-radius: 25px;
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+    overflow: auto;
+  }
+
+  form > * {
+    margin-top:10px;
   }
 
   .form_title{
     text-align: center;
   }
 
-  .buttons_container{
-    position:relative;
-    bottom: 0;
+  .form__input{
     text-align: center;
+  }
+  .avatar__input{
+    text-align: center;
+  }
+
+  .buttons_container{
+    position:absolute;
+    bottom: 5%;
+    width:100%;
+    text-align: center;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .form_button{
+    text-align: center;
+    padding: 13px 20px 13px 20px;
+    font-weight: bold;
+    border-radius:40px;
+    background: beige;
+    border: 2px solid #00AFB9;
+    color:#00AFB9;
+    letter-spacing:1px;
+    text-shadow:0;
+    margin-left: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+
+  .form_button:hover{
+    transform: scale(1.1);
+    transition:150ms ease-in-out;
+    background-color: #00AFB9;
+    color:beige;
+  }
+
+  .bullet_points{
+    padding: 10px 25px 10px 25px;
   }
   
   .gallery{
