@@ -26,7 +26,7 @@
     padding: 13px 20px 13px 20px;
     font-weight: bold;
     border-radius:40px;
-    background: #F07167;
+    background: beige;
     border: 2px solid #00AFB9;
     color:#00AFB9;
     letter-spacing:1px;
@@ -38,7 +38,7 @@
   
   .profile__link:hover{
           transform: scale(1.1);
-          background: #00AFB9;
+          /* background: #00AFB9; */
           color:#00AFB9;
           transition:150ms ease-in-out;
         
@@ -203,7 +203,7 @@
     margin: 2em auto 1em;
     text-align: center;
     font-size: 12px;
-    color: #00AFB9;
+    color: beige;
     line-height: 1;
     position: relative;
     font-weight: 700;

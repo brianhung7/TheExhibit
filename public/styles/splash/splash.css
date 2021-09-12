@@ -13,6 +13,27 @@
     width:100%;
     position:relative;
     overflow:hidden;
+    display:flex;
+  }
+
+  .form{
+    position:relative;
+    top:15%;
+    background-color: #FDFCDC;
+    left:10vw;
+    height:70%;
+    width:40vw;
+    border-radius: 25px;
+  }
+
+  .form_title{
+    text-align: center;
+  }
+
+  .buttons_container{
+    position:relative;
+    bottom: 0;
+    text-align: center;
   }
   
   .gallery{
@@ -20,7 +41,7 @@
     height:100%;
     width:100%;
     top:20%;  
-    left:50%;
+    right:-20vw;
 
   }
   

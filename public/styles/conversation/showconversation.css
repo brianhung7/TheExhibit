@@ -19,6 +19,8 @@
 }
 .messages_container{
     margin-right: 15vw;
+    background-color: #FDFCDC;
+    border-radius: 20px;
 }
 
 .receiver_message{
@@ -29,7 +31,7 @@ text-align: end;
 }
 
 .active_conversation{
-    background-color: yellow;
+    background-color: #FDFCDC;
 }
 
 .conversation_name{
@@ -41,5 +43,5 @@ text-align: end;
 }
 
 .send_message input{
-    padding:10px 25px 10px 25px;
+    padding:10px 155px 10px 155px;
 }
