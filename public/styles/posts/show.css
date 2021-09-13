@@ -1,8 +1,17 @@
+.main_container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 5vw;
+    margin: 0 5vh;
+}
+
 .post_image{
     width:40vw;
 }
 
-
+.left_container{
+    width:40vw;
+}
 
 
 
