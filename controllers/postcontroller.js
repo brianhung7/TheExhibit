@@ -5,6 +5,8 @@ const Comment = require("../models/Comment")
 const Like = require("../models/Like");
 const User = require('../models/User');
 
+const handleUploadFile = require('../utils/handleUploadFile');
+
 
 //gallery view
 router.get("/", async (req, res, next) => {
@@ -53,7 +55,7 @@ router.get("/new", (req, res) => {
 });
 
 //create post POST route
-router.post("/", async (req, res, next) => {
+router.post("/", handleUploadFile, async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;
         const newPost = await Post.create(req.body);

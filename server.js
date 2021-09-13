@@ -5,6 +5,9 @@ const express = require("express");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+
+const multer = require('multer');
+const upload = multer({dest: 'uploads/'});
 // require("dotenv").config();
 
 /* SECTION module instance */
@@ -66,6 +69,8 @@ app.use((req, res, next) => {
 app.use(require("./utils/navlinks"));
 
 app.use(express.static("public"));
+
+app.use(upload.single('image'));
 
 // // NOTE allow body data for all routes
 app.use(express.urlencoded({ extended: true }));

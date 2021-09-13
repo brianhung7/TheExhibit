@@ -1,7 +1,8 @@
 const AWS = require('aws-sdk');
+const fs = require('fs');
+const uuid = require('uuid');
 
 require('dotenv').config();
-
 const credentials = new AWS.EnvironmentCredentials('AWS');
 AWS.config.credentials = credentials;
 
@@ -14,11 +15,13 @@ class BucketS3 {
         this.#bucketName = process.env.AWS_BUCKET_NAME;
     }
 
-    uploadFile(){
+    uploadFile(file){
+        const filePath = fs.createReadStream(file.path);
+
         const uploadParams = {
             Bucket: this.#bucketName,
-            Body: 'hello World',
-            Key: 'helloworld.txt'
+            Body: filePath,
+            Key: `${file.originalname}-${uuid.v4()}`
         }
 
         return this.#s3.upload(uploadParams).promise();
@@ -26,5 +29,4 @@ class BucketS3 {
 }
 
 
-const bucketTest = new BucketS3();
-bucketTest.uploadFile().then((data) => console.log({data}));
+module.exports = new BucketS3();
