@@ -54,11 +54,14 @@ background: linear-gradient(#FDFCDC,white);
 
 .send_message{
     text-align: center;
+    background:radial-gradient(#FED9B7,#F07167);
+    padding-top: 1vh;
 }
 
 .send_message input{
     padding:10px 155px 10px 155px;
     margin-bottom: 1vh;
+    border-radius: 15px;
 }
 
 a{
