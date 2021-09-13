@@ -23,57 +23,59 @@
 
                         <% } %>
                 </div>
-                    <div class="messages_container">
-                        <h1 class="conversation_name">
-                            Conversation with <%= otherUser.username %>
-                        </h1>
-                        <% for(let i=0;i<allMessages.length;i++) { %>
-                            <% if (allMessages[i].sender==currentUser.id) { %>
-                                <div class="sender_message">
-                                    <%= new Intl.DateTimeFormat('en-US').format(allMessages[i].createdAt) %>
-                                        <%= currentUser.username %>: <%= allMessages[i].text %>
-                                                <img class="avatar_img" src="<%= currentUser.avatar %> " alt=""
-                                                    srcset="">
-                                                <% } else {%>
-                                                    <div class="receiver_message">
+                <div class="messages_container">
+                    <h1 class="conversation_name">
+                        Conversation with <%= otherUser.username %>
+                    </h1>
+                    <% for(let i=0;i<allMessages.length;i++) { %>
+                        <% if (allMessages[i].sender==currentUser.id) { %>
+                            <div class="sender_message">
+                                <%= new Intl.DateTimeFormat('en-US').format(allMessages[i].createdAt) %>
+                                    <%= currentUser.username %>: <%= allMessages[i].text %>
+                                            <img class="avatar_img" src="<%= currentUser.avatar %> " alt="" srcset="">
+                                            <% } else {%>
+                                                <div class="receiver_message">
+                                                    <a href="/users/<%= otherUser.id %> ">
                                                         <img class="avatar_img" src="<%= otherUser.avatar %> " alt=""
                                                             srcset="">
-                                                        <%= new
-                                                            Intl.DateTimeFormat('en-US').format(allMessages[i].createdAt)
-                                                            %>
-                                                            <%= otherUser.username %>: <%= allMessages[i].text %>
-                                                                    <% } %>
+                                                    </a>
+                                                    <%= new
+                                                        Intl.DateTimeFormat('en-US').format(allMessages[i].createdAt) %>
+                                                        <a href="/users/<%= otherUser.id %> ">
+                                                            <%= otherUser.username %>
+                                                        </a>
+                                                        : <%= allMessages[i].text %>
+                                                            <% } %>
+                                                </div>
+                                                <% } %>
+                                                    <div class="form__container">
+                                                        <form action="/conversation/message/new/<%=otherUser.id%>"
+                                                            method="POST" id="form__box">
+                                                            <% if (typeof error !=='undefined' ) { %>
+                                                                <article class="message is-danger">
+                                                                    <div class="message-header">
+                                                                        <p>Danger</p>
+                                                                    </div>
+                                                                    <div class="message-body">
+                                                                        <%= error.message %>
+                                                                    </div>
+                                                                </article>
+                                                                <% } %>
+                                                                    <div class="send_message">
+                                                                        <input maxlength="300" type="text" class="input"
+                                                                            placeholder="Type your message" name="text"
+                                                                            id="text">
+
+
+
+                                                                        <button class="message__button py-2 px-3">Send
+                                                                        </button>
+                                                                    </div>
+
+                                                        </form>
                                                     </div>
-                                                    <% } %>
-                                                        <div class="form__container">
-                                                            <form action="/conversation/message/new/<%=otherUser.id%>"
-                                                                method="POST" id="form__box">
-                                                                <% if (typeof error !=='undefined' ) { %>
-                                                                    <article class="message is-danger">
-                                                                        <div class="message-header">
-                                                                            <p>Danger</p>
-                                                                        </div>
-                                                                        <div class="message-body">
-                                                                            <%= error.message %>
-                                                                        </div>
-                                                                    </article>
-                                                                    <% } %>
-                                                                        <div class="send_message">
-                                                                            <input maxlength="300" type="text"
-                                                                                class="input"
-                                                                                placeholder="Type your message"
-                                                                                name="text" id="text">
-
-
-
-                                                                            <button class="message__button">Send
-                                                                            </button>
-                                                                        </div>
-
-                                                            </form>
-                                                        </div>
-                                </div>
-                    </div>
+                            </div>
+                </div>
     </body>
 
     <script>

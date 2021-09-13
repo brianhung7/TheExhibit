@@ -23,6 +23,7 @@
     box-shadow: 10px 10px 10px grey;
     border:grey solid 2px;
     background: radial-gradient(#FDFCDC,#00AFB9);
+    border-radius: 10px;
 }
 
 .messages_container{
@@ -62,6 +63,10 @@ background: linear-gradient(#FDFCDC,white);
     padding:10px 155px 10px 155px;
     margin-bottom: 1vh;
     border-radius: 15px;
+}
+
+.message__button{
+    border-radius: 10px;
 }
 
 a{

@@ -2,26 +2,31 @@
 <html lang="en">
 
 <%- include('../partials/_head') %>
-    <title>
-        ALL CONVOS
-    </title>
-    <link rel="shortcut icon" href="/styles/logo.svg">
-    <link rel="stylesheet" href="/styles/form.css">
-    
-<link rel="stylesheet" href="/styles/conversation/all.css">
+    <link rel="stylesheet" href="/styles/conversation/showconversation.css">
 
     <body>
         <%- include('../partials/_navbar') %>
             <div class="main_container">
-                <% for(let i=0;i<conversations.length;i++) { %>
-                    <div>
+                <div class="users_container">
+                    <% for(let i=0;i<conversations.length;i++) { %>
                         <a href="/conversation/<%=conversations[i]._id%>">
-                            <img src="<%= userConversations[i].avatar %> " alt="" srcset="" class="avatar_img">
-                            <%= userConversations[i].username %>
+                            <div class="nonactive_conversation user_container py-1">
+                                <img src="<%= userConversations[i].avatar %> " alt="" srcset="" class="avatar_img">
+                                <%= userConversations[i].username %>
+                            </div>
                         </a>
-                    </div>
 
-                    <% } %>
+                        <% } %>
+                </div>
+                <div class="messages_container">
+                    <h1 class="conversation_name" style="top:40%;position:relative">
+                        Select a Conversation on the left to view your messages!
+                    </h1>
+
+                </div>
             </div>
-
     </body>
+
+    <script>
+        $(".messages_container").scrollTop($(".messages_container")[0].scrollHeight);
+    </script>

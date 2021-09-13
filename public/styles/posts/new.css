@@ -7,7 +7,7 @@
 
     background-color: #FDFCDC;
     text-align: center;
-    height:50vh;
+    height:55vh;
     width:30vw;
     border-radius: 25px;
     box-shadow: 10px 10px 10px grey;
@@ -16,3 +16,7 @@
     margin: 0 auto;
   }
 
+
+  .image_upload{
+      margin-left: 5vw;
+  }
