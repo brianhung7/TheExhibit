@@ -5,21 +5,35 @@
     <title>
         Purchases
     </title>
+    <link rel="stylesheet" href="/styles/shopping/purchases.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-        PURCHASES
+            <div class="main_container">
+                <h1 class="page_title">Your Purchase History</h1>
+                <div class="items_container">
+                    <% for(let i=0;i<purchases.length;i++) { %>
+                        <a href="/gallery/<%= purchases[i].id %> ">
+                            <div class="item_card">
+                                <div class="item_image_span">
+                                    <img class="item_image" src="<%=purchases[i].image%>" width="300px">
+                                </div>
+                                <div class="item_info">
+                                    <span class="item_title">
+                                        <h2><%= purchases[i].title %></h2>
+                                    </span>
+                                    <span class="item_price">
+                                        <h3>$<%= purchases[i].price%></h3>
+                                    </span>
+                                    <p class="item_description">
+                                        <%= purchases[i].description%>
+                                    </p>
+                                </div>
 
-            <% for(let i=0;i<purchases.length;i++) { %>
-                <div>
-                    <%= purchases[i].title %>
+                            </div>
+                        </a>
 
-                        <%= purchases[i].price%>
+                        <% } %>
                 </div>
-                <div>
-                    <img src="<%=purchases[i].image%>" width="250px">
-
-                </div>
-                <% } %>
-
+            </div>
     </body>

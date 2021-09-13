@@ -12,7 +12,7 @@ const Message = require("../models/Message")
 //https://imgur.com/gallery/5yeBVeM
 
 let postImageArr = ["https://i.imgur.com/DfjlogK.jpeg", "https://i.imgur.com/HEujk59.jpeg", "https://i.imgur.com/or4cVlW.jpeg", "https://i.imgur.com/cmikV5d.jpeg","https://i.imgur.com/mvoNmjm.jpeg", "https://i.imgur.com/5yeBVeM.jpeg", "https://i.imgur.com/fjXFX93.jpeg", "https://i.imgur.com/k6WuSSw.jpeg", "https://i.imgur.com/1Wl9p9o.jpeg", "https://i.imgur.com/6f6ppuP.jpeg", "https://i.imgur.com/coIwWnF.jpeg", "https://i.imgur.com/PSX4oDf.jpeg", "https://i.imgur.com/oC6yZJc.jpeg", "https://i.imgur.com/NNT4asY.jpeg", "https://i.imgur.com/k2yiwkB.jpeg", "https://i.imgur.com/q7IouSd.jpeg", "https://i.imgur.com/66hCBxb.jpeg", "https://i.imgur.com/5c8J2kJ.jpeg", "https://i.imgur.com/kIT7Oky.jpeg", "https://i.imgur.com/hK4ucjG.jpeg", "https://i.imgur.com/3yoCPY3.jpeg"]
-let usernameArr = ["BrianPham2k", "MuseumGuy", "ExhibitionMan", "ArtLover", "PhotographerKing"];
+let usernameArr = ["BrianPham2k", "MuseumProcurer", "Exhibiter", "ArtLover", "MrPhotographer"];
 let userIdArr = ['11393e18f5782064a676cb85', '21393e18f5782064a676cb85', '31393e18f5782064a676cb85', '41393e18f5782064a676cb85', '51393e18f5782064a676cb85',];
 let bioArr = ["Come check out all of my gorgeous artwork! Be sure to follow me for updates!",
     "I love making art, it is a dream of mine to make gorgeous art ever since I was a child.",

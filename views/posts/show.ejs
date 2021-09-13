@@ -10,17 +10,11 @@
     <body>
         <%- include('../partials/_navbar') %>
             <div class="main_container">
-                YOU HIT THE SHOW POST VIEW
+                
 
 
-                <%= post.title %>
-                    <%= post.tags %>
-                        <%= post.price %>
-                            <a href="/users/<%=post.user.id%> ">
-                                <%= post.user.username %>
-                            </a>
-                            <%= post.description %>
-                                <img src="<%=post.image%> " width="250px">
+            <h1><%= post.title %></h1>
+            <img class="post_image" src="<%=post.image%>">
 
                                 <% if ( typeof user !=='undefined' ) { %>
                                     <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
@@ -51,6 +45,12 @@
                                                                     value="Delete Post" />
                                                             </form>
                                                             <% } %>
+                                                            <%= post.tags %>
+                        <%= post.price %>
+                            <a href="/users/<%=post.user.id%> ">
+                                <%= post.user.username %>
+                            </a>
+                            <%= post.description %>
 
                                                                 <% for(let i=0;i<comments.length;i++) { %>
                                                                     <div>

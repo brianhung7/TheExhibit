@@ -12,26 +12,40 @@
 .main_container{
     display:grid;
     grid-template-columns: 1fr 4fr;
+    padding-top: 4vh;
 }
 
 .users_container{
     margin-left: 5vw;
 }
+
+.user_container{
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+    background: radial-gradient(#FDFCDC,#00AFB9);
+}
+
 .messages_container{
     margin-right: 15vw;
     background-color: #FDFCDC;
     border-radius: 20px;
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+    max-height: 85vh;
+    overflow: auto;
 }
 
 .receiver_message{
+    background: linear-gradient(aliceblue,white);
 }
 
 .sender_message{
 text-align: end;
+background: linear-gradient(#FDFCDC,white);
 }
 
 .active_conversation{
-    background-color: #FDFCDC;
+    background: #FDFCDC;
 }
 
 .conversation_name{
@@ -44,4 +58,9 @@ text-align: end;
 
 .send_message input{
     padding:10px 155px 10px 155px;
+    margin-bottom: 1vh;
+}
+
+a{
+    text-decoration: none;
 }

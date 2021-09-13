@@ -1,0 +1,46 @@
+
+.page_title{
+    text-align: center;
+    color: #0081A7;
+}
+.items_container{
+    width:80vw;
+    margin:0 auto;
+}
+
+.item_card{
+    background-color: #FDFCDC;
+    /* width:80vw; */
+    height:20vh;
+    border-radius: 25px;
+    margin-top: 5vh;
+    /* display: block; */
+    display:grid;
+    grid-template-columns: 1fr 3fr;
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+}
+
+.item_title{
+
+}
+
+.item_image_span{
+}
+
+.item_image{
+    height: 19.7vh;
+    /* width: 15vw; */
+    /* position:absolute; */
+    border-top-left-radius: 23px;
+    border-bottom-left-radius: 23px;
+}
+
+.item_price{
+    float:right;
+    margin-right: 3vw;
+}
+
+a{
+    text-decoration: none;
+}

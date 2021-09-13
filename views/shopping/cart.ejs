@@ -3,44 +3,39 @@
 
 <%- include('../partials/_head') %>
     <title>
-       Cart
+        Cart
     </title>
 
     <body>
         <%- include('../partials/_navbar') %>
-        SHOPPING CART
-<%= user.username %>
-    <% if ( typeof user !=='undefined' ) { %>
-        <form action="/users/purchases?_method=PUT" method="POST">
-            <input class="button" type="submit" value="Purchase" />
-        </form>
-        <% } %>
+            SHOPPING CART
+            <%= user.username %>
+                <% if ( typeof user !=='undefined' ) { %>
+                    <form action="/users/purchases?_method=PUT" method="POST">
+                        <input class="button" type="submit" value="Purchase" />
+                    </form>
+                    <% } %>
 
 
-            <% for(let i=0;i<cart.length;i++) { %>
-                <div>
-                    <%= cart[i].title %>
+                        <% for(let i=0;i<cart.length;i++) { %>
+                            <div>
+                                <%= cart[i].title %>
 
-                        $<%= cart[i].price%>
-                        <a href="/users/cart/<%=i%>/remove">Remove Item</a>
-                </div>
-                <div>
-                    <img src="<%=cart[i].image%>" width="250px">
+                                    $<%= cart[i].price%>
+                                        <a href="/users/cart/<%=i%>/remove">Remove Item</a>
+                            </div>
+                            <div>
+                                <img src="<%=cart[i].image%>" width="250px">
 
-                </div>
-                <% } %>
+                            </div>
+                            <% } %>
 
-                <form action="payment" method="POST"> 
-                    <script
-                        src="//checkout.stripe.com/v2/checkout.js"
-                        class="stripe-button"
-                        data-key="<%= key %>" 
-                        data-amount="<%=totalCartPrice%>" 
-                        data-currency="usd" 
-                        data-name="<%= user.username %>" 
-                        data-description="Buy CART" 
-                        data-locale="auto" > 
-                        </script> 
-                    </form> 
+                                <form action="payment" method="POST">
+                                    <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
+                                        data-key="<%= key %>" data-amount="<%=totalCartPrice%>" data-currency="usd"
+                                        data-name="<%= user.username %>" data-description="Payment to The Exhibit"
+                                        data-locale="auto">
+                                        </script>
+                                </form>
 
-            </body>
+    </body>
