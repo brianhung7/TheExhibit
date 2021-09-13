@@ -71,7 +71,6 @@ router.get("/cart/:index/remove", async (req, res, next) => {
             { new: true },
         )
 
-
         res.redirect("/users/cart");
     } catch (error) {
         console.log(error);

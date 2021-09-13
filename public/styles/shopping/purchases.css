@@ -19,6 +19,7 @@
     grid-template-columns: 1fr 3fr;
     box-shadow: 10px 10px 10px grey;
     border:grey solid 2px;
+    overflow: hidden;
 }
 
 .item_title{

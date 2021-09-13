@@ -29,9 +29,9 @@
                 </span>
                 <span class="main_posts_container">
                     <% if (searchTerm) { %>
-                        Now showing results for "<%= searchTerm %>"
+                        <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
                             <% } %>
-                                <% for(let i=0;i<posts.length;i++) {%>
+                                <% for(let i=posts.length-1;i>=0;i--) {%>
                                     <div>
                                         <div>
                                             <a href="/users/<%=posts[i].user.id%>">

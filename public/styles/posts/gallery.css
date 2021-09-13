@@ -1,4 +1,6 @@
-
+#search_message{
+    text-align: center;
+}
 .gallery_container{
     position:relative;
     top:55px;

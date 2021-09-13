@@ -9,7 +9,7 @@
 
     <form action="/gallery">
         <div class="searchbar">
-            <input class="input" type="search" placeholder="Find a post or tag or artpiece" name="q">
+            <input id="search_input" type="search" placeholder="Find a post or tag or artpiece" name="q">
             <input type="submit" class="button fa fa-search" id="search__button" value="Search">
         </div>
     </form>
@@ -17,14 +17,18 @@
     <!-- this will add a link to the new route -->
     <div class="navbar-menu navbar-end">
         <% if (typeof user !=='undefined' ) { %>
-            <a href="/users/<%= user.id %>">
-                <%= user.username %>
+            <a class="navbar-item" href="/users/<%= user.id %>">
+                <div>
+                    <%= user.username %>
+                </div>
             </a>
             <% } %>
                 <% if (typeof routes !=='undefined' ) { %>
                     <% routes.forEach((route)=> { %>
                         <a class="navbar-item" href="<%= route.href %>">
-                            <%= route.title %>
+                            <div>
+                                <%= route.title %>
+                            </div>
                         </a>
                         <% }) %>
                             <% } %>

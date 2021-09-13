@@ -12,7 +12,7 @@
             <div class="main_container">
                 <h1 class="page_title">Your Purchase History</h1>
                 <div class="items_container">
-                    <% for(let i=0;i<purchases.length;i++) { %>
+                    <% for(let i=purchases.length-1;i>=0;i--) { %>
                         <a href="/gallery/<%= purchases[i].id %> ">
                             <div class="item_card">
                                 <div class="item_image_span">
@@ -20,10 +20,13 @@
                                 </div>
                                 <div class="item_info">
                                     <span class="item_title">
-                                        <h2><%= purchases[i].title %></h2>
+                                        <h2>
+                                            <%= purchases[i].title %>
+                                        </h2>
                                     </span>
                                     <span class="item_price">
-                                        <h3>$<%= purchases[i].price%></h3>
+                                        <h2>$<%= purchases[i].price%>
+                                        </h2>
                                     </span>
                                     <p class="item_description">
                                         <%= purchases[i].description%>

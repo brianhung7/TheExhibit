@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/brianhung7/TheExhibit#readme",
   "dependencies": {
+    "aws-sdk": "^2.988.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-mongo": "^4.4.1",
@@ -29,7 +30,9 @@
     "method-override": "^3.0.0",
     "mongo": "^0.1.0",
     "mongoose": "^5.13.5",
+    "multer": "^1.4.3",
     "nodemon": "^2.0.12",
-    "stripe": "^8.174.0"
+    "stripe": "^8.174.0",
+    "uuid": "^8.3.2"
   }
 }

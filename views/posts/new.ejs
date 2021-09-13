@@ -6,11 +6,12 @@
         New Post
     </title>
     <link rel="shortcut icon" href="/styles/logo.svg">
-    <link rel="stylesheet" href="/styles/form.css">
+    <link rel="stylesheet" href="/styles/posts/new.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-            <div class="form__container">
+        <div class="main_container">
+            <div class="form">
                 <h1 class="form__name">New Post</h1>
                 <form action="/gallery" method="POST" id="form__box">
                     <% if (typeof error !=='undefined' ) { %>
@@ -49,12 +50,11 @@
                                     >
                             </div>
                             <div>
-                                <button class="form__button">Submit New Post</button>
+                                <button class="form__button py-1 my-3">Submit New Post</button>
                             </div>
-
                 </form>
             </div>
-
+        </div>
 
     </body>
 
