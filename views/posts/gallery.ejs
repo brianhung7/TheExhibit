@@ -32,6 +32,9 @@
                     <% if (searchTerm) { %>
                         <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
                         <% } %>
+                        <% if (feedMessage) { %>
+                            <h1><%= feedMessage %> </h1>
+                            <% } %>  
                             <% for(let i=posts.length-1;i>=0;i--) {%>
                                 <div>
                                     <div>

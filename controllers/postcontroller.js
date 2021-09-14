@@ -32,7 +32,8 @@ router.get("/", async (req, res, next) => {
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,
-            followings: followings
+            followings: followings,
+            feedMessage: null,
         }
         res.render("posts/gallery", context);
     } catch (error) {
@@ -47,7 +48,6 @@ router.get("/feed", async (req, res, next) => {
     try {
         //Finding posts by all or by query
         let foundPosts = [];
-
         //Finding followings
         let followings = [];
         let foundFollower = {};
@@ -60,10 +60,14 @@ router.get("/feed", async (req, res, next) => {
             //Finding posts associated with followings
             foundPosts = await Post.find({ user: { $in: foundUser.followings} }).populate("user");
         }
+        if(followings==0){
+            var feedMessage = "Nothing on your following feed, try following some people first!"
+        }
         const context = {
             posts: foundPosts,
             searchTerm: req.query.q,
-            followings: followings
+            followings: followings,
+            feedMessage: feedMessage,
         }
         res.render("posts/gallery", context);
     } catch (error) {
