@@ -39,6 +39,10 @@
 
   }
 
+  .followings_container_message{
+    text-align: center;
+  }
+
 .follower_name:hover{
 
 background-color: grey;

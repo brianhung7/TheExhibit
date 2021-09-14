@@ -21,6 +21,11 @@
     border:grey solid 2px;
 }
 
+.buttons_container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .comments_container{
     background: #FDFCDC;

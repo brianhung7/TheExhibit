@@ -23,30 +23,37 @@
                             <img src="https://i.imgur.com/defzsz2.png" alt="" srcset="" width="150px">
                             <div>
                                 Anonymous
-                                <p>Boy I sure wish I had logged in to see and use all the cool features!</p>
+                                <p>Boy I sure wish I had logged in to see and use all the cool features like posting,
+                                    commenting, liking, selling, buying products and following users!</p>
                             </div>
                             <% } %>
                 </span>
                 <span class="main_posts_container">
                     <% if (searchTerm) { %>
                         <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
-                            <% } %>
-                                <% for(let i=posts.length-1;i>=0;i--) {%>
+                        <% } %>
+                            <% for(let i=posts.length-1;i>=0;i--) {%>
+                                <div>
                                     <div>
-                                        <div>
-                                            <a href="/users/<%=posts[i].user.id%>">
-                                                <%= posts[i].user.username %>
-                                            </a>
-                                        </div>
-                                        <a href="/gallery/<%= posts[i].id %>">
-                                            <img src="<%= posts[i].image %>" width="750px">
+                                        <a href="/users/<%=posts[i].user.id%>">
+                                            <%= posts[i].user.username %>
                                         </a>
                                     </div>
+                                    <a href="/gallery/<%= posts[i].id %>">
+                                        <img src="<%= posts[i].image %>" width="750px">
+                                    </a>
+                                </div>
 
-                                    <% } %>
+                                <% } %>
                 </span>
                 <span class="followings_container">
-                    You are Following:
+                    <h4 class="followings_container_message">
+                        <% if(user){ %>
+                            You are Following:
+                            <% } else { %>
+                                Please login or register to view people you are following.
+                                <% } %>
+                    </h4>
                     <% for (let i=0;i<followings.length;i++) { %>
                         <a href="/users/<%=followings[i].id%>">
                             <div class="follower_name py-3">
