@@ -35,7 +35,7 @@ router.get("/cart", async (req, res, next) => {
 
         let cartContents = [];
         for (let i = 0; i < foundUser.cart.length; i++) {
-            let foundPost = await Post.findById(foundUser.cart[i])
+            let foundPost = await Post.findById(foundUser.cart[i]).populate('user');
             cartContents.push(foundPost);
         }
         let totalCartPrice = 0;
@@ -84,7 +84,7 @@ router.post('/payment', async (req, res) => {
     const foundUser = await User.findById(req.session.currentUser.id);
     let cartContents = [];
     for (let i = 0; i < foundUser.cart.length; i++) {
-        let foundPost = await Post.findById(foundUser.cart[i])
+        let foundPost = await Post.findById(foundUser.cart[i]).populate('user');
         cartContents.push(foundPost);
     }
     let totalCartPrice = 0;
@@ -204,7 +204,7 @@ router.get("/purchases", async (req, res, next) => {
 
         let purchaseContents = [];
         for (let i = 0; i < foundUser.purchases.length; i++) {
-            let foundPost = await Post.findById(foundUser.purchases[i])
+            let foundPost = await Post.findById(foundUser.purchases[i]).populate('user');
             purchaseContents.push(foundPost);
         }
         const context = {
@@ -226,7 +226,7 @@ router.get("/sales", async (req, res, next) => {
 
         let saleContents = [];
         for (let i = 0; i < foundUser.sales.length; i++) {
-            let foundPost = await Post.findById(foundUser.sales[i])
+            let foundPost = await Post.findById(foundUser.sales[i]).populate('user');
             saleContents.push(foundPost);
         }
         // console.log(`USER: ${foundUser}`);

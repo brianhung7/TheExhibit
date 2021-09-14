@@ -1,11 +1,13 @@
-
+.cart_container{
+    display:flex;
+    justify-content: space-around;
+}
 .page_title{
     text-align: center;
     color: #0081A7;
 }
 .items_container{
-    width:80vw;
-    margin:0 auto;
+    width:70vw;
 }
 
 .item_card{
@@ -48,4 +50,22 @@ margin-top: 10px;
 
 a{
     text-decoration: none;
+}
+
+.checkout_info{
+    background-color: #FDFCDC;
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+    border-radius: 25px;
+    padding: 5px 20px 5px 20px;
+}
+
+.remove_cart_item{
+    background: #F07167;
+    padding:5px 10px 5px 10px;
+    border-radius: 15px;
+    color:white;
+    border:solid grey 1px;
+    float:right;
+    margin-right:3vw;
 }

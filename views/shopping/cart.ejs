@@ -3,33 +3,54 @@
 
 <%- include('../partials/_head') %>
     <title>
-        Cart
+        Shopping Cart
     </title>
+    <link rel="stylesheet" href="/styles/shopping/cart.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-            SHOPPING CART
-            <%= user.username %>
-                <% if ( typeof user !=='undefined' ) { %>
-                    <form action="/users/purchases?_method=PUT" method="POST">
-                        <input class="button" type="submit" value="Purchase" />
-                    </form>
-                    <% } %>
+            <div class="main_container">
+                <h1 class="page_title">Your Shopping Cart</h1>
+                <div class="cart_container">
+                    <div class="items_container">
+                        <% for(let i=cart.length-1;i>=0;i--) { %>
+                            <a href="/gallery/<%= cart[i].id %> ">
+                                <div class="item_card">
+                                    <div class="item_image_span">
+                                        <img class="item_image" src="<%=cart[i].image%>" width="300px">
+                                    </div>
+                                    <div class="item_info">
+                                        <span class="item_title">
+                                            <h2>
+                                                <%= cart[i].title %>
+                                            </h2>
+                                        </span>
+                                        <span class="item_user">
+                                            <h4>by: <%= cart[i].user.username %>
+                                            </h4>
+                                        </span>
+                                        <span class="item_price">
+                                            <h2>$<%= cart[i].price%>
+                                            </h2>
+                                        </span>
 
+                                        <a class="remove_cart_item" href="/users/cart/<%=i%>/remove">Remove Item</a>
+                                    </div>
 
-                        <% for(let i=0;i<cart.length;i++) { %>
-                            <div>
-                                <%= cart[i].title %>
-
-                                    $<%= cart[i].price%>
-                                        <a href="/users/cart/<%=i%>/remove">Remove Item</a>
-                            </div>
-                            <div>
-                                <img src="<%=cart[i].image%>" width="250px">
-
+                                </div>
+                            </a>
+                            <% } %>
+                    </div>
+                    <div class="checkout_info">
+                        Summary
+                        <% for(let i=cart.length-1;i>=0;i--) { %>
+                            <div class="price_line">
+                                $<%= cart[i].price %>
                             </div>
                             <% } %>
-
+                            <div class="total_price">
+                                Total: $<%= totalCartPrice/100 %> 
+                            </div>
                                 <form action="payment" method="POST">
                                     <script src="//checkout.stripe.com/v2/checkout.js" class="stripe-button"
                                         data-key="<%= key %>" data-amount="<%=totalCartPrice%>" data-currency="usd"
@@ -37,5 +58,7 @@
                                         data-locale="auto">
                                         </script>
                                 </form>
-
+                    </div>
+                </div>
+            </div>
     </body>
