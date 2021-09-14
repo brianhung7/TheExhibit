@@ -7,7 +7,7 @@
   }
   
   html,body{
-    background:radial-gradient(#FED9B7,pink);
+    background:radial-gradient(#FDFCDC,#FED9B7);
     /* background-color: #FED9B7; */
     height:100%;
     width:100%;
@@ -30,11 +30,14 @@
     box-shadow: 10px 10px 10px grey;
     border:grey solid 2px;
     overflow: auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
   }
 
-  form > * {
+  /* form > * {
     margin-top:10px;
-  }
+  } */
 
   .form_title{
     text-align: center;
@@ -48,12 +51,12 @@
   }
 
   .buttons_container{
-    position:absolute;
-    bottom: 5%;
+    position:relative;
     width:100%;
     text-align: center;
     left:50%;
     transform:translateX(-50%);
+    margin-top: 2vh;
   }
 
   .form_button{

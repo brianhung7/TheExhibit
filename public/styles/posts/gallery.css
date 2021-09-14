@@ -14,13 +14,15 @@
     position:fixed;
     width:17%;
     height:100vh;
+    border:solid 2px grey;
 
 }
 
   .main_posts_container{
-    background-color: #FED9B7;
+    /* background-color: #FED9B7; */
     text-align: center;
-    width: 66%
+    width: 66%;
+    
   }
 
 
@@ -29,9 +31,10 @@
       position: fixed;
       right:0;
       top:55px;
-      overflow-y: scroll;
+      overflow-y: auto;
       width: 17%;
       height:100vh;
+      border:solid 2px grey;
 
 
   }

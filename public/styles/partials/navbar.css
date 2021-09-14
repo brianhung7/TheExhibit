@@ -1,6 +1,6 @@
 .navbar{
     margin-bottom: 0px;
-    background:linear-gradient(#0081A7,#FED9B7,#0081A7);
+    background:linear-gradient(#0081A7,#FED9B7);
     backdrop-filter: blur(10px);
     position:fixed;
     width:100%;
@@ -18,7 +18,7 @@
 }
 
 .navbar-item{
-padding:3px 8px 3px 8px;
+padding:4px 8px 4px 8px; 
 border-radius: 10px;
 background:beige;
 color:#00AFB9;
@@ -28,11 +28,11 @@ border: 2px solid #00AFB9;
 }
 
 .navbar-item:hover{
-    background:radial-gradient(#F07167,#FED9B7);
+    background:radial-gradient(#FED9B7,#FED9B7);
 }
 
 html,body{
-    background:radial-gradient(#FED9B7,pink);
+    background:radial-gradient(#FDFCDC,#FED9B7);
     /* background-color: #FED9B7; */
     height:100%;
     width:100%;
@@ -44,3 +44,6 @@ html,body{
       top:55px;
   }
 
+a{
+    text-decoration: none;
+}
