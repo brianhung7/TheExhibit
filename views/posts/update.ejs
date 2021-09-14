@@ -5,11 +5,12 @@
         Update <%= post.title %>
     </title>
     <link rel="shortcut icon" href="/styles/logo.svg">
-    <link rel="stylesheet" href="/styles/form.css">
+    <link rel="stylesheet" href="/styles/posts/new.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-            <div class="form__container">
+        <div class="main_container">
+            <div class="form">
                 <h1 class="form__name">Update Post</h1>
                 <form action="/gallery/<%= post.id %>?_method=PUT" method="POST" id="form__box">
                     <% if (typeof error !=='undefined' ) { %>
@@ -52,6 +53,7 @@
                             </div>
                 </form>
             </div>
+        </div>
     </body>
 
 </html>
