@@ -42,12 +42,15 @@
                             <% } %>
                     </div>
                     <div class="checkout_info">
-                        Summary
+                        <h3>Summary</h3>
                         <% for(let i=cart.length-1;i>=0;i--) { %>
                             <div class="price_line">
                                 $<%= cart[i].price %>
                             </div>
                             <% } %>
+                            <div class="divider">
+                                --------
+                            </div>
                             <div class="total_price">
                                 Total: $<%= totalCartPrice/100 %> 
                             </div>
