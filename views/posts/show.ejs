@@ -13,42 +13,51 @@
                 <div class="left_container">
                     <div class="card_container">
                         <img class="post_image" src="<%=post.image%>">
-                        <h1>
+                        <h1 id="post_title">
                             <%= post.title %>
                         </h1>
-                        <a href="/users/<%= post.user.id %>">
-                            by <%= post.user.username %>
+                        <a id="post_title" href="/users/<%= post.user.id %>">
+                            <h6>by <%= post.user.username %>
+                            </h6>
                         </a>
-                        $<%= post.price %>
-                            <p>
-                                <%= post.description %>
-                            </p>
-                            <p>
-                                Tags: <%= post.tags %>
-                            </p>
-                            NUMBER OF LIKES: <%= likes.numLikes %>
-                                <div class="buttons_container">
-                                    <% if ( typeof user !=='undefined' ) { %>
-                                        <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
-                                            <input class="button" type="submit" value="Add to Cart" />
+                        <h2 class="post_price">
+                            $<%= post.price %>
+                        </h2>
+                        <p class="mx-3">
+                            <%= post.description %> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia
+                                debitis laboriosam iusto similique suscipit, porro et itaque placeat necessitatibus quo
+                                ipsum sed ratione excepturi, doloremque assumenda, veniam possimus natus explicabo!
+                        </p>
+                        <p class="mx-3">
+                            Tags: 
+                            <% for(let i = 0;i<post.tags.length;i++) { %> 
+                                <a href="/gallery?q=<%=post.tags[i]%>"><%= post.tags[i] %> </a>
+                            <% } %> 
+                        </p>
+                        <p class="mx-3">
+                            Liked <%= likes.numLikes %> times
+                        </p>
+                        <div class="buttons_container">
+                            <% if ( typeof user !=='undefined' ) { %>
+                                <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">
+                                    <input class="post_button" type="submit" value="Add to Cart" />
+                                </form>
+                                <% if(!isLiked){ %>
+                                    <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
+                                        <input class="post_button" type="submit" value="Like" />
+                                    </form>
+                                    <% } else { %>
+                                        <form action="/likes/<%= post.id %>/unlike?_method=PUT" method="POST">
+                                            <input class="post_button" type="submit" value="Unlike" />
                                         </form>
-                                        <% if(!isLiked){ %>
-                                            <form action="/likes/<%= post.id %>?_method=PUT" method="POST">
-                                                <input class="post_button" type="submit" value="Like" />
-                                            </form>
-                                            <% } else { %>
-                                                <form action="/likes/<%= post.id %>/unlike?_method=PUT" method="POST">
-                                                    <input class="post_button" type="submit" value="Unlike" />
+                                        <% }} %>
+                                            <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
+                                                <a class="post_button" href="/gallery/<%=post.id%>/update ">Update</a>
+                                                <form action="/gallery/<%= post.id %>?_method=DELETE" method="POST">
+                                                    <input class="post_button" type="submit" value="Delete Post" />
                                                 </form>
-                                                <% }} %>
-                                                    <% if ( typeof user !=='undefined' && (post.user._id==user.id)) { %>
-                                                        <a class="post_button" href="/gallery/<%=post.id%>/update ">UPDATE</a>
-                                                        <form action="/gallery/<%= post.id %>?_method=DELETE"
-                                                            method="POST">
-                                                            <input class="post_button" type="submit" value="Delete Post" />
-                                                        </form>
-                                                        <% } %>
-                                </div>
+                                                <% } %>
+                        </div>
                     </div>
                 </div>
                 <div class="comments_container">
@@ -67,15 +76,14 @@
                                     <%= comments[i].user.username %>
                                 </a>:
                                 <%= comments[i].content %>
+                                    <% if ( typeof user !=='undefined' && (comments[i].user._id==user.id)) { %>
+                                        <form action="../comments/<%=comments[i].id%>?_method=DELETE" method="POST">
+                                            <button class="button post_button delete_comment_button">
+                                                Delete Comment
+                                            </button>
+                                        </form>
+                                        <% } %>
                             </div>
-                            <% if ( typeof user !=='undefined' && (comments[i].user._id==user.id)) { %>
-                                <form action="../comments/<%=comments[i].id%>?_method=DELETE" method="POST">
-                                    <div>
-                                        <button class="button ">Delete
-                                            Comment</button>
-                                    </div>
-                                </form>
-                                <% } %>
                         </div>
                         <% } %>
                             <% if (user) { %>

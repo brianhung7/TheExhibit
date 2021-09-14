@@ -21,10 +21,34 @@
     border:grey solid 2px;
 }
 
+#post_title{
+    text-align: center;
+}
+
+.post_price{
+    float:right;
+    margin-right:2vh;
+}
+
 .buttons_container{
     display:flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.post_button{
+    padding:4px 8px 4px 8px; 
+    border-radius: 10px;
+    background:beige;
+    color:#00AFB9;
+    margin-right: .5vw;
+    border: 2px solid #00AFB9;
+}
+
+.post_button:hover{
+    color:beige;
+    background:#00AFB9;
 }
 
 .comments_container{
@@ -57,7 +81,9 @@
     
 }
 
-
+.delete_comment_button{
+    float:right;
+}
 a{
     text-decoration: none;
 }

@@ -24,11 +24,12 @@ background:beige;
 color:#00AFB9;
 margin-right: .5vw;
 border: 2px solid #00AFB9;
-
 }
 
 .navbar-item:hover{
-    background:radial-gradient(#FED9B7,#FED9B7);
+    color:beige;
+    background:#00AFB9;
+    box-shadow: 5px 5px 5px grey;
 }
 
 html,body{

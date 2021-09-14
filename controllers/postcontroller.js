@@ -58,6 +58,7 @@ router.get("/new", (req, res) => {
 router.post("/", handleUploadFile, async (req, res, next) => {
     try {
         req.body.user = req.session.currentUser.id;
+        req.body.tags = req.body.tags.split(',')
         const newPost = await Post.create(req.body);
         await Like.create({ post: newPost._id });
         return res.redirect(`/gallery/${newPost.id}`);
@@ -122,6 +123,7 @@ router.get("/:id/update", async (req, res, next) => {
 
 //update PUT route
 router.put("/:id", (req, res, next) => {
+    req.body.tags = req.body.tags.split(',')
     Post.findByIdAndUpdate(
         req.params.id,
         {
