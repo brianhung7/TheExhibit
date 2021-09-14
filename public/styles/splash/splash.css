@@ -30,6 +30,7 @@
     box-shadow: 10px 10px 10px grey;
     border:grey solid 2px;
     overflow: auto;
+    overflow-x: hidden;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -81,8 +82,11 @@
     color:beige;
   }
 
+  .bullets_container{
+    margin:0px 5px 0px 15px
+  }
   .bullet_points{
-    padding: 10px 25px 10px 25px;
+    padding: 10px 20px 10px 20px;
   }
   
   .gallery{

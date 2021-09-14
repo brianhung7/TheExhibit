@@ -2,49 +2,52 @@
 <html lang="en">
 
 <%- include('../partials/_head') %>
-    <link rel="stylesheet" href="/styles/form.css">
+    <link rel="stylesheet" href="/styles/posts/new.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-            <div class="form__container">
-                <h1 class="form__name">Update User Info</h1>
-                <form action="/users/<%= user.id %>/update?_method=PUT" method="POST" id="form__box">
-                    <% if (typeof error !=='undefined' ) { %>
-                        <article class="message is-danger">
-                            <div class="message-header">
-                                <p>Danger</p>
-                            </div>
-                            <div class="message-body">
-                                <%= error.message %>
-                            </div>
-                        </article>
-                        <% } %>
-                            <div class="form__input">
-                                <label for="username">Username</label><br />
-                                <input type="text" class="input" placeholder="Curator" name="username" maxlength="30" value="<%= user.username %>""
-                                    id="username" required>
-                            </div>
-                            <div class="form__input">
-                                <label for="email">Email Address</label><br />
-                                <input type="email" class="input" placeholder="MovieGuy@gmail.com" name="email" value="<%= user.email %>"
-                                    id="email" required>
-                            </div>
-                            <div class="form__input">
-                                <label for="biography">Profile Biography</label><br />
-                                <input type="text" class="input" placeholder="I love watching movies!" name="biography" value="<%= user.biography %>"
-                                    maxlength="300" id="biography">
-                            </div>
-                            <div class="avatar_input">
-                                <label for="avatar">Avatar Image Link</label><br />
-                                <input type="text" class="input" value="<%= user.avatar %>" name="avatar"
-                                    maxlength="300" id="avatar">
-                            </div>
+            <div class="main_container">
+                <div class="form">
+                    <h1 class="form__name">Update User Info</h1>
+                    <form action="/users/<%= user.id %>/update?_method=PUT" method="POST" id="form__box">
+                        <% if (typeof error !=='undefined' ) { %>
+                            <article class="message is-danger">
+                                <div class="message-header">
+                                    <p>Danger</p>
+                                </div>
+                                <div class="message-body">
+                                    <%= error.message %>
+                                </div>
+                            </article>
+                            <% } %>
+                                <div class="form__input">
+                                    <label for="username">Username</label><br />
+                                    <input type="text" class="input" placeholder="Curator" name="username"
+                                        maxlength="30" value="<%= user.username %>""
+                                    id=" username" required>
+                                </div>
+                                <div class="form__input">
+                                    <label for="email">Email Address</label><br />
+                                    <input type="email" class="input" placeholder="MovieGuy@gmail.com" name="email"
+                                        value="<%= user.email %>" id="email" required>
+                                </div>
+                                <div class="form__input">
+                                    <label for="biography">Profile Biography</label><br />
+                                    <input type="text" class="input" placeholder="I love watching movies!"
+                                        name="biography" value="<%= user.biography %>" maxlength="300" id="biography">
+                                </div>
+                                <div class="avatar_input">
+                                    <label for="avatar">Avatar Image Link</label><br />
+                                    <input type="text" class="input" value="<%= user.avatar %>" name="avatar"
+                                        maxlength="300" id="avatar">
+                                </div>
 
 
-                            <div>
-                                <button class="form__button">Update Profile</button>
-                            </div>
-                </form>
+                                <div>
+                                    <button class="form__button">Update Profile</button>
+                                </div>
+                    </form>
+                </div>
             </div>
 
     </body>

@@ -17,7 +17,9 @@
                             <%= post.title %>
                         </h1>
                         <a id="post_title" href="/users/<%= post.user.id %>">
-                            <h6>by <%= post.user.username %>
+                            <h6>
+                                <img class="comment_avatar" src="<%= post.user.avatar %>" alt="" srcset="">
+                                <%= post.user.username %>
                             </h6>
                         </a>
                         <h2 class="post_price">
