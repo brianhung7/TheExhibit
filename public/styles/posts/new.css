@@ -34,3 +34,8 @@
     background:#00AFB9;
     color:beige;
   }
+
+  #message_text{
+    border-radius: 10px;
+    padding:8px 15px 8px 15px; 
+  }
