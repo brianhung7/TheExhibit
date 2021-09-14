@@ -42,6 +42,37 @@ router.get("/", async (req, res, next) => {
     }
 })
 
+//feed view
+router.get("/feed", async (req, res, next) => {
+    try {
+        //Finding posts by all or by query
+        let foundPosts = [];
+
+        //Finding followings
+        let followings = [];
+        let foundFollower = {};
+        if (req.session.currentUser) {
+            let foundUser = await User.findById(req.session.currentUser.id);
+            for (let i = 0; i < foundUser.followings.length; i++) {
+                foundFollower = await User.findById(foundUser.followings[i]._id);
+                followings.push(foundFollower);
+            }
+            //Finding posts associated with followings
+            foundPosts = await Post.find({ user: { $in: foundUser.followings} }).populate("user");
+        }
+        const context = {
+            posts: foundPosts,
+            searchTerm: req.query.q,
+            followings: followings
+        }
+        res.render("posts/gallery", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
 //create post GET route
 router.get("/new", (req, res) => {
     let context = {};
