@@ -77,3 +77,8 @@ a{
     float:right;
     margin-right:3vw;
 }
+
+.total_price{
+    font-weight: bold;
+    font-size: 1.3em;
+}

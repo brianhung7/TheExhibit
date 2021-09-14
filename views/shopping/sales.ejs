@@ -5,21 +5,56 @@
     <title>
         Sales
     </title>
+    <link rel="stylesheet" href="/styles/shopping/cart.css">
 
     <body>
         <%- include('../partials/_navbar') %>
-        SALES
+            <div class="main_container">
+                <h1 class="page_title">Your Sale History</h1>
+                <div class="cart_container">
+                    <div class="items_container">
+                        <% for(let i=sales.length-1;i>=0;i--) { %>
+                            <a href="/gallery/<%= sales[i].id %> ">
+                                <div class="item_card">
+                                    <div class="item_image_span">
+                                        <img class="item_image" src="<%=sales[i].image%>" width="300px">
+                                    </div>
+                                    <div class="item_info">
+                                        <span class="item_title">
+                                            <h2>
+                                                <%= sales[i].title %>
+                                            </h2>
+                                        </span>
+                                        <span class="item_user">
+                                            <h4>by: <%= sales[i].user.username %>
+                                            </h4>
+                                        </span>
+                                        <span class="item_price">
+                                            <h2>$<%= sales[i].price%>
+                                            </h2>
+                                        </span>
+                                    </div>
 
-            <% for(let i=0;i<sales.length;i++) { %>
-                <div>
-                    <%= sales[i].title %>
-
-                        <%= sales[i].price%>
+                                </div>
+                            </a>
+                            <% } %>
+                    </div>
+                    <div class="checkout_info">
+                        <h3>Sales Summary</h3>
+                        <% let totalSales = 0 %> 
+                        <% for(let i=sales.length-1;i>=0;i--) { %>
+                            <div class="price_line">
+                                $<%= sales[i].price %>
+                                <% totalSales += sales[i].price %> 
+                            </div>
+                            <% } %>
+                            <div class="divider">
+                                --------
+                            </div>
+                            <div class="total_price">
+                                Total: $<%= totalSales %> 
+                            </div>
+                    </div>
                 </div>
-                <div>
-                    <img src="<%=sales[i].image%>" width="250px">
-
-                </div>
-                <% } %>
-
+            </div>
     </body>
