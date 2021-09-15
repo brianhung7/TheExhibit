@@ -19,10 +19,8 @@
 }
 
 .main_posts_container{
-    /* background-color: #FED9B7; */
     text-align: center;
     position:relative;
-    /* width: fit-content; */
 }
 
 .post_card{
@@ -37,11 +35,15 @@
     overflow-x: hidden;
     margin-bottom: 4vh;
 }
-
+.icon{
+    font-size:20px;
+    color:#F07167;
+}
 .post_details{
     display:flex;
-    justify-content: space-around;
-    padding:10px 0 10px 0;
+    justify-content:space-between;
+    padding:10px 10px 10px 10px;
+    align-items: center;
 
 }
 
