@@ -8,7 +8,7 @@ const MongoStore = require("connect-mongo");
 
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'});
-// require("dotenv").config();
+require("dotenv").config();
 
 /* SECTION module instance */
 const app = express();
@@ -42,11 +42,11 @@ app.set("view engine", "ejs");
 app.use(
   session({
     // this will store the cookies in the mongodb database
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/theexhibit' }),
-    // store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+    // store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/theexhibit' }),
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
     // secret key will sign the cookie for validation
-    // secret: process.env.SECRET,
-    secret: "safe password",
+    secret: process.env.SECRET,
+    // secret: "safe password",
     resave: false,
     saveUninitialized: false,
     // cookie config
