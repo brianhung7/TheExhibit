@@ -17,6 +17,20 @@
     left:0;
     z-index: 2;
 }
+#user_avatar{
+    border:1px solid aqua;
+}
+
+.gallery_link{
+    color: black;
+    border:1px solid grey;
+    border-radius:5px;
+    background-color: aqua;
+}
+.gallery_link:hover{
+    background-color: grey;
+    color:white;
+}
 
 .main_posts_container{
     text-align: center;
@@ -65,6 +79,7 @@
 
 .follower_name:hover{
     background-color: grey;
+    color:white;
 }
 
 .following_avatar{
@@ -74,6 +89,7 @@
     object-fit: cover;
     width: 70px;
     height:70px;
+    border: 1px solid aqua;
 }
 
 a{

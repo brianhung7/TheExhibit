@@ -12,7 +12,9 @@
             <div class="gallery_container">
                 <span class="user_info_container">
                     <% if (user) { %>
-                        <img src="<%= user.avatar %> " alt="" srcset="" width="150px">
+                        <a href="/users/<%= user.id %> ">
+                            <img id="user_avatar"src="<%= user.avatar %> " alt="" srcset="" width="150px">
+                        </a>
                         <div>
                             <%= user.username %>
                                 <p>
@@ -29,6 +31,15 @@
                                 </p>
                             </div>
                             <% } %>
+                            <% if (typeof routes !=='undefined' ) { %>
+                                <% routes.forEach((route)=> { %>
+                                    <a href="<%= route.href %>">
+                                        <div class="gallery_link py-3">
+                                            <%= route.title %>
+                                        </div>
+                                    </a>
+                                    <% }) %>
+                                        <% } %>
                 </span>
                 <span class="main_posts_container">
                     <% if (searchTerm) { %>
