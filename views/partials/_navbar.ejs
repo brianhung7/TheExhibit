@@ -15,7 +15,7 @@
     <!-- this will add a link to the new route -->
     <div class="navbar-menu navbar-end">
         <% if (typeof user !=='undefined' ) { %>
-            <a class="navbar-item" href="/users/<%= user.id %>">
+            <a class="navbar-item" href="/users/<%= user.id %>" title="View your profile">
                 <div>
                     <%= user.username %>
                 </div>
@@ -26,9 +26,9 @@
                     Explore
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownmenu" style="background:beige;padding:0">
-                    <li><a class="dropdown-item navbar-item" href="/gallery">Gallery</a></li>
-                    <li> <a class="dropdown-item navbar-item" href="/gallery/feed">Feed</a></li>
-                    <li> <a class="dropdown-item navbar-item" href="/gallery/museum/1">Museum</a></li>
+                    <li><a class="dropdown-item navbar-item" href="/gallery" title="View all artwork">Gallery</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/gallery/feed" title="View only posts from people you are following">Feed</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/gallery/museum/1" title="View artwork that you can't interact with">Museum</a></li>
                 </ul>
             </div>
             <div class="dropdown">
@@ -37,33 +37,33 @@
                     Shopping
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownmenu" style="background:beige;padding:0">
-                    <li><a class="dropdown-item navbar-item" href="/users/cart">Cart</a></li>
-                    <li> <a class="dropdown-item navbar-item" href="/users/purchases">Purchases</a></li>
-                    <li> <a class="dropdown-item navbar-item" href="/users/sales">Sales</a></li>
+                    <li><a class="dropdown-item navbar-item" href="/users/cart" title="View your shopping cart">Cart</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/users/purchases" title="View your purchases">Purchases</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/users/sales" title="View your sales">Sales</a></li>
                 </ul>
             </div>
-            <a href="/conversation" class="navbar-item">
+            <a href="/conversation" class="navbar-item" title="View your messages">
                 <div>
                     Conversations
                 </div>
             </a>
-            <a href="/gallery/new" class="navbar-item">
+            <a href="/gallery/new" class="navbar-item" title="Create a new post">
                 <div>
                     New Post
                 </div>
             </a>
-            <a href="/logout" class="navbar-item">
+            <a href="/logout" class="navbar-item" title="Please come back">
                 <div>
                     Logout
                 </div>
             </a>
             <% } else { %>
-                <a href="/register" class="navbar-item">
+                <a href="/register" class="navbar-item" title="Sign up for an account">
                     <div>
                         Register
                     </div>
                 </a>
-                <a href="/login" class="navbar-item">
+                <a href="/login" class="navbar-item" title="Login to an account">
                     <div>
                         Login
                     </div>

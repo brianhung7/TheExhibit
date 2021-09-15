@@ -110,9 +110,6 @@ router.get("/museum/:id", async (req, res, next) => {
                 followings.push(foundFollower);
             }
         }
-        if (followings == 0) {
-            var feedMessage = "Nothing on your following feed, try following some people first!"
-        }
         //blocking going negative pages
         let pageNumber = req.params.id;
         if(req.params.id == 1 ){
@@ -122,7 +119,6 @@ router.get("/museum/:id", async (req, res, next) => {
         context = {
             posts:data,
             followings: followings,
-            feedMessage: feedMessage,
             searchTerm: null,
             previous: pageNumber - 1,
             next: next,
