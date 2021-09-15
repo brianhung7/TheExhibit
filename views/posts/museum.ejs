@@ -13,7 +13,7 @@
                 <span class="user_info_container">
                     <% if (user) { %>
                         <a href="/users/<%= user.id %> ">
-                            <img id="user_avatar"src="<%= user.avatar %> " alt="" srcset="" width="150px">
+                            <img id="user_avatar" src="<%= user.avatar %> " alt="" srcset="" width="150px">
                         </a>
                         <div>
                             <%= user.username %>
@@ -31,18 +31,18 @@
                                 </p>
                             </div>
                             <% } %>
-                            <% if (typeof routes !=='undefined' ) { %>
-                                <% routes.forEach((route)=> { %>
-                                    <a href="<%= route.href %>">
-                                        <div class="gallery_link py-3">
-                                            <%= route.title %>
-                                        </div>
-                                    </a>
-                                    <% }) %>
-                                        <% } %>
+                                <% if (typeof routes !=='undefined' ) { %>
+                                    <% routes.forEach((route)=> { %>
+                                        <a href="<%= route.href %>">
+                                            <div class="gallery_link py-3">
+                                                <%= route.title %>
+                                            </div>
+                                        </a>
+                                        <% }) %>
+                                            <% } %>
                 </span>
                 <span class="main_posts_container">
-                    <h2>The Museum is where you can look but can't touch the artwork.</h2>
+                    <h2 style="color:#0081A7">The Museum is where you can look but can't touch the artwork.</h2>
                     <% if (searchTerm) { %>
                         <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
                         <% } %>
@@ -53,26 +53,30 @@
                                 <% } %>
                                     <% for(let i=posts.length-1;i>=0;i--) {%>
                                         <div class="post_card">
-                                            <div class="post_details" >
-                                                <span class="post_detail" style="margin:0 auto;">
-                                                       <h3> <%= posts[i].author %> </h3>
+                                            <div class="post_details">
+                                                <span class="post_detail" style="margin:0 auto; color:#0081A7">
+                                                    <h3>
+                                                        <%= posts[i].author %>
+                                                    </h3>
                                                 </span>
 
                                             </div>
-                                                <img src="<%= posts[i].download_url%>" width="750px">
+                                            <img src="<%= posts[i].download_url%>" width="750px">
                                             </a>
                                         </div>
                                         <% } %>
-                                        <a href="/gallery/museum/<%= previous %>">
-                                            <span>
-                                                Previous
+                                            <span class="museum_nav_container">
+                                                <a href="/gallery/museum/<%= previous %>">
+                                                    <span class="museum_nav_item" style="margin-right:10px">
+                                                        Previous
+                                                    </span>
+                                                </a>
+                                                <a href="/gallery/museum/<%= next %>">
+                                                    <span class="museum_nav_item">
+                                                        Next
+                                                    </span>
+                                                </a>
                                             </span>
-                                        </a>
-                                        <a href="/gallery/museum/<%= next %>">
-                                            <span>
-                                                Next
-                                            </span>
-                                        </a>
                 </span>
                 <span class="followings_container">
                     <h4 class="followings_container_message">

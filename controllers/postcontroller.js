@@ -43,6 +43,7 @@ router.get("/", async (req, res, next) => {
             followings: followings,
             feedMessage: null,
             likes: likes,
+            pageTitle: "Gallery",
         }
         res.render("posts/gallery", context);
     } catch (error) {
@@ -83,6 +84,7 @@ router.get("/feed", async (req, res, next) => {
             followings: followings,
             feedMessage: feedMessage,
             likes: likes,
+            pageTitle: "Feed",
         }
         res.render("posts/gallery", context);
     } catch (error) {

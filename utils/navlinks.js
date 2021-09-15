@@ -5,6 +5,7 @@ module.exports = function navLinks(req, res, next) {
         res.locals.routes = [
             { href: "/gallery", title: "Gallery"},
             { href: "/gallery/feed", title: "Feed"},
+            { href: "/gallery/museum/1", title: "Museum"},
             { href: "/conversation", title: "Conversations" },
             { href: "/users/cart", title: "Cart" },
             { href: "/users/purchases", title: "Purchases" },
