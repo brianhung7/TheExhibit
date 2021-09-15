@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/_head') %>
+    <title>
+        Museum
+    </title>
+    <link rel="stylesheet" href="/styles/posts/gallery.css">
+
+    <body>
+        <%- include('../partials/_navbar') %>
+            <div class="gallery_container">
+                <span class="user_info_container">
+                    <% if (user) { %>
+                        <a href="/users/<%= user.id %> ">
+                            <img id="user_avatar"src="<%= user.avatar %> " alt="" srcset="" width="150px">
+                        </a>
+                        <div>
+                            <%= user.username %>
+                                <p>
+                                    <%= user.biography %>
+                                </p>
+                        </div>
+                        <% } else { %>
+                            <img src="https://i.imgur.com/defzsz2.png" alt="" srcset="" width="150px">
+                            <div>
+                                Anonymous
+                                <p>
+                                    Boy I sure wish I had logged in to see and use all the cool features like posting,
+                                    commenting, liking, selling, buying products and following users!
+                                </p>
+                            </div>
+                            <% } %>
+                            <% if (typeof routes !=='undefined' ) { %>
+                                <% routes.forEach((route)=> { %>
+                                    <a href="<%= route.href %>">
+                                        <div class="gallery_link py-3">
+                                            <%= route.title %>
+                                        </div>
+                                    </a>
+                                    <% }) %>
+                                        <% } %>
+                </span>
+                <span class="main_posts_container">
+                    <h2>The Museum is where you can look but can't touch the artwork.</h2>
+                    <% if (searchTerm) { %>
+                        <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
+                        <% } %>
+                            <% if (feedMessage) { %>
+                                <h1>
+                                    <%= feedMessage %>
+                                </h1>
+                                <% } %>
+                                    <% for(let i=posts.length-1;i>=0;i--) {%>
+                                        <div class="post_card">
+                                            <div class="post_details" >
+                                                <span class="post_detail" style="margin:0 auto;">
+                                                       <h3> <%= posts[i].author %> </h3>
+                                                </span>
+
+                                            </div>
+                                                <img src="<%= posts[i].download_url%>" width="750px">
+                                            </a>
+                                        </div>
+                                        <% } %>
+                                        <a href="/gallery/museum/<%= previous %>">
+                                            <span>
+                                                Previous
+                                            </span>
+                                        </a>
+                                        <a href="/gallery/museum/<%= next %>">
+                                            <span>
+                                                Next
+                                            </span>
+                                        </a>
+                </span>
+                <span class="followings_container">
+                    <h4 class="followings_container_message">
+                        <% if(user){ %>
+                            You are Following:
+                            <% } else { %>
+                                Please login or register to view people you are following.
+                                <% } %>
+                    </h4>
+                    <% for (let i=0;i<followings.length;i++) { %>
+                        <a href="/users/<%=followings[i].id%>">
+                            <div class="follower_name py-3">
+                                <img class="following_avatar " src="<%=followings[i].avatar%>" alt="" srcset="">
+                                <%=followings[i].username %>
+                            </div>
+                        </a>
+                        <% } %>
+
+                </span>
+            </div>
+    </body>

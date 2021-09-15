@@ -4,8 +4,10 @@ const Post = require("../models/Post");
 const Comment = require("../models/Comment")
 const Like = require("../models/Like");
 const User = require('../models/User');
+const axios = require('axios');
 
 const handleUploadFile = require('../utils/handleUploadFile');
+
 
 
 //gallery view
@@ -40,7 +42,7 @@ router.get("/", async (req, res, next) => {
             searchTerm: req.query.q,
             followings: followings,
             feedMessage: null,
-            likes:likes,
+            likes: likes,
         }
         res.render("posts/gallery", context);
     } catch (error) {
@@ -66,13 +68,13 @@ router.get("/feed", async (req, res, next) => {
                 followings.push(foundFollower);
             }
             //Finding posts associated with followings
-            foundPosts = await Post.find({ user: { $in: foundUser.followings} }).populate("user");
+            foundPosts = await Post.find({ user: { $in: foundUser.followings } }).populate("user");
             for (let i = 0; i < foundPosts.length; i++) {
                 let foundLike = await Like.findOne({ post: `${foundPosts[i]._id}` });
                 likes.push(foundLike);
             }
         }
-        if(followings==0){
+        if (followings == 0) {
             var feedMessage = "Nothing on your following feed, try following some people first!"
         }
         const context = {
@@ -80,9 +82,50 @@ router.get("/feed", async (req, res, next) => {
             searchTerm: req.query.q,
             followings: followings,
             feedMessage: feedMessage,
-            likes:likes,
+            likes: likes,
         }
         res.render("posts/gallery", context);
+    } catch (error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
+
+
+//museum view
+router.get("/museum/:id", async (req, res, next) => {
+    try {
+        const url = `https://picsum.photos/v2/list?page=${req.params.id}&limit=10`
+        const response = await axios(url);
+        const data = response.data;
+        let followings = [];
+        let foundFollower = {};
+        if (req.session.currentUser) {
+            let foundUser = await User.findById(req.session.currentUser.id);
+            for (let i = 0; i < foundUser.followings.length; i++) {
+                foundFollower = await User.findById(foundUser.followings[i]._id);
+                followings.push(foundFollower);
+            }
+        }
+        if (followings == 0) {
+            var feedMessage = "Nothing on your following feed, try following some people first!"
+        }
+        //blocking going negative pages
+        let pageNumber = req.params.id;
+        if(req.params.id == 1 ){
+            pageNumber = 2;
+        }
+        let next = parseInt(pageNumber) + 1;
+        context = {
+            posts:data,
+            followings: followings,
+            feedMessage: feedMessage,
+            searchTerm: null,
+            previous: pageNumber - 1,
+            next: next,
+        }
+        res.render("posts/museum",context);
     } catch (error) {
         console.log(error);
         req.error = error;
