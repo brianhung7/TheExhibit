@@ -26,13 +26,24 @@
 }
 
 .post_card{
-    background: yellow;
+    background: beige;
     width:fit-content;
     position:relative;
     left: 50%;
     transform: translateX(-50%);
+    border-radius: 25px;
+    box-shadow: 10px 10px 10px grey;
+    border:grey solid 2px;
+    overflow-x: hidden;
+    margin-bottom: 4vh;
 }
 
+.post_details{
+    display:flex;
+    justify-content: space-around;
+    padding:10px 0 10px 0;
+
+}
 
 .followings_container{
       background-color: powderblue;

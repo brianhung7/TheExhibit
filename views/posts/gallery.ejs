@@ -40,16 +40,25 @@
                                 </h1>
                                 <% } %>
                                     <% for(let i=posts.length-1;i>=0;i--) {%>
-                                            <div class="post_card">
-                                                <div>
+                                        <div class="post_card">
+                                            <div class="post_details">
+                                                <span class="post_detail">
                                                     <a href="/users/<%=posts[i].user.id%>">
                                                         <%= posts[i].user.username %>
                                                     </a>
-                                                </div>
-                                                <a href="/gallery/<%= posts[i].id %>">
-                                                    <img src="<%= posts[i].image %>" width="750px">
-                                                </a>
+                                                </span>
+                                                <span class="post_detail">
+                                                    <%= posts[i].title %> 
+                                                </span>
+                                                <span class="post_detail">
+                                                    <%= posts[i].numComments %> 
+                                                </span>
+
                                             </div>
+                                            <a href="/gallery/<%= posts[i].id %>">
+                                                <img src="<%= posts[i].image %>" width="750px">
+                                            </a>
+                                        </div>
                                         <% } %>
                 </span>
                 <span class="followings_container">
