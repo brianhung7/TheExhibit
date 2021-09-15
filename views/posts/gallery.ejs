@@ -23,8 +23,10 @@
                             <img src="https://i.imgur.com/defzsz2.png" alt="" srcset="" width="150px">
                             <div>
                                 Anonymous
-                                <p>Boy I sure wish I had logged in to see and use all the cool features like posting,
-                                    commenting, liking, selling, buying products and following users!</p>
+                                <p>
+                                    Boy I sure wish I had logged in to see and use all the cool features like posting,
+                                    commenting, liking, selling, buying products and following users!
+                                </p>
                             </div>
                             <% } %>
                 </span>
@@ -32,22 +34,23 @@
                     <% if (searchTerm) { %>
                         <h1 id="search_message">Now showing results for "<%= searchTerm %>" </h1>
                         <% } %>
-                        <% if (feedMessage) { %>
-                            <h1><%= feedMessage %> </h1>
-                            <% } %>  
-                            <% for(let i=posts.length-1;i>=0;i--) {%>
-                                <div>
-                                    <div>
-                                        <a href="/users/<%=posts[i].user.id%>">
-                                            <%= posts[i].user.username %>
-                                        </a>
-                                    </div>
-                                    <a href="/gallery/<%= posts[i].id %>">
-                                        <img src="<%= posts[i].image %>" width="750px">
-                                    </a>
-                                </div>
-
+                            <% if (feedMessage) { %>
+                                <h1>
+                                    <%= feedMessage %>
+                                </h1>
                                 <% } %>
+                                    <% for(let i=posts.length-1;i>=0;i--) {%>
+                                            <div class="post_card">
+                                                <div>
+                                                    <a href="/users/<%=posts[i].user.id%>">
+                                                        <%= posts[i].user.username %>
+                                                    </a>
+                                                </div>
+                                                <a href="/gallery/<%= posts[i].id %>">
+                                                    <img src="<%= posts[i].image %>" width="750px">
+                                                </a>
+                                            </div>
+                                        <% } %>
                 </span>
                 <span class="followings_container">
                     <h4 class="followings_container_message">
