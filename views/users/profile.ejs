@@ -64,7 +64,8 @@
                                     <div class="card">
                                         <a href="/gallery/<%= post.id %>">
                                         <div class="wrapper" style="background-image: url('<%= post.image %>');">
-                                            <div class="header">
+                                            <div class="data">
+                                                <div class="content">
                                                 <ul class="menu-content">
                                                     <li><span class="icon">
                                                             <i class="fas fa-heart"></i>
@@ -77,17 +78,13 @@
                                                         </span>
                                                     </li>
                                                 </ul>
-                                            </div>
-                                            <div class="data">
-                                                <div class="content">
                                                     <span class="author">
-                                                        <%= post.user.username %>
+                                                        <h1 class="title"> 
+                                                            <%= post.title %> 
+                                                        </h1>
                                                     </span>
-                                                    <h1 class="title">
-                                                        <%= post.title %>
-                                                    </h1>
-                                                    <p class="text">
-                                                        <%= post.description %>
+
+
                                                 </div>
                                             </div>
                                         </div>

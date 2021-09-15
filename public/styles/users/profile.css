@@ -8,13 +8,6 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 
- 
-  
-  .content {
-    background-color: white;
-  }
-
-  
   .profile__links {
       display:flex;
       justify-content: center;
@@ -89,6 +82,7 @@
     padding: 0;
     width: 100%;
     border-radius: 25px;
+    
   }
   .card .menu-content {
     margin: 0;
@@ -116,9 +110,9 @@
     font-weight: 700;
     font-family: "Open Sans";
     transform: translate(-50%, 0);
+
   }
   .card .wrapper {
-    /* background-color: #ff5757; */
     border: solid 1px;
     border-radius: 3%;
     min-height: 540px;
@@ -129,9 +123,10 @@
   }
   .card .wrapper:hover .data {
     transform: translateY(0);
+
   }
   .card .wrapper:hover .content {
-    background-color: #000;
+    background-color: beige;
     filter: blur(0px);
   }
   .card .data {
@@ -145,6 +140,7 @@
     padding: 1em;
     position: relative;
     z-index: 1;
+    background-color: beige;
   }
   .card .author {
     font-size: 12px;
@@ -168,17 +164,7 @@
     transform: translate(-50%, -10px);
     opacity: 1;
   }
-  .card .header {
-    color: #0081A7;
-    padding: 1em;
-  }
-  .card .header::before, .card .header::after {
-    content: "";
-    display: table;
-  }
-  .card .header::after {
-    clear: both;
-  }
+
   .card .menu-content {
     float: right;
   }
@@ -195,7 +181,7 @@
   
   
   .card .data {
-    color: white;
+    color: #0081A7;
     transform: translateY(calc(70px + 4em));
   }
   .card .title a {
