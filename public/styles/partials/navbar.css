@@ -24,6 +24,7 @@ background:beige;
 color:#00AFB9;
 margin-right: .5vw;
 border: 2px solid #00AFB9;
+text-align: center;
 }
 
 .navbar-item:hover{

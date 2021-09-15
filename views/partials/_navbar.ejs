@@ -1,10 +1,8 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
-
     <div class="navbar-brand">
         <a href="/" id="landing__link" class="navbar-item">
             <span class="site__name">The Exhibit </span>
         </a>
-
     </div>
 
     <form action="/gallery">
@@ -22,8 +20,56 @@
                     <%= user.username %>
                 </div>
             </a>
-            <% } %>
-                <% if (typeof routes !=='undefined' ) { %>
+            <div class="dropdown">
+                <button class="btn btn-secondary navbar-item dropdown-toggle" type="button" id="dropdownmenu"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Explore
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownmenu" style="background:beige;padding:0">
+                    <li><a class="dropdown-item navbar-item" href="/gallery">Gallery</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/gallery/feed">Feed</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/gallery/museum/1">Museum</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary navbar-item dropdown-toggle" type="button" id="dropdownmenu"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Shopping
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownmenu" style="background:beige;padding:0">
+                    <li><a class="dropdown-item navbar-item" href="/users/cart">Cart</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/users/purchases">Purchases</a></li>
+                    <li> <a class="dropdown-item navbar-item" href="/users/sales">Sales</a></li>
+                </ul>
+            </div>
+            <a href="/conversation" class="navbar-item">
+                <div>
+                    Conversations
+                </div>
+            </a>
+            <a href="/gallery/new" class="navbar-item">
+                <div>
+                    New Post
+                </div>
+            </a>
+            <a href="/logout" class="navbar-item">
+                <div>
+                    Logout
+                </div>
+            </a>
+            <% } else { %>
+                <a href="/register" class="navbar-item">
+                    <div>
+                        Register
+                    </div>
+                </a>
+                <a href="/login" class="navbar-item">
+                    <div>
+                        Login
+                    </div>
+                </a>
+                <% } %>
+                    <!-- <% if (typeof routes !=='undefined' ) { %>
                     <% routes.forEach((route)=> { %>
                         <a class="navbar-item" href="<%= route.href %>">
                             <div>
@@ -31,6 +77,6 @@
                             </div>
                         </a>
                         <% }) %>
-                            <% } %>
+                            <% } %> -->
     </div>
 </nav>
