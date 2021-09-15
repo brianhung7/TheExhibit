@@ -48,10 +48,17 @@
                                                     </a>
                                                 </span>
                                                 <span class="post_detail">
-                                                    <%= posts[i].title %> 
+                                                    <%= posts[i].title %>
                                                 </span>
-                                                <span class="post_detail">
-                                                    <%= posts[i].numComments %> 
+                                                <span>
+                                                    <span class="post_detail icon num__comment">
+                                                        <i class="fas fa-comment"></i>
+                                                        <%= posts[i].numComments %>
+                                                    </span>
+                                                    <span class="post_detail icon num__comment">
+                                                        <i class="fas fa-heart"></i>
+                                                        <%= likes[i].numLikes %>
+                                                    </span>
                                                 </span>
 
                                             </div>

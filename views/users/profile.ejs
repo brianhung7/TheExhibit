@@ -23,36 +23,39 @@
                     </div>
                 </div>
                 <div class="profile__links">
-                    <% if (!isFollowing) { %>
-                        <form action="/users/<%= userProfile.id %>/follow?_method=PUT" method="POST" id="form__box">
-                            <button class="profile__link">Follow User</button>
-                        </form>
-                        <% } else { %>
-                            <form action="/users/<%= userProfile.id %>/unfollow?_method=PUT" method="POST"
-                                id="form__box">
-                                <button class="profile__link">UnFollow User</button>
+                    <% if (user) { %>
+                        <% if (!isFollowing) { %>
+                            <form action="/users/<%= userProfile.id %>/follow?_method=PUT" method="POST" id="form__box">
+                                <button class="profile__link">Follow User</button>
                             </form>
-                            <% } %>
-                                <a href="/conversation/message/new/<%=userProfile.id%> ">
-                                    <div class="profile__link">
-                                        Send a message
-                                    </div>
-                                </a>
-                                <a href="/users/<%=userProfile.id%>/update">
-                                    <div class="profile__link">
-                                        Update User
-                                    </div>
-                                </a>
-                                <a href="/users/<%= userProfile._id %>">
-                                    <div class="profile__link">
-                                        Posts
-                                    </div>
-                                </a>
-                                <a href="/users/<%= userProfile._id %>/likedposts">
-                                    <div class="profile__link">
-                                        Liked Posts
-                                    </div>
-                                </a>
+                            <% } else { %>
+                                <form action="/users/<%= userProfile.id %>/unfollow?_method=PUT" method="POST"
+                                    id="form__box">
+                                    <button class="profile__link">UnFollow User</button>
+                                </form>
+                                <% } %>
+                                    <a href="/conversation/message/new/<%=userProfile.id%> ">
+                                        <div class="profile__link">
+                                            Send a message
+                                        </div>
+                                    </a>
+                                    <% if(user.id==userProfile.id) { %>
+                                        <a href="/users/<%=userProfile.id%>/update">
+                                            <div class="profile__link">
+                                                Update User
+                                            </div>
+                                        </a>
+                                        <% } }%>
+                                                <a href="/users/<%= userProfile._id %>">
+                                                    <div class="profile__link">
+                                                        Posts
+                                                    </div>
+                                                </a>
+                                                <a href="/users/<%= userProfile._id %>/likedposts">
+                                                    <div class="profile__link">
+                                                        Liked Posts
+                                                    </div>
+                                                </a>
                 </div>
 
                 <main class="container__gallery">
@@ -63,31 +66,31 @@
                                     <!-- <article class=> -->
                                     <div class="card">
                                         <a href="/gallery/<%= post.id %>">
-                                        <div class="wrapper" style="background-image: url('<%= post.image %>');">
-                                            <div class="data">
-                                                <div class="content">
-                                                <ul class="menu-content">
-                                                    <li><span class="icon">
-                                                            <i class="fas fa-heart"></i>
-                                                            <%=likes[idx].numLikes%>
+                                            <div class="wrapper" style="background-image: url('<%= post.image %>');">
+                                                <div class="data">
+                                                    <div class="content">
+                                                        <ul class="menu-content">
+                                                            <li><span class="icon">
+                                                                    <i class="fas fa-heart"></i>
+                                                                    <%=likes[idx].numLikes%>
+                                                                </span>
+                                                            </li>
+                                                            <li><span class="icon num__comments">
+                                                                    <i class="fas fa-comment"></i>
+                                                                    <%=post.numComments%>
+                                                                </span>
+                                                            </li>
+                                                        </ul>
+                                                        <span class="author">
+                                                            <h1 class="title">
+                                                                <%= post.title %>
+                                                            </h1>
                                                         </span>
-                                                    </li>
-                                                    <li><span class="icon num__comments">
-                                                            <i class="fas fa-comment"></i>
-                                                            <%=post.numComments%>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                                    <span class="author">
-                                                        <h1 class="title"> 
-                                                            <%= post.title %> 
-                                                        </h1>
-                                                    </span>
 
 
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         </a>
                                     </div>
                                 </div>

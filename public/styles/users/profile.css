@@ -45,7 +45,7 @@
   .avatar__image{
       background-color: beige;
       border-radius: 50%;
-      border: black 5px solid;
+      border: #0081A7 3px solid;
   }
   
   .user__info__container{
@@ -212,3 +212,6 @@
     opacity: 1;
   }
   
+  .card .menu-content {
+    color:#F07167;
+  }

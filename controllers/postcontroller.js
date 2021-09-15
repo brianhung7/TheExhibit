@@ -13,11 +13,17 @@ router.get("/", async (req, res, next) => {
     try {
         //Finding posts by all or by query
         let foundPosts = [];
+        let likes = [];
         if (req.query.q) {
             const query = { $text: { $search: `${req.query.q}` } };
             foundPosts = await Post.find(query).populate("user");
+            for (let i = 0; i < foundPosts.length; i++) {
+                let foundLike = await Like.findOne({ post: `${foundPosts[i]._id}` });
+                likes.push(foundLike);
+            }
         } else {
             foundPosts = await Post.find().populate("user");
+            likes = await Like.find();
         }
         //Finding followings
         let followings = [];
@@ -34,6 +40,7 @@ router.get("/", async (req, res, next) => {
             searchTerm: req.query.q,
             followings: followings,
             feedMessage: null,
+            likes:likes,
         }
         res.render("posts/gallery", context);
     } catch (error) {
@@ -51,6 +58,7 @@ router.get("/feed", async (req, res, next) => {
         //Finding followings
         let followings = [];
         let foundFollower = {};
+        let likes = []
         if (req.session.currentUser) {
             let foundUser = await User.findById(req.session.currentUser.id);
             for (let i = 0; i < foundUser.followings.length; i++) {
@@ -59,6 +67,10 @@ router.get("/feed", async (req, res, next) => {
             }
             //Finding posts associated with followings
             foundPosts = await Post.find({ user: { $in: foundUser.followings} }).populate("user");
+            for (let i = 0; i < foundPosts.length; i++) {
+                let foundLike = await Like.findOne({ post: `${foundPosts[i]._id}` });
+                likes.push(foundLike);
+            }
         }
         if(followings==0){
             var feedMessage = "Nothing on your following feed, try following some people first!"
@@ -68,6 +80,7 @@ router.get("/feed", async (req, res, next) => {
             searchTerm: req.query.q,
             followings: followings,
             feedMessage: feedMessage,
+            likes:likes,
         }
         res.render("posts/gallery", context);
     } catch (error) {
