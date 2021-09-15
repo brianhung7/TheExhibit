@@ -15,7 +15,11 @@
                         <img class="post_image" src="<%=post.image%>">
                         <h1 id="post_title">
                             <%= post.title %>
-                        </h1>
+                        <span class="icon like_container">
+                            <i class="fas fa-heart"></i>
+                            <div><%=likes.numLikes%></div>
+                        </span>
+                    </h1>
                         <a id="post_title" href="/users/<%= post.user.id %>">
                             <h6>
                                 <img class="comment_avatar" src="<%= post.user.avatar %>" alt="" srcset="">
@@ -34,9 +38,7 @@
                                 <a href="/gallery?q=<%=post.tags[i]%>"><%= post.tags[i] %> </a>
                             <% } %> 
                         </p>
-                        <p class="mx-3">
-                            Liked <%= likes.numLikes %> times
-                        </p>
+
                         <div class="buttons_container">
                             <% if ( typeof user !=='undefined' ) { %>
                                 <form action="/users/cart/<%= post.id %>?_method=PUT" method="POST">

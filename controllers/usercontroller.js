@@ -282,6 +282,14 @@ router.get("/:id/likedposts", async (req, res, next) => {
         const foundUser = await User.findById(req.params.id);
         const postArr = [];
         let allLikes = [];
+        let isFollowing = false;
+        if (req.session.currentUser) {
+            for (let i = 0; i < foundUser.followers.length; i++) {
+                if (foundUser.followers[i] == req.session.currentUser.id) {
+                    isFollowing = true;
+                }
+            }
+        }
         for (i = 0; i < likedPosts.length; i++) {
             postArr.push(await Post.findById(likedPosts[i].post));
         }
@@ -289,8 +297,9 @@ router.get("/:id/likedposts", async (req, res, next) => {
             posts: postArr,
             userProfile: foundUser,
             likes: likedPosts,
+            isFollowing: isFollowing,
         }
-        res.render("users/profilelikes", context);
+        res.render("users/profile", context);
     } catch (error) {
         console.log(error);
         req.error = error;
