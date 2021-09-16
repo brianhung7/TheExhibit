@@ -17,7 +17,6 @@ router.put("/cart/:id", async (req, res, next) => {
             },
             { new: true },
         )
-        // console.log(`PUSHED ${req.params.id} into ${foundUser}`);
         res.redirect("/users/cart");
     }
     catch (error) {
@@ -42,13 +41,11 @@ router.get("/cart", async (req, res, next) => {
         for (let i = 0; i < cartContents.length; i++) {
             totalCartPrice += cartContents[i].price;
         }
-        // console.log(`USER: ${foundUser}`);
         const context = {
             cart: cartContents,
             key: process.env.STRIPE_PUBLISHABLE_KEY,
             totalCartPrice: totalCartPrice * 100,
         }
-        // console.log(`context: ${context.cart}`);
         res.render("shopping/cart", context);
 
     } catch (error) {
@@ -144,9 +141,6 @@ router.post('/payment', async (req, res) => {
                 },
                 { new: true },
             )
-
-            
-            // res.redirect("/users/purchases");
             res.render("shopping/receipt", context); // If no error occurs 
         })
         .catch((err) => {
@@ -187,7 +181,6 @@ router.put("/purchases", async (req, res, next) => {
             { new: true },
         )
 
-        // console.log(`PUSHED ${foundUser.cart} into ${foundUser}`);
         res.redirect("/users/purchases");
     }
     catch (error) {
@@ -229,13 +222,10 @@ router.get("/sales", async (req, res, next) => {
             let foundPost = await Post.findById(foundUser.sales[i]).populate('user');
             saleContents.push(foundPost);
         }
-        // console.log(`USER: ${foundUser}`);
         const context = {
             sales: saleContents,
         }
-        // console.log(`context: ${context.purchases}`);
         res.render("shopping/sales", context);
-
     } catch (error) {
         console.log(error);
         req.error = error;

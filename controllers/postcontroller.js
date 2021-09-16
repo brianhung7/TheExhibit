@@ -110,7 +110,7 @@ router.get("/museum/:id", async (req, res, next) => {
                 followings.push(foundFollower);
             }
         }
-        //blocking going negative pages
+        //blocking negative pages
         let pageNumber = req.params.id;
         if(req.params.id == 1 ){
             pageNumber = 2;

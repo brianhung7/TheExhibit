@@ -108,7 +108,7 @@ router.get("/:id", async (req, res, next) => {
             }
         }
         const currentUser = await User.findById(req.session.currentUser.id);
-        //CHECK IF THIS IS CORRECT INITIALIZATION
+        //setting other person the user is sending messages to
         let otherUser = {};
         if (foundConversation.userArr[0] != req.session.currentUser.id) {
             otherUser = await User.findById(foundConversation.userArr[0]);

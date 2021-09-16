@@ -5,11 +5,19 @@ const User = require("../models/User");
 
 // register GET
 router.get("/register", (req, res) => {
+    //if user is logged in, redirect to gallery
+    if (req.session.currentUser) {
+        return res.redirect("/gallery");
+    }
     return res.render("auth/register");
 });
 
 // login GET
 router.get("/login", (req, res) => {
+    //if user is logged in, redirect to gallery
+    if (req.session.currentUser) {
+        return res.redirect("/gallery");
+    }
     return res.render("auth/login");
 });
 
@@ -22,12 +30,11 @@ router.post("/register", async (req, res) => {
         });
         // if user does exist redirect to login
         if (foundUser) {
-            // console.log("User exists already");
             // return res.redirect("/login");
             const context = {
                 error: { message: "Email/user already exists. Please login." },
             };
-            return res.render("auth/login",context);
+            return res.render("auth/login", context);
         }
         //encryption
         const salt = await bcrypt.genSalt(10);
@@ -57,7 +64,7 @@ router.post("/login", async (req, res) => {
             const context = {
                 error: { message: "Incorrect Password" },
             };
-            return res.render("auth/login",context);
+            return res.render("auth/login", context);
         };
 
         // NOTE Credentials

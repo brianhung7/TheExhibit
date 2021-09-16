@@ -19,8 +19,10 @@
                     <li class="bullet_points mx-3 my-2">To perform a mock transaction when checking out, use Credit Card Number: 4242 4242 4242 4242, any future expiration date, and anything for the security code. </li>
                 </div>
                 <div class="buttons_container">
+                    <% if(!user) { %> 
                     <a href="/login" class="form_button">Login</a>
                     <a href="/register" class="form_button">Register</a>
+                    <% } %> 
                     <a href="/gallery" class="form_button">Gallery</a>
                 </div>
             </div>
