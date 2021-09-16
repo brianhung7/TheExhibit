@@ -22,14 +22,18 @@ router.post("/register", async (req, res) => {
         });
         // if user does exist redirect to login
         if (foundUser) {
-            console.log("User exists already");
-            return res.redirect("/login");
+            // console.log("User exists already");
+            // return res.redirect("/login");
+            const context = {
+                error: { message: "Email/user already exists. Please login." },
+            };
+            return res.render("auth/login",context);
         }
         //encryption
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(req.body.password, salt);
         req.body.password = hash;
-        const createdUser = await User.create(req.body);
+        await User.create(req.body);
 
         return res.redirect("/login");
     } catch (error) {
@@ -48,11 +52,12 @@ router.post("/login", async (req, res) => {
             return res.redirect("/register");
         }
         // NOTE Authentication to check if passwords match
-
-
         const match = await bcrypt.compare(req.body.password, foundUser.password);
         if (!match) {
-            return res.send("Password Invalid");
+            const context = {
+                error: { message: "Incorrect Password" },
+            };
+            return res.render("auth/login",context);
         };
 
         // NOTE Credentials

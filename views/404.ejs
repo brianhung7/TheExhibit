@@ -1,3 +1,24 @@
-You 404ed bro
+<!DOCTYPE html>
+<html lang="en">
 
-<%= error %> 
+<%- include('./partials/_head') %>
+    <title>
+        404
+    </title>
+    <link rel="shortcut icon" href="/styles/logo.svg">
+    <link rel="stylesheet" href="/styles/posts/new.css">
+
+    <body>
+        <%- include('./partials/_navbar') %>
+            <div class="main_container" style="text-align: center;">
+                <h1>404: Something Broke!</h1>
+                <% if(error.message) { %>
+                    <h1 class="alert alert-danger">
+                        <%= error.message %>
+                    </h1>
+                    <% } %>
+            </div>
+
+    </body>
+
+</html>

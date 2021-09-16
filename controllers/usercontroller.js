@@ -313,7 +313,7 @@ router.get("/:id/update", async (req, res, next) => {
         const foundUser = await User.findById(req.params.id);
         if (!req.session.currentUser || foundUser._id != req.session.currentUser.id) {
             const context = {
-                error: { message: "You don't belong here" },
+                error: { message: "You don't belong here. You tried to update a profile that wasn't yours." },
             };
             return res.render("404", context);
         }

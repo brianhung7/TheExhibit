@@ -198,7 +198,7 @@ router.get("/:id/update", async (req, res, next) => {
         //checking if user is not logged in or you are not the user who originally made the post
         if (!req.session.currentUser || foundPost.user != req.session.currentUser.id) {
             const context = {
-                error: { message: "You don't belong here" },
+                error: { message: "You don't belong here. You tried to update a post that wasn't yours." },
             };
             return res.render("404", context);
         }
