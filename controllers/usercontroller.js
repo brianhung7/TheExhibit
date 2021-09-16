@@ -384,7 +384,8 @@ router.put("/:id/follow", async (req, res, next) => {
 router.put("/:id/unfollow", async (req, res, next) => {
     try {
         //Update current user's following array
-        let updatedFollowingsArr = req.session.currentUser.followings;
+        let currentUser = await User.findById(req.session.currentUser.id)
+        let updatedFollowingsArr = currentUser.followings;
         let indexFoundUser = updatedFollowingsArr.indexOf(req.params.id);
         updatedFollowingsArr.splice(indexFoundUser, 1);
         await User.findByIdAndUpdate(
