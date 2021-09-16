@@ -33,7 +33,7 @@
                             <% } %>
                             <% if (typeof routes !=='undefined' ) { %>
                                 <% routes.forEach((route)=> { %>
-                                    <a href="<%= route.href %>">
+                                    <a href="<%= route.href %>" title="<%= route.tooltip %>" >
                                         <div class="gallery_link py-3">
                                             <%= route.title %>
                                         </div>
