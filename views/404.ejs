@@ -12,7 +12,7 @@
         <%- include('./partials/_navbar') %>
             <div class="main_container" style="text-align: center;">
                 <h1>404: Something Broke!</h1>
-                <% if(error.message) { %>
+                <% if(error != undefined ) { %>
                     <h1 class="alert alert-danger">
                         <%= error.message %>
                     </h1>
