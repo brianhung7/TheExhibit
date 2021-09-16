@@ -9,7 +9,7 @@
     <body>
         <%- include('../partials/_navbar') %>
             <div class="form">
-                <h1 class="mx-5 my-3 form_title">Register</h1>
+                <h1 class="mx-5 form_title">Register</h1>
                 <form action="/register" method="POST" id="form__box">
                     <% if (typeof error !=='undefined' ) { %>
                         <article class="message is-danger">
@@ -21,27 +21,27 @@
                             </div>
                         </article>
                         <% } %>
-                            <div class="form__input">
+                            <div class="form__input mb-3">
                                 <label for="username">Username</label><br />
                                 <input type="text" class="input" placeholder="Curator" name="username" maxlength="15"
                                     id="username" required>
                             </div>
-                            <div class="form__input">
+                            <div class="form__input mb-3">
                                 <label for="email">Email Address</label><br />
                                 <input type="email" class="input" placeholder="Curator@gmail.com" name="email"
                                     id="email" required>
                             </div>
-                            <div class="form__input">
+                            <div class="form__input mb-3">
                                 <label for="password">Password</label><br />
                                 <input type="password" class="input" placeholder="******" name="password" id="password"
                                     required>
                             </div>
-                            <div class="form__input">
+                            <div class="form__input mb-3">
                                 <label for="biography">Biography</label><br />
                                 <input type="text" class="input" placeholder="Welcome to The Exhibit" name="biography"
                                     maxlength="300" id="biography">
                             </div>
-                            <div class="avatar__input">
+                            <div class="avatar__input mb-3">
                                 <label for="avatar">Avatar</label><br />
                                 <input type="text" class="input" value="https://i.imgur.com/eYlOXmc.png" name="avatar"
                                     maxlength="300" id="avatar">

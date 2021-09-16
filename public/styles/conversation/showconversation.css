@@ -34,6 +34,7 @@
     border:grey solid 2px;
     max-height: 85vh;
     overflow: auto;
+    min-height: 20vh;
 }
 
 .receiver_message{
@@ -53,6 +54,12 @@ background: linear-gradient(#FDFCDC,white);
     text-align: center;
 }
 
+/* .form__container{
+    position:absolute;
+    bottom:0;
+    width:100%;
+} */
+
 .send_message{
     text-align: center;
     background:radial-gradient(#FED9B7,#F07167);
@@ -66,9 +73,11 @@ background: linear-gradient(#FDFCDC,white);
 }
 
 .message__button{
-    border-radius: 10px;
+    border-radius: 15px;
 }
-
+.message__button:hover{
+    box-shadow: 5px 4px 5px grey;
+}
 a{
     text-decoration: none;
 }
