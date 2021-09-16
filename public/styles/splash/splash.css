@@ -42,6 +42,7 @@
 
   .form_title{
     text-align: center;
+    color: #0081A7;
   }
 
   .form__input{
@@ -217,4 +218,10 @@
     }
   }
   
-  
+  footer{
+    position:absolute;
+    bottom:0;
+    text-align: center;
+    width: 100%;
+    color: #0081A7;
+  }
