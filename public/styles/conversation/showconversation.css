@@ -52,6 +52,7 @@ background: linear-gradient(#FDFCDC,white);
 
 .conversation_name{
     text-align: center;
+    color:#0081A7;
 }
 
 /* .form__container{

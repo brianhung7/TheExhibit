@@ -1,3 +1,7 @@
+body{
+font-family: 'Source Serif Pro', serif;
+}
+
 .navbar{
     margin-bottom: 0px;
     background:linear-gradient(#0081A7,#FED9B7);

@@ -40,13 +40,10 @@ router.get("/", async (req, res, next) => {
 //create message GET
 router.get("/message/new/:id", async (req, res, next) => {
     try {
-        // console.log(`you are sending a message to ${req.params.id}`);
-        // console.log(`you are sending a message FROM ${req.session.currentUser.id}`);
         receiver = await User.findById(req.params.id);
         context = {
             receiver: receiver,
         }
-
 
         res.render("conversation/createmessage", context);
     } catch (error) {
@@ -59,29 +56,20 @@ router.get("/message/new/:id", async (req, res, next) => {
 //create message POST
 router.post("/message/new/:id", async (req, res, next) => {
     try {
-        // console.log(`you are sending a message to ${req.params.id}`);
-        // console.log(`you are sending a message FROM ${req.session.currentUser.id}`);
-
+        //Finding if conversation exists between two users already, if not, make a new conversation
         let userArray = [req.session.currentUser.id, req.params.id];
         let foundConversation = await Conversation.findOne({ userArr: { $all: userArray } });
-        // console.log(foundConversation);
 
         if (!foundConversation) {
             foundConversation = await Conversation.create({ userArr: userArray });
-            // console.log(`made new conversation ${foundConversation}`);
         }
-        // console.log(req.body);
         let newMessage = await Message.create({
             receiver: req.params.id,
             sender: req.session.currentUser.id,
             conversation: foundConversation._id,
             text: req.body.text,
         })
-        // console.log(foundConversation);
         receiver = await User.findById(req.params.id);
-        // context = {
-        //     receiver: receiver,
-        // }
 
 
         res.redirect(`/conversation/${foundConversation._id}`);
@@ -100,6 +88,7 @@ router.get("/:id", async (req, res, next) => {
         let foundMessages = await Message.find({ conversation: req.params.id });
         let currentUserMessages = [];
         let otherUserMessages = [];
+        //sorting messages by currently logged in user and other person
         for (let i = 0; i < foundMessages.length; i++) {
             if (foundMessages[i].sender == req.session.currentUser.id) {
                 currentUserMessages.push(foundMessages[i]);

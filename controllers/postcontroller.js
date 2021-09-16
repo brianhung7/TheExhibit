@@ -95,12 +95,13 @@ router.get("/feed", async (req, res, next) => {
 })
 
 
-//museum view
+//museum get view
 router.get("/museum/:id", async (req, res, next) => {
     try {
         const url = `https://picsum.photos/v2/list?page=${req.params.id}&limit=10`
         const response = await axios(url);
         const data = response.data;
+        //populating following data 
         let followings = [];
         let foundFollower = {};
         if (req.session.currentUser) {
@@ -112,10 +113,10 @@ router.get("/museum/:id", async (req, res, next) => {
         }
         //blocking negative pages
         let pageNumber = req.params.id;
+        let next = parseInt(pageNumber) + 1;
         if(req.params.id == 1 ){
             pageNumber = 2;
         }
-        let next = parseInt(pageNumber) + 1;
         context = {
             posts:data,
             followings: followings,

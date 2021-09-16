@@ -41,7 +41,7 @@
 
 .post_card{
     background: beige;
-    width:fit-content;
+    width:750px;
     position:relative;
     left: 50%;
     transform: translateX(-50%);

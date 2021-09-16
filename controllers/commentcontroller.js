@@ -8,7 +8,7 @@ const Comment = require("../models/Comment");
 
 router.post("/", async (req, res, next) => {
     try {
-        //If user is logged in, use their id, otherwise use anonymous user
+        //If user is logged in, use their id, otherwise 404
         if (req.session.currentUser) {
             req.body.user = req.session.currentUser.id;
         } else {

@@ -37,6 +37,7 @@ router.get("/cart", async (req, res, next) => {
             let foundPost = await Post.findById(foundUser.cart[i]).populate('user');
             cartContents.push(foundPost);
         }
+        //Calculate total price of cart
         let totalCartPrice = 0;
         for (let i = 0; i < cartContents.length; i++) {
             totalCartPrice += cartContents[i].price;
@@ -310,7 +311,6 @@ router.get("/:id/update", async (req, res, next) => {
         const context = {
             user: foundUser,
         }
-        //console.log(context.user);
         return res.render("users/profileupdate", context);
     } catch (error) {
         console.log(error);

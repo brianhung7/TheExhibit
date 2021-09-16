@@ -13,6 +13,7 @@ router.put("/:id", async (req, res, next) => {
                 userInArray = true;
             }
         }
+        //If user has not liked a post, push that user into the like array
         if (!userInArray) {
             foundLikes.numLikes++;
             foundLikes.userArr.push(req.session.currentUser.id);
