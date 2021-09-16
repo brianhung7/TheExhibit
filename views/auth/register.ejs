@@ -13,10 +13,7 @@
                 <form action="/register" method="POST" id="form__box">
                     <% if (typeof error !=='undefined' ) { %>
                         <article class="message is-danger">
-                            <div class="message-header">
-                                <p>Danger</p>
-                            </div>
-                            <div class="message-body">
+                            <div class="message-body alert alert-danger" style="text-align: center;">
                                 <%= error.message %>
                             </div>
                         </article>

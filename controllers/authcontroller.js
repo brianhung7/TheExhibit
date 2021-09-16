@@ -56,7 +56,11 @@ router.post("/login", async (req, res) => {
         const foundUser = await User.findOne({ email: req.body.email });
         if (!foundUser) {
             console.log("User not found");
-            return res.redirect("/register");
+            const context = {
+                error: { message: "User/email not found, please register" },
+            };
+            return res.render("auth/register", context);
+            // return res.redirect("/register");
         }
         // NOTE Authentication to check if passwords match
         const match = await bcrypt.compare(req.body.password, foundUser.password);
