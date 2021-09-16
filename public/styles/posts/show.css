@@ -68,6 +68,7 @@
     box-shadow: 10px 10px 10px grey;
     border:grey solid 2px;
     height:fit-content;
+    height:-moz-fit-content;
 }
 
 .comment_container{
