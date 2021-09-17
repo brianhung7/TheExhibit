@@ -111,9 +111,10 @@ router.post('/payment', async (req, res) => {
         })
         .then(async (charge) => {
             //pushing all user cart array items into purchases array and finding seller associated with each post
-            
             for (let i = 0; i < foundUser.cart.length; i++) {
+                //Push all cart items into buyer's purchases array
                 foundUser.purchases.push(foundUser.cart[i]);
+                //Find each art seller and push that sold art into their sold array
                 let soldPost = await Post.findById(foundUser.cart[i]);
                 let foundSeller = await User.findById(soldPost.user);
                 foundSeller.sales.push(foundUser.cart[i]);
