@@ -1,7 +1,7 @@
 # TheExhibit </br>
 The Exhibit is a hybrid social media/ecommerce website where users can share their artwork and photography with other people. Users are also invited to explore the collection of art, view artist profiles, like the artwork, leave comments on the art pieces, and even have the opportunity to purchase and sell artwork. If you find an artist whose work really captivates your attention, you can follow them to keep up to date on their portfolio and to build out your personal feed. Additionally, if you’d like to get in touch with another user, you also have the ability to message and have conversations with them to talk more about their work or to negotiate a price over a product.
 
-<a link="https://theexhibit.herokuapp.com/">View The Exhibit Here</a>
+[View The Exhibit Here](https://theexhibit.herokuapp.com/)
 
 **=====Technologies Used======** </br>
 NEM Stack | Node.js | Express.js | MongoDB | Mongoose | Embedded Javascript | Bootstrap | Axios | Flexbox | Grid | Javascript | Stripe API | Picsum API | AWS S3 Cloud 
