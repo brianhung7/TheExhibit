@@ -3,12 +3,12 @@ The Exhibit is a hybrid social media/ecommerce website where users can share the
 
 [View The Exhibit Here](https://theexhibit.herokuapp.com/)
 
-**=====Technologies Used======** </br>
+## **====Technologies Used====** </br>
 NEM Stack | Node.js | Express.js | MongoDB | Mongoose | Embedded Javascript | Bootstrap | Axios | Flexbox | Grid | Javascript | Stripe API | Picsum API | AWS S3 Cloud 
 
 
 
-**=====User Stories/Sprints======** </br>
+## **====User Stories/Sprints=====** </br>
 Sprint 1: User Auth/Profile View </br>
 <ol>
 <li>	User should navigate to “/” directory and see a splash page with description of the website and links to login/signup.</li>
@@ -63,11 +63,11 @@ Sprint 7: Shopping  </br>
 </ol>
 
 
-**====Entity Relationship Diagram====** </br>
+## **====Entity Relationship Diagram====** </br>
 <img src='https://i.imgur.com/iVio8U3.jpg' />
 
 
-**====Wireframes====** </br>
+## **====Wireframes====** </br>
 Splash Page </br>
 <img src='https://i.imgur.com/3Q9o89e.jpg' />
 
@@ -92,5 +92,10 @@ Sales/Purchase History Page </br>
 Shopping Cart Page </br>
 <img src='https://i.imgur.com/J4FLZYf.jpg' />
 
-**====Color Palette====** </br>
+## **====Color Palette====** </br>
 https://coolors.co/0081a7-00afb9-fdfcdc-fed9b7-f07167
+
+## **====Future Improvements====** </br> 
+<ul> 
+  <li>Will have to refactor the sales tracking portion, for now it works fine but it can be optimized by making that aspect a separate model for organization.</li>
+</ul>
