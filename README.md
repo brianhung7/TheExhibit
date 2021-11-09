@@ -57,7 +57,7 @@ Sprint 7: Shopping  </br>
 <ol>
 <li>	Users (Buyers) should be able to add Posts (now considered products) to their shopping cart.</li>
 <li>	Users (Buyers) can view their shopping cart which adds up the total amount of money for their whole purchase.</li>
-<li>	Users (Buyers) can checkout (and do payment processing with Stripe API)  </li>
+<li>	Users (Buyers) can checkout and do payment processing with Stripe  </li>
 <li>	Users (Buyers) can view their history of purchases  </li>
 <li>	Sellers can view their sales history  </li>
 </ol>
