@@ -40,7 +40,6 @@ router.put("/:id/unlike", async (req, res, next) => {
         const foundLikes = await Like.findOne({ post: req.params.id });
         //Checks if user already liked a post
         let userInArray = false;
-        // let userLikeArrIndex = 0;
         for (i = 0; i < foundLikes.userArr.length; i++) {
             if (foundLikes.userArr[i] == req.session.currentUser.id) {
                 userInArray = true;

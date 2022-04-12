@@ -1,7 +1,5 @@
 require("../config/db.connection");
-// require mongoose
 const mongoose = require("mongoose");
-// set up schema
 const messageSchema = new mongoose.Schema(
     {
         text: {
@@ -24,7 +22,5 @@ const messageSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-// use schema in model
 const Message = mongoose.model("Message", messageSchema);
-// export out model
 module.exports = Message;

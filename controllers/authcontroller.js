@@ -30,7 +30,6 @@ router.post("/register", async (req, res) => {
         });
         // if user does exist redirect to login
         if (foundUser) {
-            // return res.redirect("/login");
             const context = {
                 error: { message: "Email/user already exists. Please login." },
             };
@@ -60,7 +59,6 @@ router.post("/login", async (req, res) => {
                 error: { message: "User/email not found, please register" },
             };
             return res.render("auth/register", context);
-            // return res.redirect("/register");
         }
         // NOTE Authentication to check if passwords match
         const match = await bcrypt.compare(req.body.password, foundUser.password);

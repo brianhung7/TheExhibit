@@ -1,5 +1,4 @@
 module.exports = function navLinks(req, res, next) {
-    // locals
     
     if (req.session.currentUser) {
         res.locals.routes = [
@@ -19,12 +18,5 @@ module.exports = function navLinks(req, res, next) {
             { href: "/register", title: "Register", tooltip:"Sign up for an account" },
         ];
     }
-    /*
-    res.locals.routes = [
-        { href: "/login", title: "Login" },
-        { href: "/register", title: "Register" },
-        { href: "/gallery/new", title: "New Post" },
-    ];
-    */
     next();
 };

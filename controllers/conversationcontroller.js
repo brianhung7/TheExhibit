@@ -120,8 +120,6 @@ router.get("/:id", async (req, res, next) => {
         }
         context = {
             allMessages: foundMessages,
-            // currentUserMessages: currentUserMessages,
-            // otherUserMessages: otherUserMessages,
             currentUser: currentUser,
             otherUser: otherUser,
             userConversations:userConversations,
@@ -138,32 +136,6 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
-//Single Conversation POST
-// router.post("/:id", async (req, res, next) => {
-//     try {
-//         let foundConversation = await Conversation.findById(req.params.id);
-
-//         let otherUser = {};
-//         if (foundConversation.userArr[0] != req.session.currentUser.id) {
-//             otherUser = await User.findById(foundConversation.userArr[0]);
-//         } else {
-//             otherUser = await User.findById(foundConversation.userArr[1]);
-//         }
-
-//         let newMessage = await Message.create({
-//             receiver: otherUser._id,
-//             sender: req.session.currentUser.id,
-//             conversation: req.params.id,
-//             text: req.body.text,
-//         })
-//         res.redirect(`/conversation/${req.params.id}`);
-//     } catch (error) {
-//         console.log(error);
-//         req.error = error;
-//         return next();
-//     }
-
-// })
 
 
 module.exports = router;
